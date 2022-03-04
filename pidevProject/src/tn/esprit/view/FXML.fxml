@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" fx:id="anchopane" prefHeight="1394.0" prefWidth="1983.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.FXMLController">
+   <children>
+      <VBox prefHeight="1394.0" prefWidth="1931.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <TabPane prefHeight="1370.0" prefWidth="1931.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="Ajout">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane fx:id="ancopane1" layoutX="3.0" layoutY="4.0" prefHeight="1284.0" prefWidth="1646.0">
+                                 <children>
+                                    <Button layoutX="546.0" layoutY="827.0" minHeight="40.0" minWidth="149.0" mnemonicParsing="false" onAction="#exit" text="exit">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="lnom" layoutX="335.0" layoutY="153.0" prefHeight="35.0" prefWidth="151.0" text="Nom ">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="390.0" layoutY="45.0" text="Ajouter Produits" textAlignment="CENTER" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Anom" layoutX="538.0" layoutY="149.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <Label fx:id="ldesc" layoutX="335.0" layoutY="222.0" prefHeight="35.0" prefWidth="151.0" text="Description">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="ltype" layoutX="335.0" layoutY="296.0" prefHeight="35.0" prefWidth="151.0" text="Type">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lqte" layoutX="335.0" layoutY="375.0" prefHeight="35.0" prefWidth="151.0" text="Quantité">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="ldate" layoutX="321.0" layoutY="465.0" prefHeight="35.0" prefWidth="160.0" text="Date d' Ajout :">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="732.0" layoutY="827.0" minHeight="40.0" minWidth="149.0" mnemonicParsing="false" onAction="#AddProduits" style="-fx-background-color: red;" text="Ajouter">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.06222222372889519" green="0.5048888921737671" blue="0.800000011920929" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                    </Button>
+                                    <TextField fx:id="Adesc" layoutX="543.0" layoutY="226.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <TextField fx:id="Atype" layoutX="543.0" layoutY="300.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <Label fx:id="lcategorie" layoutX="313.0" layoutY="570.0" prefHeight="35.0" prefWidth="151.0" text="Categorie :">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="Aqte" layoutX="543.0" layoutY="380.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <DatePicker fx:id="Adate" layoutX="545.0" layoutY="470.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <ComboBox fx:id="Acategorie" layoutX="546.0" layoutY="560.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <Button layoutX="348.0" layoutY="824.0" minHeight="40.0" minWidth="149.0" mnemonicParsing="false" text="Reset">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="lqte1" layoutX="312.0" layoutY="661.0" prefHeight="35.0" prefWidth="151.0" text="QuantitéR :">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="Aqte1" layoutX="554.0" layoutY="653.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <Label layoutX="315.0" layoutY="740.0" prefHeight="82.0" prefWidth="134.0" text="Image :">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="path" layoutX="552.0" layoutY="757.0" prefHeight="51.0" prefWidth="286.0" />
+                                    <Button fx:id="loading" layoutX="855.0" layoutY="757.0" mnemonicParsing="false" onAction="#loding" prefHeight="54.0" prefWidth="111.0" text="Load" />
+                                    <Rating fx:id="rating1" layoutX="995.0" layoutY="660.0" prefHeight="37.0" prefWidth="176.0" rating="0.0" updateOnHover="true" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Affiche">
+                     <content>
+                        <AnchorPane prefHeight="1322.0" prefWidth="1931.0">
+                           <children>
+                              <Pane layoutY="-2.0" prefHeight="1345.0" prefWidth="464.0" style="-fx-background-color: #28252e;">
+                                 <children>
+                                    <Button layoutX="143.0" layoutY="876.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: #90B8E0;" text="Return" textFill="#0d0d0d">
+                                       <font>
+                                          <Font name="System Bold Italic" size="28.0" />
+                                       </font>
+                                    </Button>
+                                    <TextField fx:id="tnom" layoutX="64.0" layoutY="120.0" prefHeight="51.0" prefWidth="344.0" promptText="Nom">
+                                       <font>
+                                          <Font name="System Bold Italic" size="23.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button layoutX="141.0" layoutY="750.0" mnemonicParsing="false" onAction="#EDITB" prefHeight="40.0" prefWidth="149.0" style="-fx-alignment: center; -fx-background-color: #90B8E0;" text="EDIT" textFill="#101010">
+                                       <font>
+                                          <Font name="System Bold Italic" size="28.0" />
+                                       </font>
+                                    </Button>
+                                    <TextField fx:id="tdesq" layoutX="64.0" layoutY="211.0" prefHeight="51.0" prefWidth="344.0" promptText="Description">
+                                       <font>
+                                          <Font name="System Bold Italic" size="23.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="ttype" layoutX="64.0" layoutY="395.0" prefHeight="51.0" prefWidth="344.0" promptText="Type">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </TextField>
+                                    <Spinner fx:id="tqt" editable="true" layoutX="64.0" layoutY="303.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <Spinner fx:id="tqt1" editable="true" layoutX="59.0" layoutY="488.0" prefHeight="51.0" prefWidth="344.0" />
+                                    <TextField fx:id="idt" disable="true" layoutX="398.0" layoutY="2.0" prefHeight="64.0" prefWidth="64.0" promptText="Id">
+                                       <font>
+                                          <Font name="System Bold Italic" size="23.0" />
+                                       </font>
+                                    </TextField>
+                                    <ImageView fx:id="imageView" fitHeight="163.0" fitWidth="236.0" layoutX="96.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleview" layoutX="473.0" layoutY="166.0" onMouseClicked="#getSelected" prefHeight="770.0" prefWidth="1459.0" style="-fx-background-position: center;">
+                                 <columns>
+                                    <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="nom1" prefWidth="114.66668701171875" text="NOM" />
+                                    <TableColumn fx:id="desc1" prefWidth="154.13330078125" text="Description" />
+                                    <TableColumn fx:id="Type" prefWidth="93.066650390625" text="TYPE" />
+                                    <TableColumn fx:id="quantite" prefWidth="126.13323974609375" text="Quantite" />
+                                    <TableColumn fx:id="date1" prefWidth="153.06671142578125" text="Date d'Ajout" />
+                                    <TableColumn fx:id="categorie1" prefWidth="116.800048828125" text="Categorie" />
+                                    <TableColumn fx:id="quantiteR1" prefWidth="140.800048828125" text="quantiteR" />
+                                    <TableColumn fx:id="IMAGE" prefWidth="165.599853515625" text="IMAGE" />
+                                    <TableColumn fx:id="trating" prefWidth="165.599853515625" text="rating" />
+                                    <TableColumn fx:id="delet1" prefWidth="170.400146484375" text="Delete" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="search" layoutX="670.0" layoutY="119.0" prefHeight="34.0" prefWidth="1125.0" />
+                              <Button fx:id="search1" layoutX="1795.0" layoutY="119.0" mnemonicParsing="false" onMousePressed="#handle" prefHeight="30.0" prefWidth="96.0" text="search" />
+                              <Label layoutX="463.0" layoutY="103.0" prefHeight="63.0" prefWidth="211.0" text="Search Products : " wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="bexport" layoutX="854.0" layoutY="29.0" mnemonicParsing="false" onAction="#export" prefHeight="40.0" prefWidth="149.0" style="-fx-alignment: center; -fx-background-color: #90B8E0;" text="Exporter" textFill="#101010">
+                                 <font>
+                                    <Font name="System Bold Italic" size="28.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Statistique">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane fx:id="ancopane11" layoutX="3.0" layoutY="4.0" prefHeight="1284.0" prefWidth="1646.0">
+                                 <children>
+                                    <PieChart fx:id="produitchart" layoutX="-12.0" layoutY="69.0" stylesheets="@charts.css" title="Best Product" />
+                                    <Label fx:id="pielabel" layoutX="410.0" layoutY="206.0">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <BarChart fx:id="linechart" focusTraversable="true" layoutX="698.0" layoutY="81.0" title="BEST PRODUCT">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
+                                    <StackedBarChart fx:id="stackedbar" layoutX="263.0" layoutY="495.0" prefHeight="393.0" prefWidth="500.0">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </StackedBarChart>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Statistique">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane fx:id="ancopane111" layoutX="3.0" layoutY="4.0" prefHeight="1284.0" prefWidth="1646.0">
+                                 <children>
+                                    <Label fx:id="pielabel1" layoutX="410.0" layoutY="206.0">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Rating fx:id="rating" layoutX="363.0" layoutY="350.0" prefHeight="37.0" prefWidth="176.0" rating="0.0" updateOnHover="true" AnchorPane.bottomAnchor="899.0" AnchorPane.leftAnchor="363.0" AnchorPane.rightAnchor="1107.0" AnchorPane.topAnchor="350.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
