@@ -27,12 +27,47 @@ public class WorkshopJava3a1 extends Application {
     
     Parent parent;
     Stage stage;
-    /*
+ 
+//   
+//    @Override
+//    public void start(Stage primaryStage) {
+//        this.stage = primaryStage;
+//        try {
+//            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/Stocks.fxml"));
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        Scene scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.setTitle("Add and Show Persons");
+//        stage.show();
+//
+//    }
+
+  
+    
+      /*
+     public void start(Stage primaryStage) {
+    
+        this.stage = primaryStage;
+        try {
+            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/Partenaires.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setTitle("Add and Show Stock");
+        stage.show();
+ }
+  
+    
+    */
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/ajoutPartenaire.fxml"));
+            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/ex.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -42,38 +77,6 @@ public class WorkshopJava3a1 extends Application {
         stage.show();
 
     }
-*/
-    /*
-     public void start(Stage primaryStage) {
-      
-        this.stage = primaryStage;
-        try {
-            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/AfficheDeleteModifPartenaire.fxml"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("Add and Show Persons");
-        stage.show();
-     }
-    
-    */
- 
- 
-     public void start(Stage primaryStage) {
-      
-        this.stage = primaryStage;
-        try {
-            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/Stocks.fxml"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("Add and Show Stock");
-        stage.show();
- }
   
     /**
     

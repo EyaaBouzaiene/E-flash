@@ -5,7 +5,6 @@
  */
 package tn.esprit.service;
 
-
 import tn.esprit.model.Stock;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import tn.esprit.utils.MyDB;
+
 /**
  *
  * @author Khadija
@@ -36,8 +36,8 @@ public class StockService implements IStock<Stock> {
     @Override
     public void ajouterS(Stock s) throws SQLException {
 
-        String req = "INSERT INTO `stock`(`Partenaire`,`nomS`, `refS`, `categorieS`,`qteS`, `dateS`,`qualiteS`) "
-                + "VALUES ('" + s.getPartenaire() + "','" + s.getNomS() + "','" + s.getRefS() + "','" + s.getCategorieS() + "','" + s.getQteS() + "','" + s.getDateS() + "','" + s.getQualiteS() + "')";
+        String req = "INSERT INTO `stock`(`nomPartenaireS`,`nomS`, `refS`, `categorieS`,`qteS`, `dateS`,`qualiteS`)"
+                + "VALUES ('" + s.getNomPartenaireS() + "','" + s.getNomS() + "','" + s.getRefS() + "','" + s.getCategorieS() + "','" + s.getQteS() + "','" + s.getDateS() + "','" + s.getQualiteS() + "')";
         stm = connexion.createStatement();
         stm.executeUpdate(req);
 
@@ -47,20 +47,20 @@ public class StockService implements IStock<Stock> {
     public List<Stock> afficherS() throws SQLException {
 
         List<Stock> stocks = new ArrayList<>();
-        String req = "SELECT * , partenaires.nomP FROM `stock`,`partenaires` WHERE stock.Partenaire=partenaires.idP ";
+        String req = "SELECT * , partenaires.nomPartenaireS FROM `stock`,`partenaires` WHERE stock.nomPartenaireS=partenaires.nomMarqueP ";
         stm = connexion.createStatement();
         //ensemble de resultat
         ResultSet rst = stm.executeQuery(req);
 
         while (rst.next()) {
             Stock s = new Stock(rst.getInt("idS"),
-                    rst.getString("nomP"),
+                    rst.getString("nomPartenaireS"),
                     rst.getString("nomS"),
                     rst.getInt("refS"),
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
-                    rst.getInt("qualiteS"));
+                    rst.getString("qualiteS"));
 
             stocks.add(s);
         }
@@ -71,7 +71,7 @@ public class StockService implements IStock<Stock> {
     @Override
     public void modifierS() throws SQLException {
 
-        String req = "UPDATE `stock` SET `nomS`='internet',`refS`='1000',`categorieS`='internet' WHERE idS='105 '";
+        String req = "UPDATE `stock` SET `nomS`='internet',`refS`='1000',`categorieS`='internet' WHERE idS=? '";
 
         stm = connexion.createStatement();
         stm.executeUpdate(req);
@@ -79,7 +79,7 @@ public class StockService implements IStock<Stock> {
 
     @Override
     public void supprimerS() throws SQLException {
-        String req = "DELETE FROM `stock` WHERE IdS=108";
+        String req = "DELETE FROM `stock` WHERE nomPartenaireS=?";
         //WHERE IdS=60
         stm = connexion.createStatement();
         stm.executeUpdate(req);
@@ -92,7 +92,7 @@ public class StockService implements IStock<Stock> {
         Scanner Sc = new Scanner(System.in);
         System.out.println("**********Veuiller entrer le nom du stock**********");
         String name = Sc.next();
-        String req = "SELECT * , partenaires.nomP FROM `stock`,`partenaires` WHERE stock.Partenaire=partenaires.idP AND nomS ='" + name.toLowerCase() + "'";
+        String req = "SELECT * , partenaires.nomMarqueP FROM `stock`,`partenaires` WHERE stock.nomPartenaireS=partenaires.nomMarqueP AND nomS ='" + name.toLowerCase() + "'";
         stm = connexion.createStatement();
         //ensemble de resultat
         ResultSet rst = stm.executeQuery(req);
@@ -105,7 +105,7 @@ public class StockService implements IStock<Stock> {
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
-                    rst.getInt("qualiteS"));
+                    rst.getString("qualiteS"));
 
             stocks.add(s);
 
@@ -119,20 +119,20 @@ public class StockService implements IStock<Stock> {
     public List<Stock> trie() throws SQLException {
 
         List<Stock> stocks = new ArrayList<>();
-        String req = "SELECT * , partenaires.nomP FROM `stock`,`partenaires` WHERE stock.Partenaire=partenaires.idP ORDER BY categorieS";
+        String req = "SELECT * , partenaires.nomMarqueP FROM `stock`,`partenaires` WHERE stock.PartenaireS=partenaires.nomPartenaireS ORDER BY categorieS";
         stm = connexion.createStatement();
         //ensemble de resultat
         ResultSet rst = stm.executeQuery(req);
 
         while (rst.next()) {
             Stock s = new Stock(rst.getInt("idS"),
-                    rst.getString("nomP"),
+                    rst.getString("nomPartenaireS"),
                     rst.getString("nomS"),
                     rst.getInt("refS"),
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
-                    rst.getInt("qualiteS"));
+                    rst.getString("qualiteS"));
 
             stocks.add(s);
         }
@@ -143,58 +143,52 @@ public class StockService implements IStock<Stock> {
     @Override
     public void TraitementF() throws SQLException {
 
-     
-         String req = "SELECT partenaires.mailP, partenaires.categorieP FROM `partenaires`,`stock`  WHERE stock.Partenaire=partenaires.idP AND stock.qualiteS <=3";
-     
-        stm = connexion.createStatement();
-        //ensemble de resultat
-        ResultSet rst = stm.executeQuery(req);
-       
-     
-          while (rst.next()){
-             
-                System.out.println("hey2");  
-               
-            Mail.send(
-            "flashelectro06@gmail.com",
-            "dhia1881",
-             rst.getString("mailP"),
-            "MAIL ANNULATION",
-            "MAIL ANNULATION"
-            );
- 
-           String req1 = "SELECT partenairesecours.mailPS FROM `partenairesecours`, `partenaires`  WHERE  partenairesecours.categoriePS=partenaires.categorieP ";
-     
-        stm = connexion.createStatement();
-        //ensemble de resultat
-        ResultSet rst1 = stm.executeQuery(req1);  
-         if(rst1.next()){
-             System.out.println("hey3");  
-           Mail.send(
-            "flashelectro06@gmail.com",
-            "dhia1881",
-             rst.getString("mailP"),
-            " Convention ",
-            "Convention"
-            );  
- 
-            String req2="UPDATE `partenaires` INNER JOIN  `partenairesecours` ON  partenairesecours.categoriePS=partenaires.categorieP  SET nomP=`nomPS` , prenomP=`prenomPS`,mailP=`mailPS`,categorieP=`categoriePS`,dateAjout=CURRENT_TIMESTAMP ";
-        stm = connexion.createStatement();
-        //ensemble de resultat
-       stm.executeUpdate(req2);
-       String req3="DELETE FROM `partenairesecours`  WHERE partenairesecours.categoriePS='"+rst.getString("categorieP")+"' ";
-        stm = connexion.createStatement();
-        //ensemble de resultat
-       stm.executeUpdate(req3);
-      }
-          }
-
-       
-     
-        
+//        String req = "SELECT partenaires.mailP, partenaires.categorieP FROM `partenaires`,`stock`  WHERE stock.Partenaire=partenaires.idP AND stock.qualiteS <=3";
+//
+//        stm = connexion.createStatement();
+//        //ensemble de resultat
+//        ResultSet rst = stm.executeQuery(req);
+//
+//        while (rst.next()) {
+//
+//            System.out.println("hey2");
+//
+//            Mail.send(
+//                    "flashelectro06@gmail.com",
+//                    "dhia1881",
+//                    rst.getString("mailP"),
+//                    "MAIL ANNULATION",
+//                    "MAIL ANNULATION"
+//            );
+//
+//            String req1 = "SELECT partenairesecours.mailPS FROM `partenairesecours`, `partenaires`  WHERE  partenairesecours.categoriePS=partenaires.categorieP ";
+//
+//            stm = connexion.createStatement();
+//            //ensemble de resultat
+//            ResultSet rst1 = stm.executeQuery(req1);
+//            if (rst1.next()) {
+//                System.out.println("hey3");
+//                Mail.send(
+//                        "flashelectro06@gmail.com",
+//                        "dhia1881",
+//                        rst.getString("mailP"),
+//                        " Convention ",
+//                        "Convention"
+//                );
+//
+//                String req2 = "UPDATE `partenaires` INNER JOIN  `partenairesecours` ON  partenairesecours.categoriePS=partenaires.categorieP  SET nomP=`nomPS` , prenomP=`prenomPS`,mailP=`mailPS`,categorieP=`categoriePS`,dateAjout=CURRENT_TIMESTAMP ";
+//                stm = connexion.createStatement();
+//                //ensemble de resultat
+//                stm.executeUpdate(req2);
+//                String req3 = "DELETE FROM `partenairesecours`  WHERE partenairesecours.categoriePS='" + rst.getString("categorieP") + "' ";
+//                stm = connexion.createStatement();
+//                //ensemble de resultat
+//                stm.executeUpdate(req3);
+//            }
+//        }
 
     }
-
+/*
     @Override
     public void TraitementS() throws SQLException {
         String req = "SELECT partenaires.mailP FROM `stock`,`partenaires`  WHERE stock.Partenaire=partenaires.idP AND stock.qteS <=3";
@@ -204,16 +198,12 @@ public class StockService implements IStock<Stock> {
         ResultSet rst = stm.executeQuery(req);
 
         while (rst.next()) {
-
-            Mail.send(
-                    "khanfirkhadija66@gmail.com",
-                    "bebe@@##123,",
-                    rst.getString("mailP"),
-                    "Besoin produit dans 2 jours la livraison !",
-                    "Besoin produit !"
-            );
+            System.out.println(rst.getString("mailP"));
+Mail m =new Mail( "Besoin produit !", rst.getString("mailP"),  "Besoin produit dans 2 jours la livraison !");
+            Mail.sendMail();
+            
 
         }
 
-    }
+    }*/
 }

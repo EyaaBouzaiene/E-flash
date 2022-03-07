@@ -33,7 +33,7 @@ public class PartenaireService implements IPartenaires<Partenaire> {
 
     @Override
     public void ajouterP(Partenaire p) throws SQLException {
-        String req = "INSERT INTO `partenaires`(`nomP`, `prenomP`,`mailP`, `categorieP`, `dateAjout`) VALUES ('" + p.getNomP() + "','" + p.getPrenomP()  +"','" + p.getMailP()+ "','"+ p.getCategorieP() + "','" + p.getDateP() + "')";
+        String req = "INSERT INTO `partenaires`(`MatriculeP`,`nomMarqueP`,`nomP`, `prenomP`,`mailP`, `categorieP`, `dateAjout`) VALUES ('" + p.getMatriculeP()+ "','" + p.getNomMarqueP()+ "','" + p.getNomP() + "','" + p.getPrenomP()  +"','" + p.getMailP()+ "','"+ p.getCategorieP() + "','" + p.getDateP() + "')";
         stm = connexion.createStatement();
         stm.executeUpdate(req);
     }
@@ -48,7 +48,9 @@ public class PartenaireService implements IPartenaires<Partenaire> {
         ResultSet rst = stm.executeQuery(req);
 
         while (rst.next()) {
-            Partenaire p = new Partenaire(rst.getInt("idP"),
+            Partenaire p = new Partenaire(
+                    rst.getInt("MatriculeP"),
+                    rst.getString("nomMarqueP"),
                     rst.getString("nomP"),
                     rst.getString("prenomP"),
                     rst.getString("mailP"),
@@ -64,14 +66,14 @@ public class PartenaireService implements IPartenaires<Partenaire> {
     @Override
     public void modifierP() throws SQLException {
 
-        String req = "UPDATE `partenaires` SET `nomP`='abdelwaheb' , `prenomP`='sabr' , `mailP`='abdelwaheb.sabr@gmail.com' , `categorieP`='alimentaire' WHERE idP='50'  ";
+        String req = "UPDATE `partenaires` SET `nomP`='abdelwaheb' , `prenomP`='sabr' , `mailP`='abdelwaheb.sabr@gmail.com' , `categorieP`='alimentaire' WHERE nomMarqueP=?  ";
         stm = connexion.createStatement();
         stm.executeUpdate(req);
     }
 
     @Override
     public void supprimerP() throws SQLException {
-        String req = "DELETE FROM `partenaires`WHERE nomP=? ";
+        String req = "DELETE FROM `partenaires`WHERE nomMarqueP=? ";
         stm = connexion.createStatement();
         stm.executeUpdate(req);
     }
@@ -80,7 +82,7 @@ public class PartenaireService implements IPartenaires<Partenaire> {
     public List<Partenaire> MeilleursP() throws SQLException {
       
         List<Partenaire> partenaires = new ArrayList<>();
-        String req = "SELECT * FROM `partenaires`,`stock` WHERE qualiteS=5 AND partenaires.idP=stock.Partenaire ";
+        String req = "SELECT * FROM `partenaires`,`stock` WHERE qualiteS=5 AND partenaires.nomMarqueP=stock.nomPartenaireS ";
         //,prenomP,qualiteP
         stm = connexion.createStatement();
         //ensemble de resultat
@@ -89,7 +91,9 @@ public class PartenaireService implements IPartenaires<Partenaire> {
         
 int i=0;
           while (rst.next()) {
-            Partenaire p = new Partenaire(rst.getInt("idP"),
+            Partenaire p = new Partenaire(
+                    rst.getInt("MatriculeP"),
+                    rst.getString("nomPartenaireS"),
                     rst.getString("nomP"),
                     rst.getString("prenomP"),
                      rst.getString("mailP"),

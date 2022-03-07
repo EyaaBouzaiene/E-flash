@@ -29,6 +29,6 @@ public interface IStock<T> {
    
    public void TraitementF () throws SQLException;
    
-   public void TraitementS() throws SQLException;
+   //public void TraitementS() throws SQLException;
 
 }

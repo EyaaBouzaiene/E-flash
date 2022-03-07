@@ -15,17 +15,31 @@ import java.util.Objects;
 public class Stock {
 
     private int idS;
-    private String Partenaire;
+    private String nomPartenaireS;
     private String nomS;
     private int refS;
     private String categorieS;
     private int qteS;
     private Date dateS;
-    private int qualiteS ;
+    private String qualiteS ;
+    
 
-    public Stock(int idS, String Partenaire, String nomS, int refS, String categorieS, int qteS, Date dateS, int qualiteS) {
+    public Stock(String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS, String qualiteS) {
+        this.nomPartenaireS = nomPartenaireS;
+        this.nomS = nomS;
+        this.refS = refS;
+        this.categorieS = categorieS;
+        this.qteS = qteS;
+        this.dateS = dateS;
+        this.qualiteS = qualiteS;
+    }
+
+    
+
+    
+    public Stock(int idS, String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS, String qualiteS) {
         this.idS = idS;
-        this.Partenaire = Partenaire;
+        this.nomPartenaireS = nomPartenaireS;
         this.nomS = nomS;
         this.refS = refS;
         this.categorieS = categorieS;
@@ -34,19 +48,11 @@ public class Stock {
         this.qualiteS = qualiteS;
     }
 
-    public Stock(String Partenaire, String nomS, int refS, String categorieS, int qteS, Date dateS, int qualiteS) {
-        this.Partenaire = Partenaire;
-        this.nomS = nomS;
-        this.refS = refS;
-        this.categorieS = categorieS;
-        this.qteS = qteS;
-        this.dateS = dateS;
-        this.qualiteS = qualiteS;
-    }
+  
 
-    public Stock(String Partenaire, String nomS, int refS, String categorieS, int qteS, Date dateS) {
+    public Stock(String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS) {
 
-        this.Partenaire = Partenaire;
+        this.nomPartenaireS = nomPartenaireS;
         this.nomS = nomS;
         this.refS = refS;
         this.categorieS = categorieS;
@@ -64,12 +70,12 @@ public class Stock {
         this.idS = idS;
     }
 
-    public String getPartenaire() {
-        return Partenaire;
+    public String getNomPartenaireS() {
+        return nomPartenaireS;
     }
 
-    public void setPartenaire(String Partenaire) {
-        this.Partenaire = Partenaire;
+    public void setNomPartenaireS(String Partenaire) {
+        this.nomPartenaireS = nomPartenaireS;
     }
 
     
@@ -113,27 +119,29 @@ public class Stock {
         this.dateS = dateS;
     }
 
-    public int getQualiteS() {
+    public String getQualiteS() {
         return qualiteS;
     }
 
-    public void setQualiteS(int qualite) {
+    public void setQualiteS(String qualite) {
         this.qualiteS = qualiteS;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.idS;
-        hash = 89 * hash + Objects.hashCode(this.Partenaire);
-        hash = 89 * hash + Objects.hashCode(this.nomS);
-        hash = 89 * hash + this.refS;
-        hash = 89 * hash + Objects.hashCode(this.categorieS);
-        hash = 89 * hash + this.qteS;
-        hash = 89 * hash + Objects.hashCode(this.dateS);
-        hash = 89 * hash + this.qualiteS;
+        int hash = 3;
+        hash = 97 * hash + this.idS;
+        hash = 97 * hash + Objects.hashCode(this.nomPartenaireS);
+        hash = 97 * hash + Objects.hashCode(this.nomS);
+        hash = 97 * hash + this.refS;
+        hash = 97 * hash + Objects.hashCode(this.categorieS);
+        hash = 97 * hash + this.qteS;
+        hash = 97 * hash + Objects.hashCode(this.dateS);
+        hash = 97 * hash + Objects.hashCode(this.qualiteS);
         return hash;
     }
+
+ 
 
     @Override
     public boolean equals(Object obj) {
@@ -159,7 +167,7 @@ public class Stock {
         if (this.qualiteS != other.qualiteS) {
             return false;
         }
-        if (!Objects.equals(this.Partenaire, other.Partenaire)) {
+        if (!Objects.equals(this.nomPartenaireS, other.nomPartenaireS)) {
             return false;
         }
         if (!Objects.equals(this.nomS, other.nomS)) {
@@ -176,17 +184,13 @@ public class Stock {
 
     @Override
     public String toString() {
-              return   "Stock{" + "idS=" + idS +""
-                      + ", Partenaire=" + Partenaire + ", nomS=" 
-                      + nomS + ", refS=" 
-                      + refS + ", categorieS="
-                      + categorieS + ", qteS=" 
-                      + qteS + ", dateS=" 
-                      + dateS + ", qualiteS=" 
-                      + qualiteS + '}';
-              
-      
+        return "Stock{" + "idS=" + idS + ", nomPartenaireS=" + nomPartenaireS + ", nomS=" + nomS + ", "
+                + "refS=" + refS + ", categorieS=" + categorieS + ", qteS=" + qteS + ", dateS=" + dateS + ", qualiteS=" + qualiteS + '}';
     }
+
+    
+    
+   
 
    
 

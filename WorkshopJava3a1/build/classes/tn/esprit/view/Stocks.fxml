@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -20,12 +21,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="806.0" prefWidth="1355.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.StocksController">
+<AnchorPane id="AnchorPane" prefHeight="806.0" prefWidth="1355.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.StocksController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="-16.0" prefHeight="806.0" prefWidth="1376.0">
          <children>
@@ -82,8 +83,7 @@
                                              <children>
                                                 <TableView fx:id="tableviewS" layoutX="431.0" layoutY="153.0" onMouseClicked="#getDisplaySelected" prefHeight="502.0" prefWidth="926.0">
                                                    <columns>
-                                                      <TableColumn fx:id="id" prefWidth="91.20001220703125" text="id" />
-                                                      <TableColumn fx:id="partenaire" prefWidth="106.4000244140625" text="partenaire" />
+                                                      <TableColumn fx:id="marque" prefWidth="91.20001220703125" text="Marque" />
                                                       <TableColumn fx:id="nom" prefWidth="113.5999755859375" text="nom" />
                                                       <TableColumn fx:id="reference" prefWidth="124.800048828125" text="reference" />
                                                       <TableColumn fx:id="categorie" prefWidth="129.60003662109375" text="Categories" />
@@ -94,40 +94,41 @@
                                                 </TableView>
                                                 <Pane layoutX="-19.0" prefHeight="898.0" prefWidth="449.0" style="-fx-background-color: #28252e;">
                                                    <children>
-                                                      <TextField fx:id="cpartenaireS" layoutX="183.0" layoutY="116.0" prefHeight="40.0" prefWidth="200.0" promptText="Partenaire du Stock">
+                                                      <TextField fx:id="cpartenaireS" layoutX="147.0" layoutY="120.0" prefHeight="40.0" prefWidth="200.0" promptText="NomMarque">
                                                          <font>
                                                             <Font name="System Bold Italic" size="18.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField fx:id="cnomS" layoutX="183.0" layoutY="179.0" prefHeight="40.0" prefWidth="200.0" promptText="Nom Stock">
+                                                      <TextField fx:id="cnomS" layoutX="147.0" layoutY="183.0" prefHeight="40.0" prefWidth="200.0" promptText="Nom Stock">
                                                          <font>
                                                             <Font name="System Bold Italic" size="18.0" />
                                                          </font>
                                                       </TextField>
-                                                      <Label layoutX="96.0" layoutY="26.0" text="Affichage Stocks" textFill="#f4f2f2">
+                                                      <Label layoutX="147.0" layoutY="29.0" prefHeight="70.0" prefWidth="326.0" text="Affichage Stocks" textFill="#f4f2f2">
                                                          <font>
-                                                            <Font size="48.0" />
+                                                            <Font size="36.0" />
                                                          </font>
                                                       </Label>
-                                                      <Spinner fx:id="cqteS" editable="true" layoutX="183.0" layoutY="247.0" prefHeight="40.0" prefWidth="200.0" />
-                                                      <Spinner fx:id="cqualiteS" editable="true" layoutX="183.0" layoutY="316.0" prefHeight="40.0" prefWidth="200.0" />
+                                                      <Spinner fx:id="cqteS" editable="true" layoutX="147.0" layoutY="251.0" prefHeight="40.0" prefWidth="200.0" />
                                                       <Button layoutX="149.0" layoutY="628.0" mnemonicParsing="false" onAction="#delete" prefHeight="48.0" prefWidth="180.0" style="-fx-background-color: red;" text="DELETE" />
                                                       <Button layoutX="147.0" layoutY="555.0" mnemonicParsing="false" onAction="#UPDATE" prefHeight="50.0" prefWidth="184.0" style="-fx-background-color: green;" text="UPDATE" />
                                                       <TextField fx:id="identifiant" layoutX="409.0" layoutY="-1.0" prefHeight="30.0" prefWidth="41.0" />
+                                                      <ImageView fitHeight="115.0" fitWidth="108.0" layoutX="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../../../../Desktop/Etudes/PIDEV/PHOTOS/272659139_262139319378813_5958036173458991271_n.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Rating fx:id="rate" layoutX="159.0" layoutY="334.0" prefHeight="32.0" prefWidth="250.0" rating="1.0" />
                                                    </children>
                                                 </Pane>
                                                 <Button layoutX="1236.0" layoutY="655.0" mnemonicParsing="false" onAction="#closeS1" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: grey;" text="CLOSE" />
-                                                <TextField fx:id="searchS1" layoutX="1078.0" layoutY="110.0" prefHeight="42.0" prefWidth="278.0" promptText="Recherche">
+                                                <TextField fx:id="searchS1" layoutX="640.0" layoutY="110.0" prefHeight="42.0" prefWidth="716.0" promptText="Recherche">
                                                    <font>
                                                       <Font name="System Bold Italic" size="18.0" />
                                                    </font>
                                                 </TextField>
-                                                <Label layoutX="1151.0" layoutY="82.0" text="Recherche Stock">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Button layoutX="431.0" layoutY="655.0" mnemonicParsing="false" onAction="#SeuilStock" prefHeight="42.0" prefWidth="122.0" text="Seuil Min Stock" />
+                                                <Button layoutX="431.0" layoutY="655.0" mnemonicParsing="false" onAction="#send" prefHeight="42.0" prefWidth="122.0" text="Seuil Min Stock" />
+                                                <Button layoutX="431.0" layoutY="111.0" mnemonicParsing="false" onAction="#trie" prefHeight="42.0" prefWidth="163.0" text="Trie par Qualité Stock" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -136,12 +137,12 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="878.0" prefWidth="1526.0">
                                              <children>
-                                                <TextField fx:id="partenaire1" layoutX="887.0" layoutY="192.0" prefHeight="40.0" prefWidth="220.0" />
+                                                <TextField fx:id="mrqpartenaire" layoutX="887.0" layoutY="192.0" prefHeight="40.0" prefWidth="220.0" />
                                                 <TextField fx:id="nom1S" layoutX="887.0" layoutY="265.0" prefHeight="40.0" prefWidth="220.0" />
                                                 <TextField fx:id="reference1S" layoutX="890.0" layoutY="339.0" prefHeight="40.0" prefWidth="220.0" />
                                                 <ComboBox fx:id="categorie1S" layoutX="890.0" layoutY="413.0" prefHeight="40.0" prefWidth="220.0" promptText="Veuiller selectionner la categorie" />
                                                 <DatePicker fx:id="dateA1S" layoutX="887.0" layoutY="554.0" prefHeight="40.0" prefWidth="220.0" />
-                                                <Button layoutX="887.0" layoutY="654.0" mnemonicParsing="false" onAction="#ajouterS" text="Ajout">
+                                                <Button layoutX="887.0" layoutY="674.0" mnemonicParsing="false" onAction="#ajouterS" text="Ajout">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
@@ -151,7 +152,7 @@
                                                       <Font name="System Bold" size="64.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="673.0" layoutY="185.0" text="Partenaire :">
+                                                <Label layoutX="571.0" layoutY="185.0" text="Marque Partenaire :">
                                                    <font>
                                                       <Font size="36.0" />
                                                    </font>
@@ -176,84 +177,75 @@
                                                       <Font size="36.0" />
                                                    </font>
                                                 </Label>
-                                                <Button layoutX="1037.0" layoutY="654.0" mnemonicParsing="false" onAction="#closeS1" text="Close">
+                                                <Button layoutX="1037.0" layoutY="674.0" mnemonicParsing="false" onAction="#closeS1" text="Close">
                                                    <font>
                                                       <Font name="System Bold" size="18.0" />
                                                    </font>
                                                 </Button>
-                                                <Pane layoutY="-5.0" prefHeight="905.0" prefWidth="447.0" style="-fx-background-color: #28252e;" />
+                                                <Pane layoutY="-5.0" prefHeight="905.0" prefWidth="447.0" style="-fx-background-color: #28252e;">
+                                                   <children>
+                                                      <ImageView fitHeight="117.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../../../../../Desktop/Etudes/PIDEV/PHOTOS/272659139_262139319378813_5958036173458991271_n.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children></Pane>
                                                 <Spinner fx:id="qte1S" editable="true" layoutX="887.0" layoutY="484.0" prefHeight="40.0" prefWidth="220.0" />
                                                 <Label layoutX="678.0" layoutY="477.0" text="Quantite :">
                                                    <font>
                                                       <Font size="36.0" />
                                                    </font>
                                                 </Label>
+                                                <Rating fx:id="rateA" layoutX="912.0" layoutY="617.0" rating="1.0" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab text="Untitled Tab">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="862.0" prefWidth="1526.0">
+                                    <Tab text="Statistique">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <HBox layoutX="390.0" layoutY="-2.0" prefHeight="50.0" prefWidth="1132.0">
-                                                   <children>
-                                                      <ImageView fitHeight="100.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Pane prefHeight="79.0" prefWidth="59.0" />
-                                                      <ImageView fitHeight="91.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <ImageView fitHeight="50.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                                                         <image>
-                                                            <Image url="@../Downloads/WorkshopJava3a1/images/téléchargement.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                                <VBox layoutX="2.0" prefHeight="898.0" prefWidth="380.0" style="-fx-background-color: #28252e;">
-                                                   <children>
-                                                      <HBox prefHeight="150.0" prefWidth="418.0">
-                                                         <children>
-                                                            <VBox prefHeight="200.0" prefWidth="100.0">
-                                                               <children>
-                                                                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <image>
-                                                                        <Image url="@../Downloads/WorkshopJava3a1/images/272659139_262139319378813_5958036173458991271_n.png" />
-                                                                     </image>
-                                                                  </ImageView>
-                                                               </children>
-                                                            </VBox>
-                                                            <Label prefHeight="60.0" prefWidth="230.0" text=" PARTENAIRES DASHBORD" textFill="#ece4e4">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </HBox>
-                                                   </children>
-                                                </VBox>
-                                                <VBox layoutX="382.0" layoutY="107.0" prefHeight="406.0" prefWidth="550.0">
-                                                   <children>
-                                                      <Label text="TOP PARTENAIRES">
-                                                         <font>
-                                                            <Font name="System Bold Italic" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <LineChart fx:id="LineChart" prefHeight="380.0" prefWidth="566.0" stylesheets="@../Downloads/WorkshopJava3a1/src/tn/esprit/view/style.css">
-                                                         <xAxis>
-                                                            <CategoryAxis side="BOTTOM" />
-                                                         </xAxis>
-                                                         <yAxis>
-                                                            <NumberAxis prefHeight="337.0" prefWidth="28.0" side="LEFT" />
-                                                         </yAxis>
-                                                      </LineChart>
-                                                   </children>
-                                                </VBox>
-                                                <VBox layoutX="973.0" layoutY="134.0" prefHeight="383.0" prefWidth="482.0" />
+                                                <PieChart fx:id="piechart" layoutX="27.0" layoutY="176.0" prefHeight="312.0" prefWidth="502.0" stylesheets="@charts.css" title="La quantité du stock en fonction des categories" />
+                                                <Label layoutX="432.0" layoutY="16.0" text="Dashbord Statistic">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="48.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="113.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Desktop/Etudes/PIDEV/PHOTOS/272659139_262139319378813_5958036173458991271_n.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label fx:id="Label1" layoutX="74.0" layoutY="224.0" text="Label1">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="Nom_Stock" layoutX="953.0" layoutY="547.0" text="NomStock" />
+                                                <StackedBarChart fx:id="stackchart" layoutX="731.0" layoutY="132.0">
+                                                  <xAxis>
+                                                    <CategoryAxis side="BOTTOM" />
+                                                  </xAxis>
+                                                  <yAxis>
+                                                    <NumberAxis side="LEFT" />
+                                                  </yAxis>
+                                                </StackedBarChart>
                                              </children>
                                           </AnchorPane>
-                                       </content>
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Untitled Tab">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="123.0" fitWidth="131.0" layoutX="-2.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Desktop/Etudes/PIDEV/PHOTOS/272659139_262139319378813_5958036173458991271_n.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
                                     </Tab>
                                  </tabs>
                               </TabPane>

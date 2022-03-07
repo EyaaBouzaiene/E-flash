@@ -15,6 +15,8 @@ import java.util.Objects;
 public class Partenaire {
 
     private int idP;
+    private int MatriculeP;
+    private String nomMarqueP;
     private String nomP;
     private String prenomP;
     private String mailP;
@@ -22,17 +24,21 @@ public class Partenaire {
     private Date dateP;
     
 
-    public Partenaire(int idP, String nomP, String prenomP, String mail, String categorieP, Date dateP) {
+    public Partenaire(int idP, int MatriculeP,String nomMarqueP, String nomP, String prenomP, String mail, String categorieP, Date dateP) {
         this.idP = idP;
+        this. MatriculeP=  MatriculeP;
         this.nomP = nomP;
         this.prenomP = prenomP;
         this.mailP = mail;
         this.categorieP = categorieP;
         this.dateP = dateP;
+        this.nomMarqueP=nomMarqueP;
   
     }
 
-    public Partenaire(String nomP, String prenomP, String mailP, String categorieP, Date dateP) {
+    public Partenaire(int MatriculeP,String nomMarqueP,String nomP, String prenomP, String mailP, String categorieP, Date dateP) {
+     this.MatriculeP=MatriculeP;
+        this.nomMarqueP=nomMarqueP;
         this.nomP = nomP;
         this.prenomP = prenomP;
         this.mailP = mailP;
@@ -44,10 +50,28 @@ public class Partenaire {
     
 
   
-    public Partenaire(String nomP, String prenomP) {
+    public Partenaire(int MatriculeP,String nomMarqueP,String nomP, String prenomP) {
+      this.MatriculeP=MatriculeP;
+        this.nomMarqueP=nomMarqueP;
         this.nomP = nomP;
         this.prenomP = prenomP;
    
+    }
+
+    public int getMatriculeP() {
+        return MatriculeP;
+    }
+
+    public void setMatriculeP(int MatriculeP) {
+        this.MatriculeP = MatriculeP;
+    }
+
+    public String getNomMarqueP() {
+        return nomMarqueP;
+    }
+
+    public void setNomMarqueP(String nomMarqueP) {
+        this.nomMarqueP = nomMarqueP;
     }
 
     public Partenaire(String nomP) {
@@ -103,18 +127,17 @@ public class Partenaire {
         this.dateP = dateP;
     }
 
-  
-
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 29 * hash + this.idP;
+        hash = 29 * hash + this.MatriculeP;
+        hash = 29 * hash + Objects.hashCode(this.nomMarqueP);
         hash = 29 * hash + Objects.hashCode(this.nomP);
         hash = 29 * hash + Objects.hashCode(this.prenomP);
         hash = 29 * hash + Objects.hashCode(this.mailP);
         hash = 29 * hash + Objects.hashCode(this.categorieP);
         hash = 29 * hash + Objects.hashCode(this.dateP);
-      
         return hash;
     }
 
@@ -133,7 +156,12 @@ public class Partenaire {
         if (this.idP != other.idP) {
             return false;
         }
-      
+        if (this.MatriculeP != other.MatriculeP) {
+            return false;
+        }
+        if (!Objects.equals(this.nomMarqueP, other.nomMarqueP)) {
+            return false;
+        }
         if (!Objects.equals(this.nomP, other.nomP)) {
             return false;
         }
@@ -154,8 +182,17 @@ public class Partenaire {
 
     @Override
     public String toString() {
-        return "Partenaire{" + "idP=" + idP + ", nomP=" + nomP + ", prenomP=" + prenomP + ", mailP=" + mailP + ", categorieP=" + categorieP + ", dateP=" + dateP   + '}';
+        return "Partenaire{" + "idP=" + idP + ", MatriculeP=" + MatriculeP + ", nomMarqueP=" + nomMarqueP + ", nomP=" + nomP + ", prenomP=" + prenomP + ", mailP=" + mailP + ", categorieP=" + categorieP + ", dateP=" + dateP + '}';
     }
+
+   
+
+  
+  
+
+  
+
+ 
 
     
 
