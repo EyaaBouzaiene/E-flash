@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.Espace_commentaireController">
+    <stylesheets>
+        <URL value="@espace_commentaire.css" />
+    </stylesheets>
+   <children>
+      <ListView fx:id="listCommentaire" layoutX="20.0" layoutY="67.0" prefHeight="418.0" prefWidth="762.0" />
+      <Label layoutX="12.0" layoutY="9.0" text="Espace Commentaire">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+      </Label>
+      <Pane layoutX="1.0" layoutY="38.0" prefHeight="6.0" prefWidth="800.0" style="-fx-background-color: #FFCCBC;" />
+      <TextArea fx:id="TextA_commenter" layoutX="103.0" layoutY="514.0" prefHeight="24.0" prefWidth="426.0" />
+      <Button layoutX="25.0" layoutY="512.0" mnemonicParsing="false" onAction="#Button_commenter" prefHeight="37.0" prefWidth="79.0" text="Commenter" />
+      <FontAwesomeIconView glyphName="REFRESH" layoutX="732.0" layoutY="30.0" onMouseClicked="#Button_Refresh_Commentaire" size="30" />
+   </children>
+</AnchorPane>
