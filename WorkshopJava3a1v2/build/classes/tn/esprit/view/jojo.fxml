@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onMousePressed="#click" prefHeight="225.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.JojoController">
+   <children>
+      <HBox prefHeight="225.0" prefWidth="242.0">
+         <children>
+            <AnchorPane prefHeight="226.0" prefWidth="250.0" stylesheets="@../style.css">
+               <children>
+                  <VBox onMouseClicked="#onClickListener" prefHeight="226.0" prefWidth="240.0" style="-fx-background-color: ffff; -fx-background-radius: 30;">
+                     <children>
+                        <HBox fx:id="hb" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="label" contentDisplay="CENTER" prefHeight="103.0" prefWidth="102.0" style="-fx-alignment: center;">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="prixl" prefHeight="101.0" prefWidth="140.0" style="-fx-alignment: center;">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="img" fitHeight="150.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
