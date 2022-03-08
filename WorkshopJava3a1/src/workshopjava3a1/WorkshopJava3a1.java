@@ -28,25 +28,25 @@ public class WorkshopJava3a1 extends Application {
     Parent parent;
     Stage stage;
  
-//   
-//    @Override
-//    public void start(Stage primaryStage) {
-//        this.stage = primaryStage;
-//        try {
-//            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/Stocks.fxml"));
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        Scene scene = new Scene(parent);
-//        stage.setScene(scene);
-//        stage.setTitle("Add and Show Persons");
-//        stage.show();
-//
-//    }
+   /*
+    @Override
+    public void start(Stage primaryStage) {
+        this.stage = primaryStage;
+        try {
+            parent = FXMLLoader.load(getClass().getResource("/tn/esprit/view/Stocks.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setTitle("Add and Show Persons");
+        stage.show();
+
+    }
 
   
     
-      /*
+      */
      public void start(Stage primaryStage) {
     
         this.stage = primaryStage;
@@ -62,7 +62,8 @@ public class WorkshopJava3a1 extends Application {
  }
   
     
-    */
+    
+    /*
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;

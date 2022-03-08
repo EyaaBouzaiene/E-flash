@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.PartenairesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.view.PartenairesController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="-16.0" layoutY="-9.0" prefHeight="825.0" prefWidth="1386.0">
          <children>
@@ -137,6 +137,7 @@
                                                    </font>
                                                 </Label>
                                                 <Button layoutX="431.0" layoutY="655.0" mnemonicParsing="false" onAction="#send" prefHeight="42.0" prefWidth="122.0" text="Seuil Min Stock" />
+                                                <Button layoutX="431.0" layoutY="121.0" mnemonicParsing="false" onAction="#trieP" prefHeight="31.0" prefWidth="173.0" text="Trie Par nom Marque" />
                                              </children>
                                           </AnchorPane>
                                        </content>

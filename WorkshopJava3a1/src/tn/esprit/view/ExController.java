@@ -34,8 +34,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Window;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -125,60 +128,58 @@ Mail m=new Mail();
         
     } 
     
+public void pdfff(){
+    System.out.println("To Printer!");
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            Window primaryStage = null;
+            job.showPrintDialog(primaryStage);
 
+           //Node root = this.tablevie;
+//
+       //     job.printPage(root);
+          //  job.endJob();
+
+        }
+    }
+    
     @FXML
     private void pdf(ActionEvent event) {
-    /*    
-          Connection connexion2;
-        connexion2 = MyDB.getInstance().getConnexion();
-        
-        
-
-           
-        String req = "SELECT nomPartenaireS,nomS,refS,categorieS,qteS,dateS,qualiteS from stock";
-         stm = connexion2.createStatement();
-        try {
-       
-            stm = connexion.prepareStatement(req);
-
-            //ensemble de resultat
-            ResultSet rst = stm.executeQuery(req);
-            while (rst.next()) {
-       p.add(file, N1, N2, N3, N4, N5, N6, N7);
-    }
+    
+         
 }
-    */
+    
     
     }
 
-    @FXML
-    private void SMS(ActionEvent event) {
-        
-    ApiClient defaultClient = new ApiClient();
-        defaultClient.setUsername("khanfirkhadija66@gmail.com");
-        defaultClient.setPassword("A3C54E82-A703-FD8C-9F9B-4318E86FC336");
-        SmsApi apiInstance = new SmsApi(defaultClient);
+//    @FXML
+//    private void SMS(ActionEvent event) {
+//        
+//    ApiClient defaultClient = new ApiClient();
+//        defaultClient.setUsername("khanfirkhadija66@gmail.com");
+//        defaultClient.setPassword("A3C54E82-A703-FD8C-9F9B-4318E86FC336");
+//        SmsApi apiInstance = new SmsApi(defaultClient);
+//
+//        SmsMessage smsMessage = new SmsMessage();
+//        smsMessage.body("Registered successfully.Please verify your account using this code:");
+//        smsMessage.to("+21626060609");
+//        smsMessage.source("sign up");
+//       
+//
+//        List<SmsMessage> smsMessageList = Arrays.asList(smsMessage);
+//        // SmsMessageCollection | SmsMessageCollection model
+//        SmsMessageCollection smsMessages = new SmsMessageCollection();
+//        smsMessages.messages(smsMessageList);
+//        try {
+//            String result = apiInstance.smsSendPost(smsMessages);
+//            System.out.println(result);
+//        } catch (ApiException e) {
+//            System.err.println("Exception when calling SmsApi#smsSendPost");
+//            e.printStackTrace();
+//        }
 
-        SmsMessage smsMessage = new SmsMessage();
-        smsMessage.body("Registered successfully.Please verify your account using this code:");
-        smsMessage.to("+21626060609");
-        smsMessage.source("sign up");
-       
 
-        List<SmsMessage> smsMessageList = Arrays.asList(smsMessage);
-        // SmsMessageCollection | SmsMessageCollection model
-        SmsMessageCollection smsMessages = new SmsMessageCollection();
-        smsMessages.messages(smsMessageList);
-        try {
-            String result = apiInstance.smsSendPost(smsMessages);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling SmsApi#smsSendPost");
-            e.printStackTrace();
-        }
 
-}
-}
 
 
     

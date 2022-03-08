@@ -124,7 +124,7 @@ public class PartenairesController implements Initializable {
     @FXML
     private Button Load;
     @FXML
-    private BarChart<String, Number> barchartp;
+    private BarChart<String, Double> barchartp;
 ObservableList<XYChart.Data<String,Number>>list11p = FXCollections.observableArrayList();
     ObservableList<XYChart.Data> list1ml= FXCollections.observableArrayList();
       ////satck
@@ -158,14 +158,14 @@ ObservableList<XYChart.Data<String,Number>>list11p = FXCollections.observableArr
 
             stm = connexion2.createStatement();
 
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            XYChart.Series<String, Double> series = new XYChart.Series<>();
             XYChart.Series<String, Number> series1 = new XYChart.Series();
-            String req = "SELECT nomMarqueP , qualiteS from stock , partenaires WHERE partenaires.nomMarqueP=stock.nomPartenaireS  AND stock.qualiteS=5";
+            String req = "SELECT nomMarqueP , qualiteS from stock , partenaires WHERE partenaires.nomMarqueP=stock.nomPartenaireS  AND stock.qualiteS>=3.0 ";
             ResultSet rst = stm.executeQuery(req);
             while (rst.next()) {
 
              
-                series.getData().add(new XYChart.Data<>(rst.getString("nomMarqueP"), rst.getInt("qualiteS")));
+                series.getData().add(new XYChart.Data<>(rst.getString("nomMarqueP"), rst.getDouble("qualiteS")));
                 // series2.getData().add(new XYChart.Data<>(rst.getString("NOM"),rst.getInt("quantite")));
 
             }
@@ -434,12 +434,50 @@ Matricule1.setText("");
       
   }
 
-    @FXML
-    private void LOAD(ActionEvent event) {
+   @FXML
+    void trieP(ActionEvent event) {
+   try {
+            Connection connexion;
+            connexion = MyDB.getInstance().getConnexion();
+            String req = "SELECT `MatriculeP`,`nomMarqueP`,`nomP`,`prenomP`,`mailP`,`categorieP`,`dateAjout` from partenaires ORDER BY nomMarqueP";
+            PreparedStatement stm;
+            stm = connexion.prepareStatement(req);
+
+            list1.clear();
+            //ensemble de resultat
+            ResultSet rst = stm.executeQuery(req);
+            while (rst.next()) {
+                Partenaire p = new Partenaire(rst.getInt("MatriculeP"),
+                        rst.getString("nomMarqueP"),
+                        rst.getString("nomP"),
+                        rst.getString("prenomP"),
+                        rst.getString("mailP"),
+                        rst.getString("categorieP"),
+                        rst.getDate("dateAjout")
+                );
+                list1.add(p);
+
+            }
+
+            cMatricule.setCellValueFactory(new PropertyValueFactory<>("MatriculeP"));
+            cnomMarque.setCellValueFactory(new PropertyValueFactory<>("nomMarqueP"));
+            cnom.setCellValueFactory(new PropertyValueFactory<>("nomP"));
+            cprenom.setCellValueFactory(new PropertyValueFactory<>("prenomP"));
+            cmail.setCellValueFactory(new PropertyValueFactory<>("mailP"));
+            ccategorie.setCellValueFactory(new PropertyValueFactory<>("categorieP"));
+            cdate.setCellValueFactory(new PropertyValueFactory<>("dateP"));
+           
+            tableview.setItems(list1);
+
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(StocksController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
+
+    }
+}
     
      
     
-    }
+    
 

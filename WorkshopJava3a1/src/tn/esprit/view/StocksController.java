@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -56,9 +58,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import static javax.management.Query.value;
 import javax.swing.JOptionPane;
+import static sun.management.ConnectorAddressLink.export;
 import tn.esprit.model.Stock;
 import tn.esprit.service.Mail;
 import tn.esprit.service.StockService;
@@ -113,15 +117,12 @@ public class StocksController implements Initializable {
     @FXML
     private Spinner<Integer> qte1S;
 
-     @FXML    
-     private Spinner<Integer> cqualiteS;
     private TextField idt;
     ObservableList<Stock> listS1 = FXCollections.observableArrayList();
      ObservableList<Stock> listS2 = FXCollections.observableArrayList();
     int index = -1;
 
-    @FXML
-    private TextField identifiant;
+   
 
     ////// pie chart
     @FXML
@@ -146,12 +147,17 @@ public class StocksController implements Initializable {
     
 @FXML
     private org.controlsfx.control.Rating rateA;
+    @FXML
+    private Button EXPORT;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        EXPORT.setOnAction(event -> {
+            pdf();
+        });
         ObservableList<String> list = FXCollections.observableArrayList("Alimentaire", "Equipement", "Internet", "Securite");
 
         affiche();
@@ -417,6 +423,9 @@ ex.getMessage();
         Stock s = new Stock(mrqpartenaire.getText(), nom1S.getText(), Integer.parseInt(reference1S.getText()), categorie1S.getSelectionModel().getSelectedItem(), qte1S.getValue(), gettedDatePickerDate,String.valueOf(rateA.getRating()));
 
         try {
+         
+            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+
             ss.ajouterS(s);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -430,6 +439,9 @@ ex.getMessage();
             dateA1S.setValue(null);
                 
             Refresh();
+            
+            
+            
 
         } catch (SQLException ex) {
            
@@ -448,21 +460,23 @@ ex.getMessage();
             String value1 = cpartenaireS.getText();
             String value2 = cnomS.getText();
             Integer value3 = cqteS.getValue();
-            Double value4 = (rate.getRating());
+            String value4 = String.valueOf(rateA.getRating());
+                //    (rate.getRating());
          
             
            
-String req = "UPDATE `stock` SET `nomMarqueS`='"+value1+"',`nomS`='"+value2+"',`qteS`='"+value3+"',`qualiteS`='"+value4+"' where nomPartenaireS=' "+identifiant.getText().toLowerCase()+" ' ";
+String req = "UPDATE `stock` SET `nomPartenaireS`='"+value1+"',`nomS`='"+value2+"',`qteS`='"+value3+"',`qualiteS`='"+value4+"' WHERE nomPartenaireS=' "+cpartenaireS.getText().toLowerCase()+" ' ";
                    
-             
-             PreparedStatement pst5 = connexion.prepareStatement(req);
-              pst5.execute();
+
+             PreparedStatement pst6 = connexion.prepareStatement(req);
+              pst6.execute();
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Publication is updated successfully!");
+            alert.setContentText("Stock is updated successfully!");
             alert.show();
             Refresh();
+            
             cpartenaireS.clear();
             cnomS.clear();
             cqteS.getValueFactory().setValue(10);
@@ -484,13 +498,16 @@ String req = "UPDATE `stock` SET `nomMarqueS`='"+value1+"',`nomS`='"+value2+"',`
         cnomS.setText((nom.getCellData(index)).toString());
         cqteS.getValueFactory().setValue(quantite.getCellData(index));
       rate.setRating(Double.valueOf(qualite.getCellData(index)));
-        identifiant.setText(marque.getCellData(index).toString());
+     
 
     }
 
     @FXML
     void send(ActionEvent event) {
 
+        Mail m=new Mail();
+m.sendMail("test","flashelectro06@gmail.com");
+        
         /*
     
    try {
@@ -586,6 +603,21 @@ String req = "UPDATE `stock` SET `nomMarqueS`='"+value1+"',`nomS`='"+value2+"',`
             Logger.getLogger(StocksController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  public void pdf(){
+    System.out.println("To Printer!");
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            Window primaryStage = null;
+            job.showPrintDialog(primaryStage);
 
+            Node root = this.tableviewS;
+
+            job.printPage(root);
+            job.endJob();
+
+        }
+    }
+    
+    
   
 }

@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import tn.esprit.utils.MyDB;
 
 /**
@@ -24,7 +25,11 @@ import tn.esprit.utils.MyDB;
  * @author Khadija
  */
 public class PDF {
-     
+       
+      Connection connexion;
+            
+              PreparedStatement stm;
+
           
     
 
@@ -39,9 +44,7 @@ public class PDF {
                 PdfPTable my_report_table = new PdfPTable(2);
                 //create a cell object
                 PdfPCell table_cell;
-                                
-                              
-                           
+     
                                 table_cell=new PdfPCell(new Phrase("nomPartenaireS"));
                                 my_report_table.addCell(table_cell);
                                 table_cell=new PdfPCell(new Phrase(N1));
@@ -70,6 +73,9 @@ public class PDF {
                                 my_report_table.addCell(table_cell);
                                 table_cell=new PdfPCell(new Phrase(N7));
                                 my_report_table.addCell(table_cell);
+                                my_pdf_report.add(my_report_table);                       
+                my_pdf_report.close();
+                                
     }
         
       

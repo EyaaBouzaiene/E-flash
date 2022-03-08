@@ -169,9 +169,9 @@ public class Mail {
             properties.put("mail.smtp.port", "465");
             System.out.println("ok");
             //Your gmail address
-            String userName = "khanfirkhadija6@gmail.com";
+            String userName = "flashelectro06@gmail.com";
             //Your gmail password
-            String password = "bebe@@##123,";
+            String password = "dhia1881";
 System.out.println("ok2");
             //Create a session with account credentials
             Session session;

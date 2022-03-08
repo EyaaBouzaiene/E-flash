@@ -18,6 +18,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
+import javafx.stage.Window;
 import tn.esprit.utils.MyDB;
 
 /**
@@ -206,4 +211,8 @@ Mail m =new Mail( "Besoin produit !", rst.getString("mailP"),  "Besoin produit d
         }
 
     }*/
+    
+    
+  
+    
 }
