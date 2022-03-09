@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EspaceLivreurController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="400.0" prefWidth="139.0" style="-fx-background-color: #71c9dd;">
+         <children>
+            <Button layoutX="1.0" layoutY="222.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" style="-fx-background-color: #bae8f2;" text="Livraison" AnchorPane.bottomAnchor="133.0" AnchorPane.topAnchor="222.0" />
+            <Button fx:id="boutton_mail" layoutX="1.0" layoutY="310.0" mnemonicParsing="false" onAction="#tomail" prefHeight="45.0" prefWidth="141.0" style="-fx-background-color: #bae8f2;" text="Mail" />
+            <Button fx:id="exit" layoutY="355.0" mnemonicParsing="false" onAction="#exit" prefHeight="45.0" prefWidth="142.0" style="-fx-background-color: #bae8f2;" text="Exit" />
+            <Button fx:id="boutton_stat" layoutX="1.0" layoutY="266.0" mnemonicParsing="false" onAction="#gostat" prefHeight="45.0" prefWidth="141.0" style="-fx-background-color: #bae8f2;" text="Statistique" />
+            <Button fx:id="rating" layoutX="1.0" layoutY="175.0" mnemonicParsing="false" onAction="#torate" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #bae8f2;" text="Livreur" />
+            <Button fx:id="espaceLivreur" layoutX="1.0" layoutY="124.0" mnemonicParsing="false" onAction="#toespace" prefHeight="51.0" prefWidth="141.0" style="-fx-background-color: #bae8f2;" text="Espace" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="140.0" layoutY="-1.0" prefHeight="401.0" prefWidth="563.0" style="-fx-background-color: #297c8e;">
+         <children>
+            <Text layoutX="147.0" layoutY="50.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="168.0771484375">
+               <fill>
+                  <RadialGradient centerX="0.4613259668508287" centerY="0.5" radius="0.6724137931034483">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.10973136126995087" green="0.07730263471603394" blue="0.3552631437778473" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.28428778052330017" green="0.12460000067949295" blue="0.8899999856948853" opacity="0.8600000143051147" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <TableView fx:id="table_livreur" layoutX="63.0" layoutY="128.0" onMouseClicked="#select" prefHeight="200.0" prefWidth="302.0" style="-fx-background-color: #bae8f2;">
+              <columns>
+                <TableColumn fx:id="col_cmd" prefWidth="75.0" text="Commande" />
+                  <TableColumn fx:id="col_prix" prefWidth="75.0" text="Prix" />
+                  <TableColumn fx:id="col_etat" prefWidth="75.0" text="Etat" />
+                  <TableColumn fx:id="col_ville" prefWidth="75.0" text="Ville" />
+              </columns>
+            </TableView>
+            <TextField fx:id="idLivreur" layoutX="147.0" layoutY="80.0" onKeyPressed="#livreurshow" promptText="ID" />
+            <FontAwesomeIconView fx:id="SMS" fill="#bae8f2" glyphName="WEIXIN" layoutX="436.0" layoutY="48.0" onMouseClicked="#sendsms" size="40" />
+            <FontAwesomeIconView fx:id="mail" fill="#bae8f2" glyphName="GOOGLE_PLUS" layoutX="497.0" layoutY="45.0" onMouseClicked="#tomail" size="40" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="test.jnlp">
+  <information>
+    <title>test</title>
+    <vendor>21627</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="lib\clicksend-java-client-1.0.0.jar" size="954360" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\gson-2.8.1.jar" size="232620" download="eager" />
+    <jar href="lib\gson-2.8.6.jar" size="240255" download="eager" />
+    <jar href="lib\gson-fire-1.8.5.jar" size="73724" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\jcommon-1.0.23.jar" size="330246" download="eager" />
+    <jar href="lib\jfreechart-1.0.19.jar" size="1570157" download="eager" />
+    <jar href="lib\logging-interceptor-2.7.5.jar" size="7753" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\okhttp-2.7.5.jar" size="331034" download="eager" />
+    <jar href="lib\okio-1.6.0.jar" size="65928" download="eager" />
+    <jar href="lib\poi-1.8.0-dev-20020919.jar" size="573293" download="eager" />
+    <jar href="lib\swagger-annotations-2.0.0.jar" size="34431" download="eager" />
+    <jar href="lib\swagger-java-client-1.0.20.jar" size="296821" download="eager" />
+    <jar href="lib\threetenbp-1.3.5.jar" size="594622" download="eager" />
+    <jar href="test.jar" size="40561" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="test" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="test.Test"  name="test" />
+  <update check="always"/>
+</jnlp>
