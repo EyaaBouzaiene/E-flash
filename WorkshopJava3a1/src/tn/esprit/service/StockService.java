@@ -61,7 +61,7 @@ public class StockService implements IStock<Stock> {
             Stock s = new Stock(rst.getInt("idS"),
                     rst.getString("nomPartenaireS"),
                     rst.getString("nomS"),
-                    rst.getInt("refS"),
+                    rst.getString("refS"),
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
@@ -106,7 +106,7 @@ public class StockService implements IStock<Stock> {
             Stock s = new Stock(rst.getInt("idS"),
                     rst.getString("nomP"),
                     rst.getString("nomS"),
-                    rst.getInt("refS"),
+                    rst.getString("refS"),
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
@@ -133,7 +133,7 @@ public class StockService implements IStock<Stock> {
             Stock s = new Stock(rst.getInt("idS"),
                     rst.getString("nomPartenaireS"),
                     rst.getString("nomS"),
-                    rst.getInt("refS"),
+                    rst.getString("refS"),
                     rst.getString("categorieS"),
                     rst.getInt("qteS"),
                     rst.getDate("dateS"),
@@ -193,24 +193,24 @@ public class StockService implements IStock<Stock> {
 //        }
 
     }
-/*
-    @Override
-    public void TraitementS() throws SQLException {
-        String req = "SELECT partenaires.mailP FROM `stock`,`partenaires`  WHERE stock.Partenaire=partenaires.idP AND stock.qteS <=3";
 
-        stm = connexion.createStatement();
-        //ensemble de resultat
-        ResultSet rst = stm.executeQuery(req);
-
-        while (rst.next()) {
-            System.out.println(rst.getString("mailP"));
-Mail m =new Mail( "Besoin produit !", rst.getString("mailP"),  "Besoin produit dans 2 jours la livraison !");
-            Mail.sendMail();
-            
-
-        }
-
-    }*/
+//    @Override
+//    public void TraitementS() throws SQLException {
+//        String req = "SELECT partenaires.mailP FROM `stock`,`partenaires`  WHERE stock.Partenaire=partenaires.idP AND stock.qteS <=3";
+//
+//        stm = connexion.createStatement();
+//        //ensemble de resultat
+//        ResultSet rst = stm.executeQuery(req);
+//
+//        while (rst.next()) {
+//            System.out.println(rst.getString("mailP"));
+//Mail m =new Mail( "Besoin produit !", rst.getString("mailP"),  "Besoin produit dans 2 jours la livraison !");
+//            Mail.sendMail();
+//            
+//
+//        }
+//
+//    }
     
     
   

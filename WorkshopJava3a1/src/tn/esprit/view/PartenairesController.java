@@ -391,12 +391,36 @@ String req = "UPDATE `partenaires` SET `nomMarqueP`='"+value1+"',`nomP`='"+value
 
         Partenaire p = new Partenaire(Integer.valueOf(Matricule1.getText()),nomMarque1.getText(),nom1.getText(), prenom1.getText(), mail1.getText().toString().toLowerCase(), categorie11.getSelectionModel().getSelectedItem().toString(), gettedDatePickerDate);
 
-     if (false==isValidEmail( mail1) || (categorie11.getSelectionModel().getSelectedItem().isEmpty()))  {
+   
+            
+//             if (false== ControleNumber(Matricule1)){
+//         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Error Champs Nom de la marque");
+//                alert.setContentText("Veuillez entrer une matricule valide!");
+//                alert.show();}
+//   else if (false==ControlePRENOM(nomMarque1)){
+//         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Error Champs Nom de la marque");
+//                alert.setContentText("Veuillez entrer une marque valide!");
+//                alert.show();}
+//   
+//         else if (false==ControlePRENOM(nom1)){
+//         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Error Champs Nom de la marque");
+//                alert.setContentText("Veuillez entrer un nom valide!");
+//                alert.show();}
+//     
+//     else if (false==ControlePRENOM(prenom1)){
+//         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Error Champs Nom de la marque");
+//                alert.setContentText("Veuillez entrer un prenom valide!");
+//                alert.show();}
+    if (false==isValidEmail( mail1))  {
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error mail");
-                alert.setContentText("Veuillez entrer un amil valide!");
+                alert.setContentText("Veuillez entrer un email valide!");
                 alert.show();}
-                else{
+     else{
             try {
                 sp.ajouterP(p);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -414,8 +438,9 @@ Matricule1.setText("");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
-    }
-    }
+    
+}
+}
 
    public static boolean isValidEmail(TextField mail1){
         boolean b = false;
@@ -425,14 +450,37 @@ Matricule1.setText("");
         return b;
     }
    
-  public static boolean textValid(String text){
-        boolean b = false;
-      if (!text.matches("[A-Za-z]"))
-           b=true;
-      
-      return b;
-      
-  }
+  public  boolean ControlePRENOM(TextField text) {
+        String str =text.getText() ;
+        if (str.length() == 0) {
+            return false;
+        }
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (!((ch >= 'a' && ch <= 'z')|| (ch >= 'A' && ch <= 'Z') || (String.valueOf(ch)).equals(" "))) {
+                return false;
+            }
+        }
+        return true;
+    }
+  
+  public  boolean ControleNumber(TextField text) {
+        String str =text.getText() ;
+        if (str.length() == 0) {
+            return false;
+        }
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (!((ch >= '0' && ch <= '9')|| (String.valueOf(ch)).equals(" "))) {
+                return false;
+            }
+        }
+        return true;
+    }
+ 
+
 
    @FXML
     void trieP(ActionEvent event) {

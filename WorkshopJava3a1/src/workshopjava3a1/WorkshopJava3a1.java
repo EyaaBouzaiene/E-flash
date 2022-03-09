@@ -28,7 +28,7 @@ public class WorkshopJava3a1 extends Application {
     Parent parent;
     Stage stage;
  
-   /*
+ 
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
@@ -46,7 +46,8 @@ public class WorkshopJava3a1 extends Application {
 
   
     
-      */
+      
+    /*
      public void start(Stage primaryStage) {
     
         this.stage = primaryStage;
@@ -61,6 +62,8 @@ public class WorkshopJava3a1 extends Application {
         stage.show();
  }
   
+    
+    
     
     
     /*

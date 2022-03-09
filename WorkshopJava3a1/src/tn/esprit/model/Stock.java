@@ -17,14 +17,14 @@ public class Stock {
     private int idS;
     private String nomPartenaireS;
     private String nomS;
-    private int refS;
+    private String refS;
     private String categorieS;
     private int qteS;
     private Date dateS;
     private String qualiteS ;
     
 
-    public Stock(String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS, String qualiteS) {
+    public Stock(String nomPartenaireS, String nomS, String refS, String categorieS, int qteS, Date dateS, String qualiteS) {
         this.nomPartenaireS = nomPartenaireS;
         this.nomS = nomS;
         this.refS = refS;
@@ -37,7 +37,7 @@ public class Stock {
     
 
     
-    public Stock(int idS, String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS, String qualiteS) {
+    public Stock(int idS, String nomPartenaireS, String nomS, String refS, String categorieS, int qteS, Date dateS, String qualiteS) {
         this.idS = idS;
         this.nomPartenaireS = nomPartenaireS;
         this.nomS = nomS;
@@ -50,7 +50,7 @@ public class Stock {
 
   
 
-    public Stock(String nomPartenaireS, String nomS, int refS, String categorieS, int qteS, Date dateS) {
+    public Stock(String nomPartenaireS, String nomS, String refS, String categorieS, int qteS, Date dateS) {
 
         this.nomPartenaireS = nomPartenaireS;
         this.nomS = nomS;
@@ -87,11 +87,11 @@ public class Stock {
         this.nomS = nomS;
     }
 
-    public int getRefS() {
+    public String getRefS() {
         return refS;
     }
 
-    public void setRefS(int refS) {
+    public void setRef(String refS) {
         this.refS = refS;
     }
 
@@ -129,19 +129,17 @@ public class Stock {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
         hash = 97 * hash + this.idS;
         hash = 97 * hash + Objects.hashCode(this.nomPartenaireS);
         hash = 97 * hash + Objects.hashCode(this.nomS);
-        hash = 97 * hash + this.refS;
+        hash = 97 * hash + Objects.hashCode(this.refS);
         hash = 97 * hash + Objects.hashCode(this.categorieS);
         hash = 97 * hash + this.qteS;
         hash = 97 * hash + Objects.hashCode(this.dateS);
         hash = 97 * hash + Objects.hashCode(this.qualiteS);
         return hash;
     }
-
- 
 
     @Override
     public boolean equals(Object obj) {
@@ -158,13 +156,7 @@ public class Stock {
         if (this.idS != other.idS) {
             return false;
         }
-        if (this.refS != other.refS) {
-            return false;
-        }
         if (this.qteS != other.qteS) {
-            return false;
-        }
-        if (this.qualiteS != other.qualiteS) {
             return false;
         }
         if (!Objects.equals(this.nomPartenaireS, other.nomPartenaireS)) {
@@ -173,7 +165,13 @@ public class Stock {
         if (!Objects.equals(this.nomS, other.nomS)) {
             return false;
         }
+        if (!Objects.equals(this.refS, other.refS)) {
+            return false;
+        }
         if (!Objects.equals(this.categorieS, other.categorieS)) {
+            return false;
+        }
+        if (!Objects.equals(this.qualiteS, other.qualiteS)) {
             return false;
         }
         if (!Objects.equals(this.dateS, other.dateS)) {
@@ -182,6 +180,10 @@ public class Stock {
         return true;
     }
 
+    
+ 
+
+    
     @Override
     public String toString() {
         return "Stock{" + "idS=" + idS + ", nomPartenaireS=" + nomPartenaireS + ", nomS=" + nomS + ", "

@@ -93,14 +93,19 @@ public class StocksController implements Initializable {
     private TableColumn<Stock, Date> date;
     @FXML
     private TableColumn<Stock,String> qualite;
-    @FXML
+  
+        @FXML
+    private TableColumn<Stock, String> identifiant;
+ 
+   /////update     
+            @FXML
     private TextField cpartenaireS;
     @FXML
     private TextField cnomS;
     private ComboBox<String> ccategorieS;
     @FXML
     private Spinner<Integer> cqteS;
-
+//////////////////////
      
     @FXML
     private TextField searchS1;
@@ -142,22 +147,27 @@ public class StocksController implements Initializable {
     private Label Nom_Stock;
     @FXML
     private StackedBarChart<String, Integer> stackchart;
-    @FXML
-    private org.controlsfx.control.Rating rate;
     
 @FXML
     private org.controlsfx.control.Rating rateA;
     @FXML
     private Button EXPORT;
+
+    @FXML
+    private TextField ref;
+  
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+dateA1S.setValue(LocalDate.now());
+////PDF
         EXPORT.setOnAction(event -> {
             pdf();
         });
+        
         ObservableList<String> list = FXCollections.observableArrayList("Alimentaire", "Equipement", "Internet", "Securite");
 
         affiche();
@@ -166,10 +176,10 @@ public class StocksController implements Initializable {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 100);
       
         SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 100);
-        //valueFactory.setValue(1);
+       
         cqteS.setValueFactory(valueFactory);
        
-     // cqualiteS.setValueFactory(valueFactory);
+   
         qte1S.setValueFactory(valueFactory2);
 
         //// Statistic
@@ -217,7 +227,7 @@ public class StocksController implements Initializable {
                         System.out.println(b1.getMinX());
                         double newY = (b1.getHeight()) / 2.0 + b1.getMinY();
 
-// Make sure pie wedge location is reset
+
                         data.getNode().setTranslateX(0);
                         data.getNode().setTranslateY(0);
 
@@ -271,7 +281,7 @@ ex.getMessage();
        try {
             Connection connexion;
             connexion = MyDB.getInstance().getConnexion();
-            String req = "SELECT nomPartenaireS,nomS,refS,categorieS,qteS,dateS,qualiteS from stock";
+            String req = "SELECT * from stock";
             PreparedStatement stm;
             stm = connexion.prepareStatement(req);
 
@@ -279,10 +289,10 @@ ex.getMessage();
             //ensemble de resultat
             ResultSet rst = stm.executeQuery(req);
             while (rst.next()) {
-                Stock p = new Stock(
+                Stock p = new Stock(   rst.getInt("idS"),
                         rst.getString("nomPartenaireS"),
                         rst.getString("nomS"),
-                        rst.getInt("refS"),
+                        rst.getString("refS"),
                         rst.getString("categorieS"),
                         rst.getInt("qteS"),
                         rst.getDate("dateS"),
@@ -291,7 +301,7 @@ ex.getMessage();
                 listS1.add(p);
 
             }
-
+   identifiant.setCellValueFactory(new PropertyValueFactory<>("idS"));
             marque.setCellValueFactory(new PropertyValueFactory<>("nomPartenaireS"));
          
             nom.setCellValueFactory(new PropertyValueFactory<>("nomS"));
@@ -336,7 +346,7 @@ ex.getMessage();
 
         Connection connexion;
         connexion = MyDB.getInstance().getConnexion();
-        String req = "SELECT nomPartenaireS,nomS,refS,categorieS,qteS,dateS,qualiteS from stock";
+        String req = "SELECT * from stock";
         try {
             PreparedStatement stm;
             stm = connexion.prepareStatement(req);
@@ -345,10 +355,10 @@ ex.getMessage();
             //ensemble de resultat
             ResultSet rst = stm.executeQuery(req);
             while (rst.next()) {
-                Stock p = new Stock(
+                Stock p = new Stock( rst.getInt("idS"),
                         rst.getString("nomPartenaireS"),
                         rst.getString("nomS"),
-                        rst.getInt("refS"),
+                        rst.getString("refS"),
                         rst.getString("categorieS"),
                         rst.getInt("qteS"),
                         rst.getDate("dateS"),
@@ -357,7 +367,7 @@ ex.getMessage();
                 listS1.add(p);
 
             }
-
+ identifiant.setCellValueFactory(new PropertyValueFactory<>("idS"));
             marque.setCellValueFactory(new PropertyValueFactory<>("nomPartenaireS"));
          
             nom.setCellValueFactory(new PropertyValueFactory<>("nomS"));
@@ -385,16 +395,21 @@ ex.getMessage();
                                     "Veuillez confirmer votre choix",
                                     JOptionPane.YES_NO_OPTION);
         if(i==0){
-        String req = "delete from stock WHERE nomPartenaireS=?";
+        String req = "delete from stock WHERE nomS=?";
 
         try {
             PreparedStatement stm;
             stm = connexion.prepareStatement(req);
-            stm.setString(1, cpartenaireS.getText());
+         //   stm.setString(1, cpartenaireS.getText());
+            stm.setString(1, cnomS.getText());
             stm.execute();
 
            Refresh();
             JOptionPane.showMessageDialog(null, "Delete");
+                cpartenaireS.clear();
+            cnomS.clear();
+            cqteS.getValueFactory().setValue(10);
+            rateA.setRotate(0);
 
         } catch (Exception e) {
             
@@ -412,22 +427,76 @@ ex.getMessage();
     }
 
     @FXML
-    private void ajouterS(ActionEvent event) {      
+    private void ajouterS(ActionEvent event) throws SQLException {      
 
-        categorie1S.setItems(FXCollections.observableArrayList("Alimentaire", "Equipement", "Internet", "Securite"));
+//        categorie1S.setItems(FXCollections.observableArrayList("Alimentaire", "Equipement", "Internet", "Securite"));
+//
+//        StockService ss = new StockService();
+//        java.sql.Date gettedDatePickerDate = java.sql.Date.valueOf(dateA1S.getValue());
+//        
+//
+//        Stock s = new Stock(mrqpartenaire.getText(), nom1S.getText(), reference1S.getText(), categorie1S.getSelectionModel().getSelectedItem(), qte1S.getValue(), gettedDatePickerDate,String.valueOf(rateA.getRating()));
+//  if (false==ControleText(mrqpartenaire) || (false==ControleText(nom1S)))  {
+//      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Error mail");
+//                alert.setContentText("Veuillez entrer un amil valide!");
+//                alert.show();}
+//                else{
+//        try {
+//         
+//            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+//
+//            ss.ajouterS(s);
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Success");
+//            alert.setContentText("Stock is added successfully!");
+//            alert.show();
+//            mrqpartenaire.setText("");
+//     nom1S.setText("");
+//              reference1S.setText("");
+//              categorie1S.setValue("");
+//             qte1S.getValueFactory().setValue(1);
+//            dateA1S.setValue(null);
+//                
+//            Refresh();
+//            
+//        
+//            
+//
+//        } catch (SQLException ex) {
+//           
+//        }
+//  }
 
-        StockService ss = new StockService();
+
+
+ categorie1S.setItems(FXCollections.observableArrayList("Alimentaire", "Equipement", "Internet", "Securite"));
+
+//        StockService ss = new StockService();
+     
+
         java.sql.Date gettedDatePickerDate = java.sql.Date.valueOf(dateA1S.getValue());
-        
 
-        Stock s = new Stock(mrqpartenaire.getText(), nom1S.getText(), Integer.parseInt(reference1S.getText()), categorie1S.getSelectionModel().getSelectedItem(), qte1S.getValue(), gettedDatePickerDate,String.valueOf(rateA.getRating()));
-
-        try {
+       
+     
+             PreparedStatement pst;
+            Connection connexion;
+            
+            connexion = MyDB.getInstance().getConnexion();
+            connexion.setAutoCommit(true);
          
-            java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-
-            ss.ajouterS(s);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String req = "INSERT INTO `stock`(`nomPartenaireS`,`nomS`,`refS`,`categorieS`,`qteS`,`dateS`) VALUES (?,?,?,?,?,?)";
+           
+            pst = connexion.prepareStatement(req);
+            pst.setString(1, mrqpartenaire.getText());
+            pst.setString(2, nom1S.getText());
+            pst.setInt(3, Integer.valueOf(reference1S.getText()));
+            pst.setString(4, categorie1S.getSelectionModel().getSelectedItem());
+            pst.setInt(5, qte1S.getValue());
+            pst.setDate(6, gettedDatePickerDate);
+  
+            pst.executeUpdate();
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Stock is added successfully!");
             alert.show();
@@ -439,37 +508,49 @@ ex.getMessage();
             dateA1S.setValue(null);
                 
             Refresh();
-            
-            
-            
 
-        } catch (SQLException ex) {
-           
-        }
-
+         
+      
+    
     }
 
     @FXML
-    void UPDATE(ActionEvent event) {
+    void UPDATE(ActionEvent event) throws SQLException {
 
-        Connection connexion;
-        connexion = MyDB.getInstance().getConnexion();
+        
 
-        try {
+    
 
-            String value1 = cpartenaireS.getText();
+           String value1 = cpartenaireS.getText();
             String value2 = cnomS.getText();
             Integer value3 = cqteS.getValue();
             String value4 = String.valueOf(rateA.getRating());
                 //    (rate.getRating());
-         
+         Connection connexion;
+        connexion = MyDB.getInstance().getConnexion();
+            String req1 = "select  `idS` from `stock` where nomS='"+value2+"' ";
             
-           
-String req = "UPDATE `stock` SET `nomPartenaireS`='"+value1+"',`nomS`='"+value2+"',`qteS`='"+value3+"',`qualiteS`='"+value4+"' WHERE nomPartenaireS=' "+cpartenaireS.getText().toLowerCase()+" ' ";
-                   
+              Statement stm1;
+             stm1 = connexion.createStatement();
+    
+        ResultSet rst = stm1.executeQuery(req1);
+        int id=0;
+while (rst.next()){
+    id=rst.getInt(1);
+    
+}
 
+   
+                
+
+String req = "UPDATE `stock` SET `nomPartenaireS`='"+value1+"',`nomS`='"+value2+"',`qteS`='"+value3+"',`qualiteS`='"+value4+"' where nomPartenaireS='"+cpartenaireS+" ' ";
+
+             
+        
+             
+        connexion = MyDB.getInstance().getConnexion();
              PreparedStatement pst6 = connexion.prepareStatement(req);
-              pst6.execute();
+              pst6.executeUpdate();
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -480,10 +561,8 @@ String req = "UPDATE `stock` SET `nomPartenaireS`='"+value1+"',`nomS`='"+value2+
             cpartenaireS.clear();
             cnomS.clear();
             cqteS.getValueFactory().setValue(10);
-            rate.setRotate(0);
-        } catch (Exception e) {
-            
-        }
+            rateA.setRotate(0);
+       
     }
 
     @FXML
@@ -497,33 +576,35 @@ String req = "UPDATE `stock` SET `nomPartenaireS`='"+value1+"',`nomS`='"+value2+
         cpartenaireS.setText(marque.getCellData(index));
         cnomS.setText((nom.getCellData(index)).toString());
         cqteS.getValueFactory().setValue(quantite.getCellData(index));
-      rate.setRating(Double.valueOf(qualite.getCellData(index)));
+      rateA.setRating(Double.valueOf(qualite.getCellData(index)));
+      ref.setText(String.valueOf(identifiant.getCellData(index)));
+    
      
-
-    }
+            }
+    
 
     @FXML
     void send(ActionEvent event) {
 
-        Mail m=new Mail();
-m.sendMail("test","flashelectro06@gmail.com");
+//        Mail m=new Mail();
+//m.sendMail("test","flashelectro06@gmail.com");
         
-        /*
-    
-   try {
-        
-            StockService s= new StockService();
-             
-            s.TraitementS();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setContentText("Mail envoyé avec succée!");
-            alert.show();
-            } catch (SQLException ex) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            }
-            }
-         */
+//            StockService s= new StockService();
+//    
+//   try {
+//        
+//        
+//             
+//            s.TraitementS();
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Success");
+//            alert.setContentText("Mail envoyé avec succée!");
+//            alert.show();
+//            } catch (SQLException ex) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            }
+//            }
+         
 
  /*
             Connection connexion;
@@ -579,7 +660,7 @@ m.sendMail("test","flashelectro06@gmail.com");
                 Stock p = new Stock(
                         rst.getString("nomPartenaireS"),
                         rst.getString("nomS"),
-                        rst.getInt("refS"),
+                        rst.getString("refS"),
                         rst.getString("categorieS"),
                         rst.getInt("qteS"),
                         rst.getDate("dateS"),
@@ -617,7 +698,38 @@ m.sendMail("test","flashelectro06@gmail.com");
 
         }
     }
+  
+  
+  public  boolean ControleText(TextField text) {
+        String str =text.getText() ;
+        if (str.length() == 0) {
+            return false;
+        }
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
+                return false;
+            }
+        }
+        return true;
+    }
     
-    
+ 
+   public  boolean ControleREF(TextField text) {
+        String str =text.getText() ;
+        if (str.length() == 0 || str.length()<8) {
+            return false;
+        }
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < str.toCharArray().length; i++) {
+           // char ch = charArray[i];
+            if (! (String.valueOf(str.charAt(4)).equals("X") || (String.valueOf(str.charAt(5)).equals("X")) || (String.valueOf(str.charAt(6)).equals("X")) ) ) {
+                return false;
+            }
+            
+        }
+        return true;
+    }
   
 }

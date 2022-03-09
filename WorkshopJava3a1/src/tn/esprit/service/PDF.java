@@ -7,6 +7,7 @@ package tn.esprit.service;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -37,7 +38,7 @@ public class PDF {
         
                 
         
-                Document my_pdf_report = new Document();
+                Document my_pdf_report = new Document(PageSize.A5.rotate());
                 PdfWriter.getInstance(my_pdf_report, new FileOutputStream(file));
                 my_pdf_report.open();            
                 //we have four columns in our table
