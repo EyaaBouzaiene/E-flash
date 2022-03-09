@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #004365;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet3a.LoginController">
+   <center>
+      <AnchorPane prefHeight="515.0" prefWidth="913.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="350.0" layoutY="171.0" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane layoutX="52.0" layoutY="34.0" prefHeight="437.0" prefWidth="503.0" style="-fx-background-color: #F0F8FF;">
+               <children>
+                  <Label layoutX="196.0" layoutY="88.0" prefHeight="39.0" prefWidth="95.0" text="Sign In" textFill="#004365">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userLogin" layoutX="153.0" layoutY="190.0" prefHeight="27.0" prefWidth="174.0" promptText="username" style="-fx-border-color: #004365; -fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;" />
+                  <Button fx:id="button1" layoutX="152.0" layoutY="337.0" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="172.0" style="-fx-background-color: #004365;" text="Login" textFill="WHITE" />
+                  <FontAwesomeIconView fill="#004365" glyphName="USER" layoutX="128.0" layoutY="215.0" size="17" />
+                  <FontAwesomeIconView fill="#004365" glyphName="KEY" layoutX="126.0" layoutY="277.0" size="17" />
+                  <Hyperlink layoutX="31.0" layoutY="399.0" onAction="#forgot_password" text="forgot your password ?" textFill="#004365" />
+                  <FontAwesomeIconView fill="#004365" glyphName="USERS" layoutX="222.0" layoutY="72.0" size="40" />
+                  <Label fx:id="emailsent" layoutX="300.0" layoutY="399.0" prefHeight="24.0" prefWidth="165.0" />
+                  <PasswordField fx:id="userPass" layoutX="152.0" layoutY="248.0" prefHeight="27.0" prefWidth="175.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: #004365; -fx-border-width: 0PX 0PX 2PX 0PX;" />
+                  <CheckBox fx:id="RememeberMe" layoutX="192.0" layoutY="301.0" mnemonicParsing="false" text="Remember me" />
+               </children>
+            </AnchorPane>
+            <Button layoutX="659.0" layoutY="405.0" mnemonicParsing="false" onAction="#signup" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: f0f8ff;" text="Sign Up" textFill="#15324a">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="300.0" fitWidth="337.0" layoutX="582.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@h-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
