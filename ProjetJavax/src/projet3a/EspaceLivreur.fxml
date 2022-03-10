@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet3a.EspaceLivreurController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="583.0" prefWidth="1113.0" style="-fx-background-color: #F0F8FF;">
+         <children>
+            <Text layoutX="147.0" layoutY="75.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="210.7437744140625">
+               <fill>
+                  <RadialGradient centerX="0.4613259668508287" centerY="0.5" radius="0.6724137931034483">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.10973136126995087" green="0.07730263471603394" blue="0.3552631437778473" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.28428778052330017" green="0.12460000067949295" blue="0.8899999856948853" opacity="0.8600000143051147" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <TableView fx:id="table_livreur" layoutX="115.0" layoutY="170.0" onMouseClicked="#select" prefHeight="349.0" prefWidth="573.0" style="-fx-background-color: #bae8f2;">
+              <columns>
+                <TableColumn fx:id="col_cmd" prefWidth="151.99999237060547" text="Commande" />
+                  <TableColumn fx:id="col_prix" prefWidth="124.00001525878906" text="Prix" />
+                  <TableColumn fx:id="col_etat" prefWidth="135.99993896484375" text="Etat" />
+                  <TableColumn fx:id="col_ville" prefWidth="160.66665649414062" text="Ville" />
+              </columns>
+            </TableView>
+            <FontAwesomeIconView fx:id="SMS" fill="#bae8f2" glyphName="WEIXIN" layoutX="436.0" layoutY="64.0" onMouseClicked="#sendsms" size="40" />
+            <FontAwesomeIconView fx:id="mail" fill="#bae8f2" glyphName="GOOGLE_PLUS" layoutX="497.0" layoutY="67.0" onMouseClicked="#tomail" size="40" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

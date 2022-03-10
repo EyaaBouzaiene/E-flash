@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Mayssa
  */
 public class JDBC {
-    final String url ="jdbc:mysql://localhost:3306/personne";
+    final String url ="jdbc:mysql://localhost:3306/e-flash";
     final String login ="root";
     final String pwd="";
     private static JDBC instance;

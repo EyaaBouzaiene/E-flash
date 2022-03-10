@@ -63,14 +63,14 @@ import utils.Ticker;
  * @author Mayssa
  */
 public class LoginController implements Initializable {
-
+    
     UserService us = new UserService();
     CryptWithMD5 cr = new CryptWithMD5();
     Connection connexion;
     Statement stm;
     Timer timer = new Timer();
     private ResultSet rs;
-
+    
     @FXML
     private TextField userLogin;
     @FXML
@@ -81,10 +81,10 @@ public class LoginController implements Initializable {
     private Label emailsent;
     @FXML
     private CheckBox RememeberMe;
-
+    
     public LoginController() {
         connexion = JDBC.getInstance().getConnexion();
-
+        
     }
     Preferences preferences;
 
@@ -99,35 +99,35 @@ public class LoginController implements Initializable {
             if (preferences.get("userLogin", null) != null && !preferences.get("userLogin", null).isEmpty()) {
                 userLogin.setText(preferences.get("userLogin", null));
                 userPass.setText(preferences.get("userpass", null));
-
+                
             }
         }
-
+        
     }
-
+    
     public String generate(int id) {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = id;
         Random random = new Random();
-
+        
         String generatedString = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-
+        
         System.out.println("code:" + generatedString);
-
+        
         return generatedString;
     }
-
+    
     void sms(String rand) throws SQLException {
         int tel = 0;
         String req = "select telf  from user  where email = '" + userLogin.getText() + "'";
-
+        
         rs = connexion.createStatement().executeQuery(req);
-
+        
         while (rs.next()) {
             tel = rs.getInt(1);
         }
@@ -140,7 +140,7 @@ public class LoginController implements Initializable {
         smsMessage.body("Registered successfully.Please verify your account using this code:" + rand);
         smsMessage.to("+216" + tel);
         smsMessage.source("sign up");
-
+        
         List<SmsMessage> smsMessageList = Arrays.asList(smsMessage);
         // SmsMessageCollection | SmsMessageCollection model
         SmsMessageCollection smsMessages = new SmsMessageCollection();
@@ -153,27 +153,31 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    
     @FXML
     private void login(ActionEvent event) throws SQLException, IOException {
         String login = userLogin.getText();
         String pass = userPass.getText();
         String strcode = "";
-
+        String rol = "";
+        
         String strpass = "";
         ResultSet rst;
         rst = connexion.createStatement().executeQuery("select * from `user` where `email` = '" + login + "';");
         while (rst.next()) {
             strpass = rst.getString("password");
             strcode = rst.getString("code");
-
+            rol=rst.getString("role");
+            
+            
         }
-
+        
         System.out.println("All Logins: " + us.afficher_user());
         System.out.println("login: " + login);
         System.out.println("pass : " + pass);
         System.out.println("strcode: " + strcode);
-
+        System.out.println(rol);
+        System.out.println("==================="+us.afficher_role());
         if ((!us.afficher_email().contains(login))
                 || (!(strpass.equals(cr.cryptWithMD5(pass)) || strcode.equals(pass)))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -183,52 +187,82 @@ public class LoginController implements Initializable {
             alert.showAndWait();
             userLogin.clear();
             userPass.clear();
-
-        } else if (login.equals("eflash.esprit@gmail.com") && pass.equals("hello")) {
+            
+            
+        } else if (rol.equals("Livreur") && us.afficher_email().contains(login) && strpass.equals(cr.cryptWithMD5(pass))) {
+            us.SignIn(login, CryptWithMD5.cryptWithMD5(pass));
+            
+             rst = connexion.createStatement().executeQuery("select role from `user` where `email` = '" + login + "';");
+        while (rst.next()) {
+            String roll = rst.getString(1);
+            System.out.println(roll);
+        }
+            
             if (RememeberMe.isSelected()) {
-
+                
                 preferences.put("userLogin", userLogin.getText());
                 preferences.put("userPass", userPass.getText());
             } else {
                 preferences.put("userLogin", "");
                 preferences.put("userPass", "");
+                
+            }
+            EspaceLivreurController.email=userLogin.getText();
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("EspaceLivreur.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
 
+            // Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage) RememeberMe.getScene().getWindow();
+            window.setScene(tableViewScene);
+            window.show();
+            //This line gets the Stage information
+
+        }  else if (login.equals("eflash.esprit@gmail.com") && pass.equals("hello")) {
+            System.out.println(login);
+            us.SignIn(login, CryptWithMD5.cryptWithMD5(pass));
+            if (RememeberMe.isSelected()) {
+                
+                preferences.put("userLogin", userLogin.getText());
+                preferences.put("userPass", userPass.getText());
+            } else {
+                preferences.put("userLogin", "");
+                preferences.put("userPass", "");
+                
             }
             HomeUserController.em = "eflash.esprit@gmail.com";
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("homeUser.fxml"));//admin
             Scene tableViewScene = new Scene(tableViewParent);
 
-            us.SignIn(login, cr.cryptWithMD5(pass));
             // Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Stage window = (Stage) RememeberMe.getScene().getWindow();
-
+            
             window.setScene(tableViewScene);
             window.show();
             //This line gets the Stage information
 
-        } else if (us.afficher_email().contains(login) && strpass.equals(cr.cryptWithMD5(pass))) {
+        } else if (rol.equals("Client") && us.afficher_email().contains(login) && strpass.equals(cr.cryptWithMD5(pass))) {
+             us.SignIn(login, CryptWithMD5.cryptWithMD5(pass));
             if (RememeberMe.isSelected()) {
-
+                
                 preferences.put("userLogin", userLogin.getText());
                 preferences.put("userPass", userPass.getText());
             } else {
                 preferences.put("userLogin", "");
                 preferences.put("userPass", "");
-
             }
             HomeController.email = userLogin.getText();
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("home.fxml"));//user
             Scene tableViewScene = new Scene(tableViewParent);
-
-            us.SignIn(login, cr.cryptWithMD5(pass));
-
+            
+            us.SignIn(login, CryptWithMD5.cryptWithMD5(pass));
+            
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+            
             window.setScene(tableViewScene);
             window.show();
             //This line gets the Stage information
 
-        } //case where user entered the generated code
+        }//case where user entered the generated code
         else if (strcode.equals(pass)) {
             NewPasswordController.email = userLogin.getText();
             Parent tableViewParent = FXMLLoader.load(getClass().getResource("newPassword.fxml"));
@@ -237,12 +271,12 @@ public class LoginController implements Initializable {
             ///us.SignInWithCode(login, cr.cryptWithMD5(pass));
             //This line gets the Stage information
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+            
             window.setScene(tableViewScene);
             window.show();
         }
     }
-
+    
     @FXML
     private void signup(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("inscri.fxml"));
@@ -251,7 +285,7 @@ public class LoginController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
+    
     @FXML
     private void forgot_password(ActionEvent event) throws SQLException {
         String login = userLogin.getText();
@@ -263,7 +297,7 @@ public class LoginController implements Initializable {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
             res = result.get();
-
+            
             if (us.afficher_email().contains(res)) {
                 String rand = generate(7);
                 SendingMail sm = new SendingMail("This is your account redemption code : " + rand, res, "Redeem your account");
@@ -277,30 +311,30 @@ public class LoginController implements Initializable {
                 emailsent.setTextFill(Color.web("#ed0e0e"));
                 emailsent.setText("Entered email does not exist.");
             }
-
+            
         }
-
+        
         userLogin.clear();
         userPass.clear();
-
+        
     }
-
+    
     public class Ticker {
-
+        
         Timer timer;
         String login = userLogin.getText();
-
+        
         public Ticker(int seconds, String s) {
             timer = new Timer();
             timer.schedule(new RemindTask(), seconds * 1000);
             login = s;
         }
-
+        
         class RemindTask extends TimerTask {
-
+            
             @Override
             public void run() {
-
+                
                 timer.cancel(); //Terminate the timer thread
                 try {
                     connexion.createStatement().execute("update `user` set `code` = NULL where `email` = '" + login + "';");
@@ -308,10 +342,10 @@ public class LoginController implements Initializable {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("operation succeeded");
-
+                
             }
         }
-
+        
     }
-
+    
 }

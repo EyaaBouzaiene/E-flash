@@ -351,4 +351,40 @@ public class HomeUserController implements Initializable {
 
     }
 
+    @FXML
+    private void to_product(ActionEvent event) {
+    }
+
+    @FXML
+    private void to_event(ActionEvent event) {
+    }
+
+    @FXML
+    private void to_delivry(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("livraison.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    @FXML
+    private void to_blog(ActionEvent event) {
+    }
+
+    @FXML
+    private void to_stock(ActionEvent event) throws IOException {
+         Parent tableViewParent = FXMLLoader.load(getClass().getResource("Partenaires.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
 }

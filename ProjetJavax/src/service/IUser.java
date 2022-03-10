@@ -43,4 +43,6 @@ public interface IUser<T> {
        public T afficher_user_byId(int id) throws SQLException ;
        
         public T afficher_user_byEmail(String e) throws SQLException;
+        
+        public String afficher_role() throws SQLException ;
 }

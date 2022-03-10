@@ -94,12 +94,12 @@ public class UserService implements IUser<User> {
         stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
         User u = new User();
-        
+
         while (rst.next()) {
             u.setId(rst.getInt("id"));
             u.setNom(rst.getString("nom"));
             u.setPrenom(rst.getString("prenom"));
-          //  u.setRole(rst.getString("role"));
+            //  u.setRole(rst.getString("role"));
             u.setTel(rst.getInt("telf"));
             u.setEmail(rst.getString("email"));
             u.setPassword(rst.getString("password"));
@@ -107,7 +107,7 @@ public class UserService implements IUser<User> {
         }
         return u;
     }
-    
+
     @Override
     public User afficher_user_byEmail(String e) throws SQLException {
 
@@ -115,12 +115,12 @@ public class UserService implements IUser<User> {
         stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
         User u = new User();
-        
+
         while (rst.next()) {
             u.setId(rst.getInt("id"));
             u.setNom(rst.getString("nom"));
             u.setPrenom(rst.getString("prenom"));
-          //  u.setRole(rst.getString("role"));
+            //  u.setRole(rst.getString("role"));
             u.setTel(rst.getInt("telf"));
             u.setEmail(rst.getString("email"));
             u.setPassword(rst.getString("password"));
@@ -131,7 +131,7 @@ public class UserService implements IUser<User> {
 
     @Override
     public void modifier_user(User u) throws SQLException {
-       /* String req = "update user set nom = ? , prenom = ?  ,telf= ? ,email= ? ,password= ?  where id = ?";
+        /* String req = "update user set nom = ? , prenom = ?  ,telf= ? ,email= ? ,password= ?  where id = ?";
 
         try {
             ps = connexion.prepareStatement(req);
@@ -147,9 +147,9 @@ public class UserService implements IUser<User> {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        
-         String req = "update user set nom = '"+u.getNom()+"' , prenom = '"+u.getPrenom()+"'  ,telf= '"+u.getTel()+"' ,email= '"+u.getEmail()+"' ,password= '"+u.getPassword()+"'  where id = '"+u.getId()+"'";
- 
+
+        String req = "update user set nom = '" + u.getNom() + "' , prenom = '" + u.getPrenom() + "'  ,telf= '" + u.getTel() + "' ,email= '" + u.getEmail() + "' ,password= '" + u.getPassword() + "'  where id = '" + u.getId() + "'";
+
         stm = connexion.createStatement();
         stm.executeUpdate(req);
     }
@@ -158,7 +158,7 @@ public class UserService implements IUser<User> {
     public void supprimer_user(User u) throws SQLException {
 
         String req = "delete from `user` where `id`='" + u.getId() + "'";
- 
+
         stm = connexion.createStatement();
         stm.executeUpdate(req);
 
@@ -284,6 +284,20 @@ public class UserService implements IUser<User> {
             arr.add(email);
         }
         return arr;
+    }
+
+    @Override
+    public String afficher_role() throws SQLException {
+        
+        stm = connexion.createStatement();
+        ResultSet rs = stm.executeQuery("select role from user ");
+        String role = "";
+        while (rs.next()) {
+            role = rs.getString(1);
+             return role;
+        }
+       
+        return role;
     }
 
     @Override

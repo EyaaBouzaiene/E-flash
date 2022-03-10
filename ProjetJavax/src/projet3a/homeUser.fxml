@@ -90,27 +90,27 @@
          </font>
       </Button>
       <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="76.0" layoutY="234.0" opacity="0.69" size="20" wrappingWidth="16.476170539855957" />
-      <Button layoutX="-1.0" layoutY="255.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Product" textFill="WHITE">
+      <Button layoutX="-1.0" layoutY="255.0" mnemonicParsing="false" onAction="#to_product" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Product" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="-1.0" layoutY="310.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Events" textFill="WHITE">
+      <Button layoutX="-1.0" layoutY="310.0" mnemonicParsing="false" onAction="#to_event" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Events" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="-1.0" layoutY="365.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Delivry" textFill="WHITE">
+      <Button layoutX="-1.0" layoutY="365.0" mnemonicParsing="false" onAction="#to_delivry" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Delivry" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="-1.0" layoutY="420.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Publication and opinion" textFill="WHITE">
+      <Button layoutX="-1.0" layoutY="420.0" mnemonicParsing="false" onAction="#to_blog" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Blog" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Stock" textFill="WHITE">
+      <Button layoutX="-1.0" layoutY="474.0" mnemonicParsing="false" onAction="#to_stock" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #00000000; -fx-border-color: #F0F8FF;" text="Stock and Partenaire" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
