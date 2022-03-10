@@ -1,0 +1,83 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+.button{
+ -fx-cursor :hand;
+ -fx-background-color :#121212;
+ -fx-background-radius: 50;
+ -fx-text-fill : white;
+ -fx-font-size:20px;
+}
+
+.button:pressed
+{
+ -fx-background-color: cyan;
+ 
+}
+.Pane{
+    
+    
+    
+    -fx-background-color:#121212;
+}
+
+.default-color0.chart-pie { -fx-background-color: linear-gradient(to right top, #56CCF2 , #2F80ED) ;  } 
+.default-color1.chart-pie { -fx-background-color: linear-gradient(to right top, #f2709c , #ff9472) ; }
+
+
+.default-color0.chart-bar {-fx-bar-fill: #FFFFFF;}
+.default-color0.chart-bar {-fx-bar-fill: #FFFFFF;}
+ 
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 1em;
+} 
+.chart-legend {
+   -fx-background-color:  #fafad2;
+   -fx-stroke: #daa520;
+}
+ 
+.chart-legend-item-symbol{
+   -fx-background-radius: 5;
+}
+ 
+.chart-legend-item{
+   -fx-text-fill: #000000;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent
+}
+.axis {
+    -fx-font-size: 1.4em; 
+    -fx-tick-mark-stroke : #FFFFFF;
+    -fx-label-fill:#000000;
+    -fx-tick-label-fill: #FFFFFF;
+    -fx-font-family: Calibri;
+    -fx-font-weight : bolder;
+    -fx-tick-label-font-weight : bolder;
+}
+.xychart{-fx-plot-background-fill: #FFFFFF;
+-fx-plot-background-stroke : #FFFFFF;
+-fx-plot-background-stroke-width :5;}
+ 
+.axis-label {
+   -fx-text-fill: #000000; 
+}
+.chart-series-line {    
+    -fx-stroke-width: 4px;
+}
+ 
+.default-color0.chart-series-line { -fx-stroke: #FFFFFF; }
+
+.default-color0.chart-line-symbol { -fx-background-color: #FFFFFF; }
+
+.chart{-fx-chart-background-stroke : #FFFFFF;	 
+-fx-chart-background-stroke-width : 5;}

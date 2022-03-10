@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="588.0" prefWidth="921.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Eventsgui.ReservationController">
+    <stylesheets>
+        <URL value="@reservation.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="57.0" layoutY="206.0" prefHeight="21.0" prefWidth="87.0" text="gmail:" />
+      <Label layoutX="28.0" layoutY="264.0" prefHeight="21.0" prefWidth="146.0" text="nombre billet:" />
+      <TextField fx:id="gmailtxt" layoutX="143.0" layoutY="201.0" />
+      <TextField fx:id="nombrebillettxt" layoutX="143.0" layoutY="259.0" />
+      <Button fx:id="btnreserver" layoutX="168.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#reserver" prefHeight="31.0" prefWidth="137.0" text="reserver" />
+      <ComboBox fx:id="eventcb" layoutX="132.0" layoutY="118.0" onMouseClicked="#remplirevent" prefHeight="31.0" prefWidth="168.0" />
+   </children>
+</AnchorPane>

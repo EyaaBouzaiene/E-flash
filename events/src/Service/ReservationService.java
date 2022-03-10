@@ -31,12 +31,13 @@ public class ReservationService {
     {
          
         try {
-            String sql="insert into reservation(nom,prenom,gmail,nombre_billet)"+"Values(?,?,?,?)";
+            String sql="insert into reservation(gmail,nombre_billet)"+"Values(?,?)";
             ste = cnx.prepareStatement(sql);
-            ste.setString(1, r.getNom());
-            ste.setString(2,r.getPrenom());
-           ste.setString(3,r.getGmail());
-            ste.setInt(4, r.getNombre_billet());
+           
+          
+           ste.setString(1,r.getGmail());
+           ste.setInt(2, r.getNombre_billet());
+      
          
             ste.executeUpdate();
             System.out.println("resrvation Ajoutée");
@@ -44,62 +45,81 @@ public class ReservationService {
            System.out.println(ex.getMessage());
         }
     }
-    
-   public List<reservation> afficherReservation() throws SQLException{
-       List<reservation> lreservation= new ArrayList<>();
-        
-            String sql="select * from reservation";
-            stm= cnx.createStatement();
-           ResultSet rs = ste.executeQuery(sql);
-            while (rs.next()) { 
-               reservation r = new reservation(
-                rs.getInt("id_reservation"),
-                rs.getString("nom"),
-                rs.getString("prenom"),
-                rs.getString("gmail"),
-                rs.getInt("nombre_billet"));
-                
-                
-                lreservation.add(r);
-                
-            
+       public List<String> getAllFOUR() {
+             String requetee = "SELECT nom FROM evenement ";
+        List<String> list = new ArrayList<String>();
+        try {
+          
+            PreparedStatement ste = cnx.prepareStatement(requetee);
+            ResultSet rs = ste.executeQuery();
+            System.out.println(rs.toString());
+
+            while (rs.next()) {
+                list.add(rs.getString("nom"));
             }
-      
-     return lreservation;
-   }
-      public void update(reservation r) {
-        
-    String sql="update reservation  set  nom=?, prenom= ?, gmail=?, nombre_billet=? where id_reservation='"+r.getId_reservation()+"'";
-            try {
-            PreparedStatement ste =cnx.prepareStatement(sql);
-            ste.setString(1, r.getNom());
-            ste.setString(2, r.getPrenom());
-            ste.setString(3, r.getGmail());
-            ste.setInt(4, r.getNombre_billet());
-            
-            
-           ste.executeUpdate();
-            System.out.println("reservation Modifié");
+
+            return list;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    
-}
-         public void supprimer(reservation r) {
-        String sql = "DELETE FROM reservation WHERE id_reservation=?";
-        try {
-            
-            PreparedStatement pst = Maconnexion.getInstance().getCnx().prepareStatement(sql);
-            pst.setInt(1,r.getId_reservation());
-            pst.executeUpdate();
-            System.out.println("reservation supprimé");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        
+        return list;
     }
     
-    }
-         
+//   public List<reservation> afficherReservation() throws SQLException{
+//       List<reservation> lreservation= new ArrayList<>();
+//        
+//            String sql="select * from reservation";
+//            stm= cnx.createStatement();
+//           ResultSet rs = ste.executeQuery(sql);
+//            while (rs.next()) { 
+//               reservation r = new reservation(
+//                rs.getInt("id_reservation"),
+//                rs.getString("nom"),
+//                rs.getString("prenom"),
+//                rs.getString("gmail"),
+//                rs.getInt("nombre_billet"));
+//                
+//                
+//                lreservation.add(r);
+//                
+//            
+//            }
+      
+//     return lreservation;
+//   }
+//      public void update(reservation r) {
+//        
+//    String sql="update reservation  set  nom=?, prenom= ?, gmail=?, nombre_billet=? where id_reservation='"+r.getId_reservation()+"'";
+//            try {
+//            PreparedStatement ste =cnx.prepareStatement(sql);
+//            ste.setString(1, r.getNom());
+//            ste.setString(2, r.getPrenom());
+//            ste.setString(3, r.getGmail());
+//            ste.setInt(4, r.getNombre_billet());
+//            
+//            
+//           ste.executeUpdate();
+//            System.out.println("reservation Modifié");
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    
+//}
+//         public void supprimer(reservation r) {
+//        String sql = "DELETE FROM reservation WHERE id_reservation=?";
+//        try {
+//            
+//            PreparedStatement pst = Maconnexion.getInstance().getCnx().prepareStatement(sql);
+//            pst.setInt(1,r.getId_reservation());
+//            pst.executeUpdate();
+//            System.out.println("reservation supprimé");
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        
+//    }
+//    
+//    }
+//         
          
          
 }

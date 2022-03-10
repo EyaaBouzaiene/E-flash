@@ -5,65 +5,23 @@
  */
 package Event.crud;
 
+import java.util.Objects;
+
 /**
  *
  * @author ideapadGAMING
  */
 public class reservation {
     int id_reservation;
-    String nom;
-    String prenom;
     String gmail;
     int nombre_billet;
-
-    public reservation(int id_reservation, String nom, String prenom, String gmail, int nombre_billet) {
-        this.id_reservation = id_reservation;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.gmail = gmail;
-        this.nombre_billet = nombre_billet;
-    }
+    int id_event;
 
     public reservation() {
     }
 
-    public reservation(String nom, String prenom, String gmail, int nombre_billet) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.gmail = gmail;
-        this.nombre_billet = nombre_billet;
-    }
-
-    public int getId_reservation() {
-        return id_reservation;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getGmail() {
-        return gmail;
-    }
-
-    public int getNombre_billet() {
-        return nombre_billet;
-    }
-
     public void setId_reservation(int id_reservation) {
         this.id_reservation = id_reservation;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public void setGmail(String gmail) {
@@ -74,9 +32,45 @@ public class reservation {
         this.nombre_billet = nombre_billet;
     }
 
+    public void setId_event(int id_event) {
+        this.id_event = id_event;
+    }
+
+    public int getId_reservation() {
+        return id_reservation;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public int getNombre_billet() {
+        return nombre_billet;
+    }
+
+    public int getId_event() {
+        return id_event;
+    }
+
+    public reservation(String gmail, int nombre_billet, int id_event) {
+        this.gmail = gmail;
+        this.nombre_billet = nombre_billet;
+        this.id_event = id_event;
+    }
+
+    public reservation(int id_reservation, String gmail, int nombre_billet, int id_event) {
+        this.id_reservation = id_reservation;
+        this.gmail = gmail;
+        this.nombre_billet = nombre_billet;
+        this.id_event = id_event;
+    }
+
     @Override
     public String toString() {
-        return "reservation{" + "id_reservation=" + id_reservation + ", nom=" + nom + ", prenom=" + prenom + ", gmail=" + gmail + ", nombre_billet=" + nombre_billet + '}';
+        return "reservation{" + "id_reservation=" + id_reservation + ", gmail=" + gmail + ", nombre_billet=" + nombre_billet + ", id_event=" + id_event + '}';
     }
+
+ 
+    
     
 }

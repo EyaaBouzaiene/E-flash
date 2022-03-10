@@ -1,0 +1,25 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+.button{
+ -fx-cursor :hand;
+ -fx-background-color :#121212;
+ -fx-background-radius: 50;
+ -fx-text-fill : white;
+ -fx-font-size:20px;
+}
+
+.button:pressed
+{
+ -fx-background-color: cyan;
+ 
+}
+.root{
+    
+    
+    
+ -fx-background-image:url('welcome.jpg');
+}
+

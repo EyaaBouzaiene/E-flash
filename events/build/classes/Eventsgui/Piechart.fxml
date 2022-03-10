@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="644.0" stylesheets="@reservation.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Eventsgui.PiechartController">
+   <children>
+      <PieChart fx:id="piechart" layoutX="72.0" layoutY="31.0" stylesheets="@reservation.css" />
+      <Label fx:id="txtPourcentage" layoutX="12.0" layoutY="10.0" prefHeight="43.0" prefWidth="391.0" text="Pourcentage : " visible="false">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

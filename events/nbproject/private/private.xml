@@ -3,14 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Service/EventService.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/Piechart.fxml</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Service/Email.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/TrackEmployeeFX.fxml</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/PiechartController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/events/tools/Maconnexion.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/reservationba.fxml</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/TrackEmployeeController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/YEARTABLE.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/NewFXMain1.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/rate.css</file>
             <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/NewFXMain.java</file>
-            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Event/crud/Evenement.java</file>
             <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/test/event/test.java</file>
             <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Event/crud/reservation.java</file>
-            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/events/tools/Maconnexion.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/eventfront.css</file>
             <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Service/ReservationService.java</file>
-            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/AjouterEvenementController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/AttendenceClass.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Service/EventService.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/ReservationbaController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/Reservation.fxml</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/reservation.css</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Event/crud/rating.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/ReservationController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/rate.fxml</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/event.fxml.css</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/RateController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Event/crud/Evenement.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/EventController.java</file>
+            <file>file:/C:/Users/ideapadGAMING/OneDrive/Documents/NetBeansProjects/events/src/Eventsgui/EventfrontController.java</file>
         </group>
     </open-files>
 </project-private>
