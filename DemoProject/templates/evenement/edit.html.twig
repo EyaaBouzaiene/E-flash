@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">modifier un evenement</h6>
+                            {{form_start(form1) }} 
+                             <div class="mb-3">
+                                    <label  class="form-label">NOM</label>
+                                    {{form_widget(form1.nom ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+                                  <div class="mb-3">
+                                    <label  class="form-label">nombre de  place</label>
+                                    {{form_widget(form1.nombrePlace ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+                           
+                                <div class="mb-3">
+                                <label  class="form-label">description</label>
+                                    {{form_widget(form1.description ,{'attr':{class: 'form-control'}})}}
+                                     </div>
+     
+                              
+                                <div class="mb-3">
+                                <label  class="form-label">date</label>
+                                    {{form_widget(form1.dateDebut ,{'attr':{class: 'form-control'}})}}
+                                     </div>
+                            <div class="mb-3">
+                                <label  class="form-label">duree</label>
+                                    {{form_widget(form1.duree ,{'attr':{class: 'form-control'}})}}
+                                     </div>
+                           
+
+                                                  <br>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
+                            {{form_end(form1) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+{% endblock %} 
+              

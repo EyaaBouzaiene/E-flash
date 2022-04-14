@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<section>
+        <div class="container">
+            <div class="title"><strong>List of Product</strong></div>
+
+            </br>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </div>
+                    <input type="text" id="rech" class="form-control" placeholder="Look for a Product">
+                </div>
+
+
+
+            </div>
+            </br>
+
+            <div class="col-lg-50">
+            <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Table de Produit</strong>
+                        </div>
+                        {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                      <div class="card-body">
+                     
+            <div class="table-responsive">
+           
+            
+                <table class="table  table-hover table-bordered">
+                
+                    <thead class="badge-info">
+                        <tr>
+                            <th >REFERENCE</th>
+                            <th >NOM</th>
+                            <th >TYPE</th>
+                            <th >DATE Ajout</th>
+                            <th >PRIX</th>
+                            <th >IMAGE</th>
+                            <th >Description</th>
+                            <th >CATEGORIE</th>
+                            <th>Quantite</th>
+                             <th>QuantiteR</th>
+                            <th  >Modifier</th>
+                            <th >Supprimer</th>
+                        
+                        </tr>
+                    </thead>
+
+
+                    
+                    {% for compteur in list %}
+
+                    <tbody id="tableau">
+<tr>
+    <td> {{compteur.id}} </td>
+    <td> {{compteur.NOM}} </td>
+    <td> {{compteur.TYPE}} </td>
+    <td> {{compteur.DATEP | date('d-m-Y') }} </td>
+     <td> {{compteur.PRIX}} </td>
+      <td> <img src="{{ asset('back/uploads/' ~ compteur.IMAGE) }} "> </td>
+       <td> {{compteur.DESCP}}</td>
+        <td> {{compteur.Categorie.NOM}} </td>
+    <td> {{compteur.quantite}} </td>
+    <td> {{compteur.quantiteR}} </td>
+    <td><a   href="{{path('updateclass',{'id':compteur.id })}}"><button type="button" class="btn btn-outline-info  w-100 p-2 " class="btn badge-info"><i class="fa fa-pencil" aria-hidden="true"></i> </button> </a></td>
+   <td> <a   href="{{path('dellclass',{'id':compteur.id })}}"><button type="button" class="btn btn-outline-danger  w-100 p-2" class="btn badge-info"><i class="fa fa-trash-o" aria-hidden="true"></i> </button>  </a></td>
+     
+    
+    </tr>
+   </tbody>
+{% endfor %}
+                </table>
+            
+            </div>
+
+{% endblock %}

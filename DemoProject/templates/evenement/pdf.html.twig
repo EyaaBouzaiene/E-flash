@@ -1,0 +1,32 @@
+
+<div class="table-responsive">
+    <table class="table mb-0">
+        <thead>
+        <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Duree</th>
+                <th>NombrePlace</th>
+                <th>DateDebut</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{{ evenement.duree }}</td>
+                <td>{{ evenement.nombrePlace }}</td>
+                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d') : '' }}</td>
+                <td> <img src="{{ asset('back/uploads/' ~ evenement.image) }} "> </td>
+                <td>
+  </tr>
+        {% endfor %}
+        </tbody>
+
+</table>
+</div>
