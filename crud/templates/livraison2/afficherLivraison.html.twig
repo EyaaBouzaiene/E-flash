@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="app-content">
+					<div class="side-app">
+						<div class="page-header">
+							
+							
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Livraison</div>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table id="example" class="table table-striped table-bordered" >
+												<thead>
+													<tr>
+														<th class="wd-15p">ID</th>
+				                                         <th class="wd-15p">Livreur</th>
+														 <th class="wd-15p">Commande</th>
+				
+														<th class="wd-15p">ville</th>
+														<th class="wd-20p">Etat</th>
+														<th class="wd-15p">Prix </th>
+														<th class="wd-10p">Modifier</th>
+														<th class="wd-25p">Supprimer</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr {% for l in livraison %}>
+														<td>{{l.idlivraison}}</td>
+														<td>{{l.idcommande.idcommande}}</td>
+														<td>{{l.idl.nomlivreur}}</td>
+														<td>{{l.ville}}</td>
+                                                        <td>{{l.Etat}}</td>
+														<td>{{l.prix}}</td>
+														
+														<td><a href="{{ path('ModifierLivraison', {'idlivraison':l.idLivraison}) }}" class="btn btn-success">Modifier</a></td>
+														<td><a href="{{ path('SupprimerLivraison', {'idlivraison':l.idLivraison}) }}" class="btn btn-secondary">Supprimer</a></td>
+														
+													</tr {% endfor %}>
+                                                    </tbody>
+											</table>
+										</div>
+									</div>
+									<!-- table-wrapper -->
+                                <div class="card-body">
+										
+										
+									</div>
+
+								</div>
+                                
+								<!-- section-wrapper -->
+							</div>
+    {% endblock %}                    
