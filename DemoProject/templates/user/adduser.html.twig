@@ -1,0 +1,118 @@
+{% extends 'basefront.html.twig' %}
+
+{% block content %}
+    <br>
+ <br>
+ <section class="h-100 bg-dark">
+                   <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row ">
+            <div class="col-xl-6 d-none d-xl-block">
+               <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo"
+                class="img-fluid"
+                style="border-top-left-radius: .20rem; border-bottom-left-radius: .20rem;"
+              />
+            </div>
+          
+               <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+              <h3 class="modal-title" id="myModalLabel">
+                N'attendez pas, Inscrivez vous dès maintenant  !</h3>
+                <br>
+                          
+                            <ul>
+                            <div class="row align-self-center">
+                              <h1>  <li class="resp-tab-item " aria-controls="tab_item-1"><a href="{{ path('adduser') }}"><span>Sign up</span></a> </li> </h1>
+                            </div>
+                            </ul>
+                            
+             <br>
+                            {{form_start(form, {attr: {novalidate: 'novalidate'}})}} 
+                            <div class="row">
+                             <div class="col-md-6 mb-4">
+                                 <div class="form-outline ">
+                                    {{ form_label(form.nom, 'Nom d\'utilisateur') }}
+                                    {{form_widget(form.nom ,{'attr':{class: 'form-control','placeholder': ' Votre Nom ... '}})}}
+                                    {{ form_errors(form.nom, {'attr':{class: 'text-danger'}}) }}
+
+                                </div></div>
+
+                               <div class="col-md-6 mb-4">
+                                 <div class="form-outline ">
+                                    {{ form_label(form.prenom, 'Prenom') }}
+                                    {{form_widget(form.prenom ,{'attr':{class: 'form-control','placeholder': ' Votre Prenom ... '}})}}
+                                   {{ form_errors(form.prenom, {'attr':{class: 'text-danger'}}) }}
+                                     </div>
+                                </div>
+                           </div>
+                              
+
+                                <div class="form-outline mb-4">
+                                    {{ form_label(form.email, 'Email') }}
+                                    {{form_widget(form.email ,{'attr':{class: 'form-control','placeholder': ' Votre Email ... '}})}}
+                              {{ form_errors(form.email, {'attr':{class: 'text-danger'}}) }}
+                                </div>
+
+                                 <div class="row">
+                             <div class="col-md-6 mb-4">
+                                 <div class="form-outline">
+                                    {{ form_label(form.password, 'Mot de passe') }}
+                                    {{form_widget(form.password ,{'attr':{class: 'form-control','placeholder': 'Mot de passe ... '}})}}
+                                    {{ form_errors(form.password, {'attr':{class: 'text-danger'}}) }}
+                                </div></div>
+
+                               <div class="col-md-6 mb-4">
+                                 <div class="form-outline">
+                                     {{ form_label(form.confirm_password, 'Confirmer Mot de passe') }}
+                                    {{form_widget(form.confirm_password ,{'attr':{class: 'form-control','placeholder': 'Répéter votre mot de passe'}})}}
+                                    {{ form_errors(form.confirm_password, {'attr':{class: 'text-danger'}}) }}
+                                     </div>
+                                </div>
+                           </div>
+                           
+                    
+                                <div class="form-outline mb-4">
+                                    {{ form_label(form.telf, 'Telephone') }}
+                                    {{form_widget(form.telf ,{'attr':{class: 'form-control','placeholder': 'Votre numero'}})}}
+                                  {{ form_errors(form.telf, {'attr':{class: 'text-danger'}}) }}
+                                </div>
+
+                                
+                            {#    
+                               
+                                 <div class="col-12">
+                                                {{ form_label(form.captcha, 'le code captcha ') }}<br>
+                                                <br>
+                                                {{ form_widget(form.captcha) }}
+                                            </div>#} 
+                                             <div class="col-12"><br>
+                                                {{ form_row(form.image) }}
+                                                {{ form_widget(form.image) }}
+                                                
+                                            </div>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-secondary  "style="text-align:center;">S'inscrire</button>
+                            {{form_end(form) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                   </div>
+            </div> 
+                </div>
+            </div>
+            </div>
+            </div>
+          </div>
+</section>
+
+
+</body>
+
+{% endblock %}
