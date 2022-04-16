@@ -18,10 +18,10 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('password',PasswordType::class)
-            ->add('confirm_password',PasswordType::class)
+           // ->add('password',PasswordType::class)
+           // ->add('confirm_password',PasswordType::class)
             ->add('telf')
-            ->add('image',FileType::class)
+            //->add('image',FileType::class)
            
         ;
     }

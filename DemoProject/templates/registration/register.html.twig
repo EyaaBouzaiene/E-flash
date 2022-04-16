@@ -16,7 +16,7 @@
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
                 alt="Sample photo"
                 class="img-fluid"
-                style="border-top-left-radius: .20rem; border-bottom-left-radius: .20rem;"
+                style="border-top-left-radius: .20rem; border-bottom-left-radius: .20rem; height: 1000px"
               />
             </div>
           
@@ -80,6 +80,9 @@
                                                 {{ form_widget(registrationForm.image) }}
                                                 
                                             </div>
+                  <div class="col-12">
+                  {{ form_row(registrationForm.captchaCode) }}
+                  </div>
                                             <br>
                                              <button type="submit" class="btn btn-info btn-lg btn-block "style="text-align:center;">S'inscrire</button>
 <br>

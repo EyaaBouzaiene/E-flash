@@ -35,10 +35,16 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            
-            $user->setPassword($userPasswordEncoder->encodePassword($user, $user->getPassword()));
-            $role = ['ROLE_USER'];
-            $user->setRoles($role);
+            $file=$user->getImage();
+
+            if($file != null) {
+                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move($this->getParameter('images_directory'), $filename);
+                $user->setImage($filename);
+                $user->setPassword($userPasswordEncoder->encodePassword($user, $user->getPassword()));
+                $role = ['ROLE_USER'];
+                $user->setRoles($role);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
