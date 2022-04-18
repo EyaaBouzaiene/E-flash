@@ -1,0 +1,93 @@
+{% extends 'base_Back.html.twig' %}
+
+
+{% block menu_back %}
+
+
+<section>
+        <div class="container">
+        </br></br>
+            <div class="title"><strong>Liste de Commentaire</strong></div>
+
+            </br>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary">Rechercher</button>
+                    </div>
+                    <input type="text" id="rech" class="form-control" placeholder="Saisir ici">
+                </div>
+
+
+
+            </div>
+            </br>
+
+            <div class="col-lg-50">
+            <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Table de Commentaire</strong>
+                        </div>
+                        {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                      <div class="card-body">
+
+
+
+
+
+      <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Message</th>
+                            <th>Date Ajout</th>
+                            <th>ID Publication</th>
+                            <th>ID Client</th>
+                            <th>Supprimer</th>
+                        </tr>
+                      </thead>
+                    {% for Coms in Coms %}
+                      <tbody>
+
+                        <tr>
+
+                          <td>
+                            {{Coms.idCommentaire}}
+                          </td>
+                         <td>
+                            {{Coms.messages}}
+                          </td>
+                          <td>
+                            {{Coms.dateCommentaire}}
+                          </td>
+                          <td>
+                            {{ Coms.idPublicationCommentaire.idPublication }}
+                          </td>
+                          <td>
+                            {{Coms.idClient}}
+                          </td>
+                           <td>
+                            <a href="{{path('DeleteComBackid',{'id':Coms.idCommentaire })}}"><button type="button" class="btn btn-outline-danger btn-fw"><i class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</button>  </a>
+                          </td>
+
+                        </tr>
+                        
+                      </tbody>
+                      {% endfor %}
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+
+{% endblock %}

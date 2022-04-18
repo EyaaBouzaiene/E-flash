@@ -1,0 +1,220 @@
+{% extends 'base_Front.html.twig' %}
+
+
+{% block menu %}
+
+ <!DOCTYPE html>
+
+
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin
+    ="anonymous">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ 
+
+</head>
+
+<body>
+<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Blog</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Start blog details -->
+	<div class="blog-box">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img class="img-fluid" src="{{ asset('images/' ~ image) }}" alt="">							
+								<div class="date-blog-up">
+									27 Fab
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3>{{ titre  }}.</h3>
+								<ul>
+									<li><i class="zmdi zmdi-account"></i>Posted By : <span>{{ posts.getIdClientPublication() }}</span></li>
+									<li>|</li>
+									<li><i class="zmdi zmdi-time"></i>Time : <span>{{ Date }}</span></li>
+								</ul>
+								<blockquote>
+									<p>{{description}}.</p>
+								</blockquote>
+							</div>
+						</div>
+
+
+
+
+
+
+<h2 id="Page_comment">Comments ({{posts.commentaires|length}})</h2>
+						<!-- Comments section-->
+                    <section class="mb-5" value="{{app.request.headers.get('referer')}}",id="comments">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <!-- Comment form-->
+                                 
+                                 
+
+                                                 
+
+                                <!-- Comment with nested comments-->
+                                {% for comment in posts.commentaires %}
+                                <div class="d-flex mb-4">
+                                    <!-- Parent comment-->
+                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="ms-3">
+                                        <div class="fw-bold">{{ comment.getIdClient() }}</div>
+                                        <div class="pull-right">
+										<i class="fa fa-clock-o" aria-hidden="true"></i> Time : <span>{{ comment.getDateCommentaire() }}</span>
+									</div>
+
+                                    <div class="des-l" >
+                                                     {{ comment.getMessages()}}
+                                    </div>                 
+        
+                                    </br>
+                                    </br>   
+
+
+
+
+
+
+                                    <a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>
+                                        
+                                      
+                                     {% if(comment.idClient== 1) %}
+                                    
+
+                                <a href="{{ path('UpdateComid',{'id': comment.idCommentaire}) }}" class="btn btn-primary btn-sm" >Modifier</a>
+                                <a href="{{ path('DeleteComid',{'id': comment.idCommentaire}) }}" class="btn btn-danger btn-sm" >Supprimer</a>
+
+
+                                   {% endif %}
+
+
+
+
+
+                                    </br>
+                                    </br>                 
+
+
+
+
+                      
+                                    <div class="d-flex mt-4">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Omar</div>
+                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                            </div>
+                                        </div>
+                                               
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+
+
+                                    </br>
+                                    </br>  
+
+                                {{ form_start(form_Com,{attr:{novalidate:'novalidate'}}) }}
+                                 {{ form_widget(form_Com.messages,{'attr':{'class':'form-control','placeholder':"Your Message"}}) }}
+								 {{ form_errors(form_Com.messages,{'attr':{'class':'text-danger'}}) }}
+
+                                </br> 
+                                 {{ form_widget(form_Com.Share,{'attr':{'class':'btn btn-outline-secondary btn-block'}}) }}
+
+                                 {{ form_end(form_Com) }}
+                              
+                            </div>
+                        </div>
+                    </section>
+
+
+
+
+
+
+
+
+
+
+
+						<div class="comment-respond-box">
+							<div class="comment-respond-form">
+
+                                {{ form_start(form_Com,{attr:{novalidate:'novalidate'}}) }}
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+								<div class="form-group">
+                                 {{ form_widget(form_Com.messages,{'attr':{'class':'form-control'}}) }}
+                                 </div>
+								 </div>
+								 <div class="col-lg-12 col-md-12 col-sm-12">
+                                 {{ form_widget(form_Com.Share,{'attr':{'class':'btn btn-submit'}}) }}
+                                </div>
+                                 {{ form_end(form_Com) }}
+                                
+
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3>Search</h3>
+						<div class="blog-search-form">
+							<input name="search" placeholder="Search blog" type="text">
+							<button class="search-btn">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+						<h3>Categories</h3>
+						<div class="blog-categories">
+							<ul>
+								<li><a href="#"><span>Food</span></a></li>
+								<li><a href="#"><span>Pizza</span></a></li>
+								<li><a href="#"><span>Drink</span></a></li>
+								<li><a href="#"><span>Lorem Sit</span></a></li>
+								<li><a href="#"><span>Burger</span></a></li>
+								<li><a href="#"><span>Music</span></a></li>
+							</ul>
+						</div>
+						
+					
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+	
+	
+</body>
+</html>
+{% endblock %}
