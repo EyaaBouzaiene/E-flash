@@ -5,6 +5,8 @@ security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        oauth:
+            id: knpu.oauth2.user_provider
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
@@ -18,12 +20,15 @@ security:
             anonymous: lazy
             provider: app_user_provider
             guard:
+                entry_point: App\Security\LoginAuthenticator
                 authenticators:
                     - App\Security\LoginAuthenticator
+                    - App\Security\GithubAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
                 target: app_login        
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -34,5 +39,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+
+         - { path: ^/back, roles: ROLE_ADMIN }
+         #- { path: ^/front, roles: ROLE_USER }

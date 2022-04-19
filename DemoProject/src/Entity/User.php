@@ -77,6 +77,39 @@ class User implements UserInterface
      * @Assert\NotBlank(message="telephone is required")
      */
     private $image;
+    /**
+     * @ORM\Column(type="string",length=255,nullable=true)
+     */
+    private $githubId;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reset_token;
+    /**
+     * @ORM\Column(type="string", length=50 ,nullable=true)
+     */
+    private $activation_token;
+
+    /**
+     * @return mixed
+     */
+    public function getGithubId()
+    {
+        return $this->githubId;
+    }
+
+    /**
+     * @param mixed $githubId
+     */
+    public function setGithubId($githubId)
+    {
+        $this->githubId = $githubId;
+    }
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -112,7 +145,11 @@ class User implements UserInterface
     {
         $role = $this->role;
         // guarantee every user at least has ROLE_USER
-        $role[] = 'ROLE_USER';
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+       // $role[] = 'ROLE_USER';
 
         return array_unique($role);
     }
@@ -229,4 +266,29 @@ class User implements UserInterface
     {
         $this->captchaCode = $captchaCode;
     }
+
+    public function getActivationToken(): ?string
+    {
+        return $this->activation_token;
+    }
+
+    public function setActivationToken(string $activation_token): self
+    {
+        $this->activation_token = $activation_token;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->reset_token;
+    }
+
+    public function setResetToken(?string $reset_token): self
+    {
+        $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
 }

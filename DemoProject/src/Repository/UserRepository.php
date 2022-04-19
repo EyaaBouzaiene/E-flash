@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use League\OAuth2\Client\Token\ResourceOwnerAccessTokenInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -79,15 +81,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?User
+
+    public function findOneByEmail($email): ?User
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('u.email = :val')
+            ->setParameter('val', $email)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
+    public function findOrCreateFromGithubOauth(ResourceOwnerInterface $owner) : user
+    {
+       $user= $this->createQueryBuilder('u')
+           ->where('u.githubId = :githubId')
+           ->orWhere('u.email = :email')
+           ->setParameters(['email'=>$owner->getEmail(),'githubId'=>$owner->getId() ])
+           ->getQuery()
+           ->getOneOrNullResult();
+       var_dump($owner->getEmail());
+       if($user)
+       {
+           if($user->getGithubId()==null){
+               $user->setGithubId($owner->getId());
+               $em=$this->getEntityManager()->flush();
+           }
+           return  $user;
+       }
+var_dump($owner->getId());
+       $user = (new User())
+           ->setRoles(['ROLE_USER'])
+           ->setEmail($owner->getEmail())
+           ->setGithubId($owner->getId());
+var_dump($user);
+       $em=$this->getEntityManager();
+       $em->persist($user);
+       $em->flush();
+       return  $user;
+    }
 }

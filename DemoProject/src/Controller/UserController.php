@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Gedmo\Sluggable\Util\Urlizer;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class UserController extends AbstractController
 {
@@ -77,5 +80,43 @@ public function deleteclass($id) {
 
 
         return $this->render('user/adduser.html.twig', ['form' => $form->createView()]);
+    }
+
+
+    /**
+     * @Route("/userlog", name="user_index", methods={"GET"})
+     */
+    public function index1(UserRepository $utilisateurRepository, Session $session,TokenGeneratorInterface $token , \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface $tokenStorage): Response
+    {
+        //besoin de droits admin
+        $utilisateur = $this->getUser();
+        if(!$utilisateur)
+        {
+            $session->set("message", "Merci de vous connecter");
+            return $this->redirectToRoute('app_login');
+        }
+        else if(in_array('ROLE_USER', $utilisateur->getRoles())){
+
+                return  $this->redirectToRoute('app_front');
+            }
+
+
+
+
+        else if(in_array('ROLE_ADMIN', $utilisateur->getRoles())){
+
+            return $this->redirectToRoute('app_back');
+
+        }
+
+
+        $utilisateur = $this->getUser();
+
+        $token = $token->generateToken();
+        //$utilisateur->setActivetoken($token);
+        $em=$this->getDoctrine()->getManager();
+        $em->flush();
+
+        return $this->redirectToRoute('app_front');
     }
 }

@@ -15,6 +15,7 @@
 </head>
 
 <section>
+    <br>
         <div class="container">
             <div class="title"><strong>List of users</strong></div>
 
@@ -24,10 +25,9 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-primary">Search</button>
                     </div>
-                    <input type="text" id="rech" class="form-control" placeholder="Look for a Product">
+                    <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+                    <input type="text" id="search" class="form-control" placeholder="Look for a user">
                 </div>
-
-
 
             </div>
             </br>
@@ -50,14 +50,14 @@
 
 
 
-                        <script src="{{ asset('back/js/jquery.min.js') }}"></script>
-                        <input type="text" class="form-control" placeholder="Search…" aria-label="Search"id="search">
+
 
                 <table id="tableac" class="table  table-hover table-bordered">
                 
                     <thead class="badge-info">
                         <tr>
                              <th>Id</th>
+                            <th>Image</th>
                                 <th>Nom</th>
                                 <th>Prenom</th>
                                 <th>Email</th>
@@ -78,6 +78,8 @@
                     <tbody id="tableau">
 <tr>
     <td> {{compteur.id}} </td>
+    <td> <img src="{{ asset('uploads/' ~ compteur.image) }} "> </td>
+
     <td> {{compteur.nom}} </td>
     <td> {{compteur.prenom}} </td>
     <td> {{compteur.email }} </td>
