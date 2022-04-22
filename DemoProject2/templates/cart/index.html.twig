@@ -1,0 +1,140 @@
+{% extends 'basefront.html.twig' %}
+
+
+
+{% block title %}Votre panier{% endblock %}
+{% block content2 %}
+<header class="top-navbar" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('listC') }}">
+					<img src="{{asset ('front/images/logo.png')}}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{{ path('listC') }}">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						
+ 
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Categories</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							
+							</div>
+						</li>
+
+
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<br>
+	
+<tr>
+<section class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </section>
+<div class="table-responsive">
+    <table class="table  table-hover table-bordered">
+        <thead badge-info>
+            <tr>
+             
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if app.session.get('panier') %}
+            {% for element in dataPanier.products %}
+                <tr>
+               
+                    <td>{{ element.product.NOM }}</td>
+                    <td class="text-end">{{ element.product.Prix }} €</td>
+                    <td>{{ element.quantity }}</td>
+                    <td class="text-end">{{ element.quantity * element.product.Prix  }} €</td>
+                    <td>
+                        <a href="{{path("add", {id: element.product.id})}}" class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
+                        </a>
+                        <a href="{{path("remove", {id: element.product.id})}}" class="btn btn-warning">
+                            <i class="bi bi-cart-dash"></i>
+                        </a>
+                        <a href="{{path("delete", {id: element.product.id})}}" class="btn btn-danger">
+                            <i class="bi bi-cart-x"></i>
+                        </a>
+                        
+            
+                    </td>
+                </tr>
+                  {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Votre panier est vide</td>
+                </tr>
+          {% endif %}
+        </tbody>
+        <tfoot>
+           
+              <tr>
+                <td colspan="3 "  class="cart_total_label">Panier Sous total HT</td>
+                <td class="text-end" class="cart_total_amount">€ {{ dataPanier.data.subTotalHT}}</td>
+                <td>
+                    <a href="{{path("delete_all")}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+             
+            </tr>
+
+            <tr>
+               <td colspan="3 "  class="cart_total_label">Taxe (20%) </td>
+                <td  class="text-end"  class="cart_total_amount">€ {{ dataPanier.data.Taxe }}</td>
+                <td>
+                    <a href="{{path("delete_all")}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+                
+            </tr>
+<tr>
+                <td colspan="3 " class="cart_total_label">Total TTC</td>
+               <td  class="text-end" class="cart_total_amount"><strong>€ {{ dataPanier.data.subTotalTTC  }}</strong></td>
+                <td>
+                    <a href="{{path("delete_all")}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+               
+            </tr>
+           
+        </tfoot>
+    </table>
+     <td>
+<a href="{{ path("checkout") }}"
+                                   class="btn btn-primary">Valider votre commande</a>
+                 </td>
+</div>
+
+
+ 
+        
+{% endblock %}
+
+

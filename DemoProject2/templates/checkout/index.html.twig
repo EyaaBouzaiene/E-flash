@@ -1,0 +1,127 @@
+{% extends 'basefront.html.twig' %}
+
+{% block content2 %}
+<header class="top-navbar" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('listC') }}">
+					<img src="{{asset ('front/images/logo.png')}}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{{ path('listC') }}">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						
+ 
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Categories</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							 {% for compteur in listP %}
+								<a class="dropdown-item" href="{{path('afficheP',{'id':compteur.id })}}">{{compteur.NOM}}</a>
+								{% endfor %} 
+							</div>
+						</li>
+
+
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	{#      *************************************************************************************************                       #}
+	
+
+<div class="section checkout">
+        <div class="container">
+         {{ form_start(checkout, {action: path('checkoutConfirm')} )}}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="heading_s1">
+                            <h4>Vos adresses de livraison</h4>
+                            <div class="content">
+                                 {# {{ form_widget(checkout.address) | replace({'[spr]' : '<br>'}) | raw}} #}
+                            </div>
+                            {# <a href="{{ path('address_new')}}" class="btn btn-fill-out btn-block mt-1">Nouvelle adresse</a> #}
+                    </div>
+                    <div class="heading_s1">
+                        <h4>Entreprises de livraison</h4>
+                        <div class="content">
+                            {# {{ form_widget(checkout.transport)  | replace({'[spr]' : '<br>'}) | raw }} #}
+                        </div>
+                    </div>
+                    <div class="heading_s1">
+                        <h4>Informations pour le livreur</h4>
+                        <div class="form-group mb-0">
+                          {# {{ form_widget(checkout.informations) }} #}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="heading_s1">
+                            <h4>Votre commande</h4>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 {% for element in cart.products %}
+                                   
+                                        <tr>
+                                            <td> {{ element.product.NOM }} <span class="product-qty">x {{ element.quantity }}</span></td>
+                                            <td> € {{ element.product.Prix  }}</td>
+                                        </tr>
+                                 {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>SousTotal HT</th>
+                                        <td class="product-subtotal"> € {{ cart.data.subTotalHT }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Taxe</th>
+                                        <td class="product-subtotal"> € {{ cart.data.Taxe }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <td class="product-subtotal"> € {{ cart.data.subTotalTTC }}</td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="heading_s1">
+                                <h4>Payment</h4>
+                            </div>
+                            
+                        </div>
+                        <button type="submit" id="checkout" class="btn btn-primary">Paiement</button>
+                    </div>
+                </div>
+            </div>
+           {{ form_end(checkout) }}
+        </div>
+    </div>
+
+
+		   {% endblock %}

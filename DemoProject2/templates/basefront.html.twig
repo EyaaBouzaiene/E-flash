@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Yamifood Restaurant - Responsive HTML5 Template</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{{asset ('front/images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{asset ('front/images/apple-touch-icon.png')}}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset ('front/css/bootstrap.min.css')}}">  
+    <link rel="stylesheet" href="{{asset ('node_modules/nouislider/dist/nouislider.css')}}">   
+    
+
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{{asset ('front/css/style.css')}}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{{asset ('front/css/responsive.css')}}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{asset ('front/css/custom.css')}}">
+ <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .card-text a :hover {
+box-shadow: 0 5px 5px rgba(0, 0, 0,0.2);
+;
+
+    } 
+    .card-text.showContent p{
+        height:auto;
+}
+.card {
+  border: 1px solid #eee;
+  flex: 1;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+}
+
+.card h2 {
+  margin: 0;
+  background-color: deepskyblue;
+  padding: 8px;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 7px 7px 0 0;
+}
+
+.card-image{
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  weight:auto;
+height:auto;
+ 
+}
+.card-text.showContent a.readmore-btn{
+
+    background-color:red;
+}
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    color:rgb(7, 2, 36);
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.card-text {
+    background-color:beige;
+    border-radius: 15px;
+    padding: 2em;
+    box-shadow: 0px 10px 5px #b2bec3;
+    text-align: center;
+    font-family: 'Poppins';
+    
+    max-width: 100%;
+    max-height: 100%;
+}
+.Buy-button{
+    text-align: center;
+    
+}
+.star {
+color:rgb(0,0, 0);
+
+}
+
+.fa-star-o:active{
+    color:rgb(0,255, 0);
+}
+ .cardi {
+
+    position: relative;
+  right: -20px;
+
+ }
+ .prix {
+color:rgb(0,255, 0);
+text-align: center;
+font: size 21px;
+}
+.partie1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #fa92bad5;
+    ;
+}
+
+.partie2 {
+    font-family: 'Open Sans', sans-serif;
+    color: #97daf5d5;
+    ;
+}
+</style>
+
+</head>
+
+<body>
+	<!-- Start header -->
+	
+	<!-- End header -->
+	{% block content2 %}
+
+
+                    {% endblock %}
+	
+					{% block content1 %}
+
+
+                    {% endblock %}
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>About Us</h3>
+					<p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Opening hours</h3>
+					<p><span class="text-color">Monday: </span>Closed</p>
+					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Contact information</h3>
+					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
+					<p><a href="#"> info@admin.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Subscribe</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+							<button type="submit" class="submit">SUBSCRIBE</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Yamifood Restaurant</a> Design By : 
+					<a href="https://html.design/">html design</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{{asset ('front/js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{asset ('front/js/popper.min.js')}}"></script>
+	<script src="{{asset ('front/js/bootstrap.min.js')}}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{{asset ('front/js/jquery.superslides.min.js')}}"></script>
+	<script src="{{asset ('front/js/images-loded.min.js')}}"></script>
+	<script src="{{asset ('front/js/isotope.min.js')}}"></script>
+	<script src="{{asset ('front/js/baguetteBox.min.js')}}"></script>
+	<script src="{{asset ('front/js/form-validator.min.js')}}"></script>
+    <script src="{{asset ('front/js/contact-form-script.js')}}"></script>
+    <script src="{{asset ('front/js/custom.js')}}"></script>
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+    <script src="{{ asset('nouislider/dist/nouislider.min.js') }}"></script> 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.min.js'></script>
+</body>
+</html>

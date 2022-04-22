@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Ajouter un Offre</h6>
+                            {{form_start(form) }} 
+                             <div class="mb-3">
+                                    <label  class="form-label">NOM</label>
+                                    {{form_widget(form.NOM ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label  class="form-label">TYPE</label>
+                                    {{form_widget(form.TYPE ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                               
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Description</label>
+                                    {{form_widget(form.DESCP ,{'attr':{class: 'form-control'}})}}
+                                </div>
+
+                                
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">QuantiteR</label>
+                                    {{form_widget(form.quantiteR ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Prix</label>
+                                    {{form_widget(form.Prix ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Quantite </label>
+                                    {{form_widget(form.quantite ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                               
+                                <br>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
+                            {{form_end(form) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+{% endblock %}

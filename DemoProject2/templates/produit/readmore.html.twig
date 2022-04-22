@@ -1,0 +1,140 @@
+{% extends 'basefront.html.twig' %}
+
+{% block content2 %}
+<header class="top-navbar" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('listC') }}">
+					<img src="{{asset ('front/images/logo.png')}}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{{ path('listC') }}">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						
+ 
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Categories</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							{% for compteur in listP %}
+								<a class="dropdown-item" href="{{path('afficheP',{'id':compteur.id })}}">{{compteur.NOM}}</a>
+								{% endfor %}
+							</div>
+						</li>
+
+
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+    <!-- Page Content -->
+       
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-4">
+            <br>
+        </h1>
+       
+        
+     
+    
+   {% for compteur2 in listProd %}
+    
+   
+    <div class="row">
+    <tr></tr>
+    <div class="col-lg-5 mt-5">
+    <div class="zoom">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" src="{{ asset('uploads/' ~ compteur2.IMAGE) }}" alt="Card image cap" id="product-detail">
+                   </div>
+                    </div>
+                </div>
+   
+      <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2"><strong>{{compteur2.NOM}}</strong></h1>
+                            <p class="h3 py-2">{{compteur2.PRIX}}DT</p>
+                            <p class="py-2">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-secondary"></i>
+                                <i class="fa fa-star text-secondary"></i>
+                                
+                            </p>
+                           
+
+                            <h6>Description:</h6>
+                            <p>{{compteur2.DESCP}}</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Avaliable Quantity :</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>{{compteur2.quantiteR}}</strong></p>
+                                </li>
+                            </ul>
+                           
+                                <input type="hidden" name="product-title" value="{{compteur2.NOM}}">
+                            <div class="col-auto">
+                                        <ul class="list-inline pb-3">
+                                            <li class="list-inline-item text-right">
+                                                Quantity
+                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                            </li>
+                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                        </ul>
+                            <div class="row pb-3">
+                                   
+                                    <div class="col d-grid">
+                                        <button  class="btn btn-outline-success btn-lg"  onclick="window.location.href='{{ path('add', {'id': compteur2.id})}}'"" >Add To Cart</button>
+                                    </div>
+                                </div>
+                                </div>
+                             
+                           
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+      
+        
+    }
+    
+       
+        </div>
+       
+        {% endfor %}  <!-- /.row -->
+      
+     </div>
+     <!-- Pagination -->
+      </div>
+        </div>
+
+ 
+{% endblock %}
