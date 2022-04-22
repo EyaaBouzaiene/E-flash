@@ -78,15 +78,39 @@ class Stock2Repository extends ServiceEntityRepository
     */
 
 
-   public function findByquantite()
+   public function findByretourID()
    {
-    $entityManager=$this->getEntityManager();
-    $query=$entityManager
-        ->createQuery("SELECT mailP FROM APP\Entity\Partenaires p join p.partenaire s WHERE p.id=s.partenaire_id and s.qteS<10");
-        #->setParameter('id', '%'.$id.'%');
-    return $query->getResult();
+   return $this->getEntityManager()
+    
+        ->createQuery("SELECT s.id FROM APP\Entity\Stock2 s  WHERE  s.qteS<10")
+       
+            ->getResult();
    }
-  
+   
+   public function findByretourMail($id)
+   {
+  return $this->getEntityManager()
+    
+        ->createQuery("SELECT p.mailP FROM APP\Entity\Partenaires p WHERE p.id=:id")
+       ->setParameter('id',$id)
+        ->getResult();
+   }
 
 
+   public function ch(){
+   {
+    $queryBuilder = $this->getEntityManager()->createQueryBuilder()
+    ->select('p', 'p.mailP')
+    ->from('APP\Entity\Partenaires', 'p')
+    ->Join('APP\Entity\Stock2', 'ppc', 'WITH', 'p.id=ppc.partenaire')
+
+    ->where('ppc.qualiteS<10')  ;
+ 
+    $query = $queryBuilder->getQuery();
+    $results = $query->getResult();
+    return $results;
+ 
+ 
+}
+   }
 }

@@ -84,4 +84,24 @@ class PartenairesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+   public function statfrontidqualite()
+   {
+   return $this->getEntityManager()
+    
+        ->createQuery("SELECT s.partenaire FROM APP\Entity\Stock2 s  WHERE  s.qualiteS='10' ")
+      /*   ->createQuery("SELECT p.nomMarqueP FROM APP\Entity\Partenaires p") */
+            ->getResult();
+   }
+   /* public function statfrontpartenaire()
+   {
+   return $this->getEntityManager()
+    
+        ->createQuery("SELECT p.nomMarqueP FROM APP\Entity\Partenaires p")
+       
+            ->getResult();
+   } */
+
+
 }

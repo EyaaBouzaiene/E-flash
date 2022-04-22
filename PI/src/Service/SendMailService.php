@@ -17,7 +17,6 @@ class SendMailService
         string $from,
         string $to,
         string $subject,
-        
         string $text
     ) : void
     {

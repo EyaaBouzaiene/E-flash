@@ -24,6 +24,7 @@
 
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{asset('backend-office/css/bootstrap.min.css')}} " rel="stylesheet">
+        
 
         <!-- Template Stylesheet -->
         <link href="{{asset('backend-office/css/style.css')}}" rel="stylesheet">
@@ -43,53 +44,63 @@
                 
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
-                            <h3 class="mb-4">Liste Stocks </h3>
-                            <table class="table table-bordered">
+                      
+                    
+                       <img src="{{asset('/public/uploads/logo.png') }}" />
+                            <h1 class="mb-4" align="center"><FONT color="deeppink">Table récapitulant tout les stocks </h1>
+                            
+                            <table class="table table-bordered", border="3" align="center" bgcolor="#87CEFA"> >
+
+              
+    </thead>
                                 <thead>
+   
                                     <tr>
+                                  
+										
                                         <th scope="col">Nom Stock</th>
-                                        <th scope="col">|</th>
+                                       
                                         <th scope="col">Réference</th>
-                                        <th scope="col">|</th>
+                                       
                                         <th scope="col"> Categorie</th>
-                                        <th scope="col">|</th>
+                                     
                                         <th scope="col"> Quantite</th>
-                                        <th scope="col">|</th>
+                                        
                                          <th scope="col"> Date</th>
-                                        <th scope="col">|</th>
+                                       
                                         <th scope="col">Qualite</th>
-                                        <th scope="col">|</th>
+                                        
                                         <th scope="col">Partenaire</th>
-                                        <th scope="col">|</th>
+                                        <td></td>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
+                               
                                     {% for data in affiche %}
 
                                     <tr>
                                     <td> {{ data.nomS }} </td>
-                                    <td>|</td>
+                                   
                                     <td> {{ data.refS }} </td>
-                                    <td>|</td>
+                                   
                                     <td> {{ data.categorieS}} </td>
-                                    <td>|</td>
-                                    <td> {{ data.qteS}} </td>
-                                    <td>|</td>
-                                   <td> {{ data.dateS| date('d-m-Y')}}</td>
-                                    <td>|</td>
-                                    <td> {{ data.qualiteS  }} </td>
-                                    <td>|</td>
-                                    <td> {{ data.partenaire.nomMarqueP }} </td>
-                                    <td>|</td>
-                                  
-                                        
                                     
+                                    <td> {{ data.qteS}} </td>
+                                    
+                                   <td> {{ data.dateS| date('d-m-Y')}}</td>
+                                   
+                                    <td> {{ data.qualiteS  }} </td>
+                                    
+                                    <td> {{ data.partenaire.nomMarqueP }} </td>
+                                    <td></td>
+                               
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
+                       
                     </div>
                 {% endblock %}
                 

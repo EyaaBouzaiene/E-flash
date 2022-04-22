@@ -14,6 +14,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 
+
 use App\Form\ContactType;
 use App\Form\SearchAnnonceType;
 use App\Repository\AnnoncesRepository;
@@ -70,7 +71,7 @@ class PartenaireController extends AbstractController
     public function affiche(): Response
     {
         $Partenaires=$this->getDoctrine()->getRepository(Partenaires::class)->findAll();
-        return $this->render('partenaire/affiche.html.twig',['affiche'=>$Partenaires]);
+        return $this->render('partenaire/affiche.html.twig',['affichep'=>$Partenaires]);
     }
 
       /**
@@ -156,8 +157,8 @@ class PartenaireController extends AbstractController
         return new Response();
     }
 
+    
 
 
-        
 
 }

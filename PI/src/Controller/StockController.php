@@ -7,8 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\Stock2Repository;
 use App\Repository\PartenairesRepository;
-use Symfony\Component\HttpFoundation\Request ;  
-use App\Entity\Stock2 ; 
+
+use Symfony\Component\HttpFoundation\Request;  
+use App\Entity\Stock2; 
 use App\Entity\Partenaires; 
 use App\Form\StockType;
 use App\Form\StockUpdateType;
@@ -22,6 +23,12 @@ use App\Form\ContactType;
 use App\Form\SearchAnnonceType;
 use App\Repository\AnnoncesRepository;
 use App\Service\SendMailService;
+
+
+use Endroid\QrCode\QrCode;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 
 
@@ -45,7 +52,7 @@ class StockController extends AbstractController
      * @Route("/ajouterstock", name="addstock")
      */
     public function ajouter(Request $request)
-    #
+    
     {
         $Stock2 = new Stock2();
         $form = $this->createForm(StockType::class,$Stock2);
@@ -57,7 +64,7 @@ $Stock2->setQualiteS('1');
             $em = $this->getDoctrine()->getManager() ; 
             $em->persist( $Stock2) ; 
             $em->flush() ;
-
+            $this->addFlash('notice' , 'ajout avec Succes ') ;
            # $flashy->success('Event created!');
             return $this->redirectToRoute('displaystock') ; 
         }
@@ -99,18 +106,37 @@ foreach ($array_dest_occ as $x => $x_value) {
           
            $pieChart->getData()->setArrayToDataTable( $final);
 
-       $pieChart->getOptions()->setTitle('Stock en fonction des noms');
+       $pieChart->getOptions()->setTitle('La quantité du Stock');
        $pieChart->getOptions()->setHeight(500);
        $pieChart->getOptions()->setWidth(500);
        $pieChart->getOptions()->getTitleTextStyle()->setColor('#07600');
        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(35);
 
 
-       
+      /*  barchart */
+      $dataB = $this->getDoctrine()->getRepository(Stock2::class)->findAll();
+        $stockB= [
+            ['Nom Stock','Quantité']
+
+        ]  ; 
+foreach ($dataB as $xB) {
+    $stockB[] = [$xB->getNomS(),$xB->getQteS(),]; 
+    
+}
+$bar = new BarChart();
+$bar->getData()->setArrayToDataTable($stockB) ; 
+
+
+$bar->getOptions()->setTitle('Stock en Fonction de la qualité');
+$bar->getOptions()->getHAxis()->setTitle('Nom Stock');
+$bar->getOptions()->getHAxis()->setMinValue(0);
+$bar->getOptions()->getVAxis()->setTitle('Quantité');
+$bar->getOptions()->setWidth(900);
+$bar->getOptions()->setHeight(500); 
         
 
 
-        return $this->render('stock/affiche.html.twig',['affiche'=>$stock, 'piechart' => $pieChart]);
+        return $this->render('stock/affiche.html.twig',['affiche'=>$stock, 'piechart' => $pieChart,'BarChart' => $bar , 'list' => $dataB]);
     }
 
     
@@ -170,6 +196,7 @@ foreach ($array_dest_occ as $x => $x_value) {
         $pdfoptions = new Options();
         $pdfoptions->set('defaultFont', 'Arial');
         $pdfoptions->setIsRemoteEnabled(true);
+      
 
 
         $dompdf = new Dompdf($pdfoptions);
@@ -187,125 +214,92 @@ foreach ($array_dest_occ as $x => $x_value) {
         ]);
 
         $dompdf->loadHTML($html);
-        $dompdf->setPaper('A2', 'portrait');
+        $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $file = 'test.pdf';
         $dompdf->stream($file, [
 
             'Attachment' => false
         ]);
-
-        return new Response();
+        return new Response("The PDF file has been succesfully generated !");
+        
     }
 
-/* 
+ 
+
     /**
-     * @Route("/test", name="test")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/calender", name="calender")
      */
-  /*   public function statAction(Stock2Repository $repo)
+
+    public function viewcal()
     {
-       
+        $list = $this->getDoctrine()->getRepository(Stock2::class)->findAll();
 
- $data = $repo->findAll();
- $dest = array();
- foreach ($data as $x) {
-    //$dest[] = [$x->getDestination()] ; 
-    array_push($dest, $x->getNomS());
-}
+        $res = [] ; 
 
- $pieChart = new pieChart();
-$array_dest_occ = array_count_values($dest);
-$final = [
-    ['nom ', 'Quantite']
+        foreach ($list as $x)
+        {
+            $res[] = [
+                //'id'=> $x->getId(),
+                'title'=>$x->getNomS(),
+                //'Client'=>$x->getClient()->getName() , 
+                'start'=>$x->getDateS()->format('Y-m-d'),
+                'end'=>$x->getDateS()->format('Y-m-d'),
+            ] ; 
 
-];
-foreach ($array_dest_occ as $x => $x_value) {
-    $final[] = [$x, (int)$x_value];
-}
+        }
 
-     
-           
-            $pieChart->getData()->setArrayToDataTable( $final);
+        $data = json_encode($res);
 
-        $pieChart->getOptions()->setTitle('Stock en fonction des noms');
-        $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(500);
-        $pieChart->getOptions()->getTitleTextStyle()->setColor('#07600');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(35);
- 
- 
-         return $this->render('stock/stat-teste.html.twig', array(
-                'piechart' => $pieChart,
-            )
- 
-        );  */
-   
-
-   /*  } */
-
-    
-
-
-    
-    /**
-     * @Route("/barchart", name="barchart")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function statBarchart(Stock2Repository $repo)
-    {
-       
-
- $data = $repo->findAll();
- $nom= [];
- $quantite=[];
- foreach ($data as $x) {
-    //$dest[] = [$x->getDestination()] ; 
-    $nom []=$x->getNomS();
- $quantite[]=$x->getQteS();
-}
-
- 
-return $this->render('stock/stat.html.twig', [
-    'nom' => json_encode($nom),
-    'quantite' => json_encode($quantite)
-    
-]);
-}
         
-  
 
+        return $this->render('stock/calendar.html.twig', compact('data'));
+
+    }
     
   
 
-      /**
-     * @Route("/qualite/{id}", name="qualite")
+    /**
+     * @Route("/mailstock", name="mailstock")
      */
-     public function findBy(SendMailService $send,Stock2Repository $repo,PartenairesRepository $rep,$id)
+     public function mailstock(SendMailService $send,Stock2Repository $repo)
     {
        
-       $data=$rep->findAll();
+       
 
-         $c = $data->find($id);
-         $mail= $this->getDoctrine()->getRepository(Partenaires::class)->findByquantite($c->getMailP());
+         #$id=$repo->findByretourID(); 
 
-      $to=$p->findByquantite($c->getId()); 
-    
+         
+        /*  $mail=$repo->findByretourID($id); */
+
+      /*    foreach ($id as $value) {
+          
+ $mailRe= $repo->findByretourMail($value());   */
+          # $mail1=$value(0)->getMailP();
+           
+        $repo->ch();
+          #$mail='khanfirkhadija66@gmail.com';
      $from='khanfirkhadija66@gmail.com';
      $subject='Besoin Produit';
-     $text='Bonjour Monsieursvp jai besoin de produit!';
+     $text='Bonjour Monsieur svp jai besoin de produit!';
 
-     $send->send ($from,$to,$subject,$text);
-     
+     foreach ($repo as $value) {
+       echo $value->getMailP();
+     $send->send ($from,$value,$subject,$text);
+    }
      $this->addFlash('notice' , 'Envoie avec succées ') ; 
-        return $this->render('stock/affiche.html.twig'
-            
-        );
-    } 
- 
+     return $this->redirectToRoute('displaystock'); 
+          
+        
+}
+}
+
+
+
+
 
     
-}
+
 
     
 

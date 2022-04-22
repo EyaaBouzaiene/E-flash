@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.11",
         "dompdf/dompdf": "^1.2",
         "endroid/qr-code": "^4.4",
+        "endroid/qr-code-bundle": "^4.0",
         "mercuryseries/flashy-bundle": "^5.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpoffice/phpspreadsheet": "^1.22",
@@ -56,7 +57,8 @@
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "endroid/installer": true
         },
         "preferred-install": {
             "*": "dist"

@@ -6,6 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
+
+
+
+
+
 class BackController extends AbstractController
 {
     /**
@@ -13,6 +20,10 @@ class BackController extends AbstractController
      */
     public function index(): Response
     {
+       
+      
+
+        
         return $this->render('back/acceuil.html.twig', [
             'controller_name' => 'ProduitController',
         ]);

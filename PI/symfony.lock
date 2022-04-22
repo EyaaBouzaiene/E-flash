@@ -94,8 +94,14 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "endroid/installer": {
+        "version": "1.4.0"
+    },
     "endroid/qr-code": {
         "version": "4.4.8"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.0.7"
     },
     "ezyang/htmlpurifier": {
         "version": "v4.14.0"
