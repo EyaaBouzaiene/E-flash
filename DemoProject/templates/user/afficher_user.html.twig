@@ -46,7 +46,7 @@
 
                 <div class="table-responsive">
 
-                    <div class="card-body">
+                    <button class="card-body">
 
 
 
@@ -123,13 +123,23 @@
 
 
                     </tbody>
-{% endfor %}  
+
+{% endfor %}
+
                 </table>
-            
-            </div>
+                        <br>
+                        <a href="{{ path('export') }}" class="btn btn-info">export excel</a>
+                        <a href="{{ path('stat') }}" class="btn btn-info">Statistiques</a>
+                        <a href="{{ path('listU') }}" class="btn btn-info">pdf</a>
+
+
+
+
+                </div>
                       </div>
             </div>
         </div>
+
 </section>
 </html>
 

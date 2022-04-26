@@ -67,21 +67,33 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+
+
+    public function nbr_users(){
+
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            'SELECT   count(r) as nb_user,r.date as date FROM   App\Entity\User r where DATE_DIFF(CURRENT_DATE(), r.date)>1 group by  r.date'
+        );
+
+        return $query->getResult();
     }
-    */
 
+    /**
+     * Returns number of "user" per day
+     * @return void
+     */
+    public function countByDate(){
 
+        $query = $this->createQueryBuilder('a')
+            ->select('SUBSTRING(a.date, 1, 10) as date, COUNT(a) as count')
+            ->groupBy('date');
+        return $query->getQuery()->getResult();
+
+    }
+
+//            'SELECT DISTINCT  count(r.id) as nb_user ,r.date as date FROM   App\Entity\User r  where DATE_DIFF( r.date, CURRENT_DATE()) =1  '
     public function findOneByEmail($email): ?User
     {
         return $this->createQueryBuilder('u')
