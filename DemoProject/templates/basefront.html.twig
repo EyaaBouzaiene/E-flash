@@ -29,6 +29,8 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+	  <script src="https://kit.fontawesome.com/43fe9f7c62.js" crossorigin="anonymous"></script>
     <![endif]-->
 
 </head>
@@ -58,7 +60,7 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<a class="nav-link dropdown-toggle" href="{{ path('app_evenement_front') }}" id="dropdown-a" data-toggle="dropdown">Blog</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
 								<a class="dropdown-item" href="blog.html">blog</a>
 								<a class="dropdown-item" href="blog-details.html">blog Single</a>
@@ -147,5 +149,6 @@
 	<script src="{{asset ('front/js/form-validator.min.js')}}"></script>
     <script src="{{asset ('front/js/contact-form-script.js')}}"></script>
     <script src="{{asset ('front/js/custom.js')}}"></script>
+	{% block javascripts %}{% endblock %}
 </body>
 </html>

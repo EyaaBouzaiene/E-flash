@@ -1,8 +1,8 @@
+
 {% extends 'basefront.html.twig' %}
 
-
 {% block content %}
-
+	<script src="https://kit.fontawesome.com/43fe9f7c62.js" crossorigin="anonymous"></script>
 <!-- Start slides -->
 	<div id="slides" class="cover-slides">
 		<ul class="slides-container">
@@ -88,23 +88,31 @@
              {% for evenement in evenements %}
 				<div class="col-lg-4 col-md-6 special-grid drinks">
 					<div class="gallery-single fix">
-				
+
 					<img src="{{ asset('uploads/' ~ evenement.image2) }} "class="img-fluid" alt="Image">
-					
+
 						<div class="why-text">
 							<h5>{{ evenement.nom }}</h5
 							<p>{{ evenement.description }}</p>
 							<h5>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d') : '' }}</h5>
+
+
+							
 						 <p class="pt-1"><a href="{{ path('app_evenement_show',{'id':evenement.id}) }}" class="btn-custom px-3 py-2 rounded">View Details <span class="icon-long-arrow-right"></span></a></p>
+							<p class="pt-1"><a href="{{ path('post_like',{'id':evenement.id}) }}" class="btn btn-link js-like"><span class="js-likes" style="color:#990055"> {{ evenement.likes |length }}</span><i class="fa-solid fa-heart" style="color:#990055"></i><span class="js-label"  style="color: #990055 ">Je m'intéresse</span></a></p>
+
+
+
 
 						</div>
+
 					</div>
 				</div>
 		 {% endfor %}
 
-
-		
 				
+
+
 				
 				
 			
@@ -132,15 +140,15 @@
 				</div>
 			</div>
 			<div class="tz-gallery">
-			     {% for evenement in evenements %}
+
 				<div class="row">
 
 					<div class="col-sm-12 col-md-4 col-lg-4">
 						<a class="lightbox" href="{{asset ('front/images/gallery-img-01.jpg')}}">
-							<img class="img-fluid" src="{{ asset('uploads/' ~ evenement.image2) }}" alt="Gallery Images">
+
 						</a>
 					</div>
-						 {% endfor %}
+
 				
 				</div>
 			</div>
@@ -237,4 +245,21 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		function onClickBtnLike(event) {
+			event.preventDefault();
+			const url =this.href;
+			const spanCount =this.querySelector('span.js-likes');
+			axios.get(url).then(function(response) {
+				spanCount.textContent= response.data.likes;
+			})
+		}
+
+		document.querySelectorAll('a.js-like').forEach(function(link){
+			link.addEventListener('click',onClickBtnLike);
+
+		})
+
+	</script>
      {% endblock %}

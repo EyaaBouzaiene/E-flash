@@ -1,24 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation{% endblock %}
+{% block content %}
+<section>
+        <div class="container">
+            <div class="title"><strong>List of Product</strong></div>
 
-{% block body %}
-    <h1>Reservation</h1>
+            </br>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </div>
+                    <input type="text" id="rech" class="form-control" placeholder="Look for a Product">
+                </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>IdReservation</th>
+
+
+            </div>
+            </br>
+
+            <div class="col-lg-50">
+            <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Table de Produit</strong>
+                        </div>
+                        {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                      <div class="card-body">
+                     
+            <div class="table-responsive">
+           
+            
+                <table class="table  table-hover table-bordered">
+                
+  
+           
+              
                 <td>{{ reservation.idReservation }}</td>
-            </tr>
-            <tr>
-                <th>Gmail</th>
+         
+           
+             
                 <td>{{ reservation.gmail }}</td>
-            </tr>
-            <tr>
-                <th>NombreBillet</th>
+           
+            
                 <td>{{ reservation.nombreBillet }}</td>
-            </tr>
+           
         </tbody>
     </table>
 

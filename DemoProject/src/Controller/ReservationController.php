@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Twilio\Rest\Client;
 /**
  * @Route("/reservation")
  */
@@ -39,10 +39,27 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $sid    = "AC243740d0abcfd49e3475a61ce24c1b62";
+
+            $token  = "ec9a18d9b9215af9c61d6f187c0b1b8a";
+
+            $twilio = new Client($sid, $token);
+
+            $message = $twilio->messages
+                ->create("+21624052930", // to
+                    array(
+                        "messagingServiceSid" => "MG4c143bf60c0df38f712a384cf208d74a",
+
+
+                        "body" => "votre réservation  a été ajouté avec succées "
+                    )
+                );
+            print($message->sid);
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_evenement_front', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reservation/new.html.twig', [
@@ -93,4 +110,6 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

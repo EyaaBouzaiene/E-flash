@@ -13,6 +13,20 @@
       <executable />
     </execution>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/psr/link" />
@@ -63,7 +77,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
-      <path value="$PROJECT_DIR$/vendor/symfony/asset" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
@@ -143,6 +156,23 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/vendor/endroid/installer" />
+      <path value="$PROJECT_DIR$/vendor/endroid/qr-code-bundle" />
+      <path value="$PROJECT_DIR$/vendor/endroid/qr-code" />
+      <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-chartjs" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/vendor/symfony/asset" />
     </include_path>
   </component>
   <component name="ProjectId" id="27l9NjEiVZUKrhD5bP1AFmyUzKE" />
@@ -155,6 +185,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\DemoProject\templates\evenement" />
+      <recent name="C:\wamp64\www\DemoProject\templates" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -186,6 +222,39 @@
       <updated>1649883768112</updated>
       <workItem from="1649883769994" duration="1767000" />
       <workItem from="1649890964504" duration="1898000" />
+      <workItem from="1649968438653" duration="1250000" />
+      <workItem from="1650129092407" duration="12660000" />
+      <workItem from="1650144440025" duration="2222000" />
+      <workItem from="1650159425509" duration="19000" />
+      <workItem from="1650159455619" duration="10000" />
+      <workItem from="1650199961998" duration="1494000" />
+      <workItem from="1650201656999" duration="1236000" />
+      <workItem from="1650233991728" duration="1528000" />
+      <workItem from="1650240314422" duration="499000" />
+      <workItem from="1650276873056" duration="3499000" />
+      <workItem from="1650406988325" duration="58000" />
+      <workItem from="1650411074801" duration="10798000" />
+      <workItem from="1650553628204" duration="12071000" />
+      <workItem from="1650582809147" duration="12585000" />
+      <workItem from="1650667593487" duration="184000" />
+      <workItem from="1650742425728" duration="1409000" />
+      <workItem from="1650746254292" duration="24224000" />
+      <workItem from="1650839384836" duration="3649000" />
+      <workItem from="1650916598795" duration="729000" />
+      <workItem from="1651003619703" duration="11967000" />
+      <workItem from="1651057027317" duration="2901000" />
+      <workItem from="1651061439359" duration="10000" />
+      <workItem from="1651061451500" duration="16346000" />
+      <workItem from="1651101005170" duration="8037000" />
+      <workItem from="1651157040969" duration="4730000" />
+      <workItem from="1651162386389" duration="1859000" />
+      <workItem from="1651167400223" duration="580000" />
+      <workItem from="1651168089236" duration="566000" />
+      <workItem from="1651168819938" duration="1601000" />
+      <workItem from="1651175027805" duration="286000" />
+      <workItem from="1651175335098" duration="752000" />
+      <workItem from="1651176270400" duration="2774000" />
+      <workItem from="1651179434651" duration="3888000" />
     </task>
     <servers />
   </component>
@@ -193,13 +262,40 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="465" y="232" key="com.intellij.ide.util.TipDialog" timestamp="1649890965957">
+    <state x="499" y="155" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1650202112855">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="465" y="232" key="com.intellij.ide.util.TipDialog/0.0.1536.816@0.0.1536.816" timestamp="1649890965957" />
-    <state x="425" y="185" key="run.anything.popup" timestamp="1649884007084">
+    <state x="499" y="155" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.816@0.0.1536.816" timestamp="1650202112855" />
+    <state x="499" y="163" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1651159575922">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="425" y="185" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1649884007084" />
+    <state x="499" y="163" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.816@0.0.1536.816" timestamp="1651159575922" />
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1651179062002">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1651179062002" />
+    <state x="465" y="232" key="com.intellij.ide.util.TipDialog" timestamp="1651168819682">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="465" y="232" key="com.intellij.ide.util.TipDialog/0.0.1536.816@0.0.1536.816" timestamp="1651168819682" />
+    <state x="425" y="185" key="run.anything.popup" timestamp="1651018237266">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="425" y="185" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1651018237266" />
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1651162824185">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1651162824185" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/evenement/index.html.twig</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

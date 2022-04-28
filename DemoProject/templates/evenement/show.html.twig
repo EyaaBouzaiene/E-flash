@@ -40,7 +40,13 @@
 						<h4>{{evenement.nom}}</h4>
 						<p>{{evenement.description}} </p>
 						
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="{{ path('app_reservation_new',{'id':evenement.id}) }}">Reservation</a>
+						<td><a class="btn btn-lg btn-circle btn-outline-new-white" href="{{ path('app_reservation_new',{'id':evenement.id}) }}">Reservation</a>
+						</td>
+						</br>
+						</br>
+						</br>
+						<td> <a href="{{path('MAPPED3',{'id':evenement.id }) }}"><i class="fa fa-user"></i> Localisation</a></td>
+
 							
 					</div>
 				</div>

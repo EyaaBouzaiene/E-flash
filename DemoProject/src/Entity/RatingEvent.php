@@ -38,34 +38,5 @@ class RatingEvent
      */
     private $idEvent;
 
-    public function getIdRate(): ?int
-    {
-        return $this->idRate;
-    }
-
-    public function getRate(): ?int
-    {
-        return $this->rate;
-    }
-
-    public function setRate(int $rate): self
-    {
-        $this->rate = $rate;
-
-        return $this;
-    }
-
-    public function getIdEvent(): ?Evenement
-    {
-        return $this->idEvent;
-    }
-
-    public function setIdEvent(?Evenement $idEvent): self
-    {
-        $this->idEvent = $idEvent;
-
-        return $this;
-    }
-
 
 }

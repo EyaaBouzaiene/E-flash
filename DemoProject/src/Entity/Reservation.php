@@ -24,14 +24,15 @@ class Reservation
     /**
      * @var string
      *
-     * @Assert\Email(    message = "The email '{{ value }}' is not a valid email.)
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      * @ORM\Column(name="gmail", type="string", length=30, nullable=false)
      */
     private $gmail;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="Votre Description  doit être non vide")
+     * @Assert\Positive
      * @ORM\Column(name="nombre_billet", type="integer", nullable=false)
      */
     private $nombreBillet;

@@ -10,37 +10,57 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">modifier un evenement</h6>
-                            {{form_start(form1) }} 
+                            {{form_start(form) }} 
                              <div class="mb-3">
                                     <label  class="form-label">NOM</label>
-                                    {{form_widget(form1.nom ,{'attr':{class: 'form-control'}})}}
+                                    {{form_widget(form.nom ,{'attr':{class: 'form-control'}})}}
                                     
                                 </div>
                                   <div class="mb-3">
                                     <label  class="form-label">nombre de  place</label>
-                                    {{form_widget(form1.nombrePlace ,{'attr':{class: 'form-control'}})}}
+                                    {{form_widget(form.nombrePlace ,{'attr':{class: 'form-control'}})}}
                                     
                                 </div>
                            
                                 <div class="mb-3">
                                 <label  class="form-label">description</label>
-                                    {{form_widget(form1.description ,{'attr':{class: 'form-control'}})}}
+                                    {{form_widget(form.description ,{'attr':{class: 'form-control'}})}}
                                      </div>
      
                               
                                 <div class="mb-3">
                                 <label  class="form-label">date</label>
-                                    {{form_widget(form1.dateDebut ,{'attr':{class: 'form-control'}})}}
+                                    {{form_widget(form.dateDebut ,{'attr':{class: 'form-control'}})}}
                                      </div>
                             <div class="mb-3">
+                                <label  class="form-label">date_fin</label>
+                                {{form_widget(form.end ,{'attr':{class: 'form-control'}})}}
+                            </div>
+                            <div class="mb-3">
                                 <label  class="form-label">duree</label>
-                                    {{form_widget(form1.duree ,{'attr':{class: 'form-control'}})}}
+                                    {{form_widget(form.duree ,{'attr':{class: 'form-control'}})}}
                                      </div>
-                           
+                            <div class="mb-3">
+                            <label  class="form-label">longitude</label>
+                            {{form_widget(form.lon,{'attr':{class: 'form-control'}})}}
 
-                                                  <br>
+                        </div>
+
+                        <div class="mb-3">
+                            <label  class="form-label">lat</label>
+                            {{form_widget(form.lat ,{'attr':{class: 'form-control'}})}}
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label  class="form-label">lieu</label>
+                            {{form_widget(form.lieu ,{'attr':{class: 'form-control'}})}}
+
+                        </div>
+
+                                                
                                 <button type="submit" class="btn btn-primary">Modifier</button>
-                            {{form_end(form1) }} 
+                            {{form_end(form) }} 
                         </div>
                     </div>
                     

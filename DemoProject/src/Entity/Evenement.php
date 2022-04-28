@@ -1,14 +1,23 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass=App\Repository\EvenementRepository::class)
+ *  (
+ *  fields= {"email"},
+ *  message= "l'email que vous avez indiqué déja utilisé !"
+ * )
  */
 class Evenement
 {
@@ -23,45 +32,85 @@ class Evenement
 
     /**
      * @var string
+     * @Assert\NotBlank(message="Votre Titre doit être non vide")
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage=" Le Titre d'une Publication doit comporter au moins {{ limit }} caractères"
      *
+     *     )
      * @ORM\Column(name="nom", type="string", length=20, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
+      * @Assert\NotBlank(message="Votre Description  doit être non vide")
+     * @Assert\Length(
+     *      min = 7,
+     *      max = 100,
+     *      minMessage = " La description d'une evenement doit comporter au moins {{ limit }} caractères ",
+     *      maxMessage = " La description d'une evenement doit comporter au plus  {{ limit }} caractères" )
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      */
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="duree", type="string", length=11, nullable=false)
+     * @var int
+     * @Assert\NotBlank(message="la durèe de votre evenement ne   doit être non vide")
+     * @Assert\Positive
+     * @ORM\Column(name="duree", type="integer", length=11, nullable=false)
      */
     private $duree;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre_place", type="string", length=20, nullable=false)
+     /**
+     * @var int
+     * @Assert\NotBlank(message="Votre Description  doit être non vide")
+     * @Assert\Positive
+     * @ORM\Column(name="nombre_place", type="integer", nullable=false)
      */
     private $nombrePlace;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_debut", type="date", nullable=false)
+      /**
+     * @ORM\Column(type="datetime")
+      * @Groups("post:read")
+     */
+    private $end;
+  /**
+     * @ORM\Column(type="datetime")
+     * @Groups("post:read")
      */
     private $dateDebut;
-
     /**
      * @var string
      *
      * @ORM\Column(name="image2", type="string", length=255, nullable=false)
      */
     private $image2;
+      /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lon;
+        /**
+     * @ORM\Column(type="string", length=80)
+
+     */
+
+    private $lieu;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PostLike::class, mappedBy="post")
+     */
+    private $Likes;
+
+    public function __construct()
+    {
+        $this->Likes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,24 +141,24 @@ class Evenement
         return $this;
     }
 
-    public function getDuree(): ?string
+    public function getDuree(): ?int
     {
         return $this->duree;
     }
 
-    public function setDuree(string $duree): self
+    public function setDuree(int $duree): self
     {
         $this->duree = $duree;
 
         return $this;
     }
 
-    public function getNombrePlace(): ?string
+    public function getNombrePlace(): ?int
     {
         return $this->nombrePlace;
     }
 
-    public function setNombrePlace(string $nombrePlace): self
+    public function setNombrePlace(int $nombrePlace): self
     {
         $this->nombrePlace = $nombrePlace;
 
@@ -127,6 +176,17 @@ class Evenement
 
         return $this;
     }
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
+
+        return $this;
+    }
 
     public function getImage2(): ?string
     {
@@ -140,5 +200,67 @@ class Evenement
         return $this;
     }
 
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
 
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(float $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(string $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PostLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->Likes;
+    }
+
+    public function addLike(PostLike $like): self
+    {
+        if (!$this->Likes->contains($like)) {
+            $this->Likes[] = $like;
+            $like->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(PostLike $like): self
+    {
+        if ($this->Likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getPost() === $this) {
+                $like->setPost(null);
+            }
+        }
+
+        return $this;
+    }
 }

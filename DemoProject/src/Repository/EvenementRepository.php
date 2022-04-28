@@ -42,7 +42,27 @@ class EvenementRepository extends ServiceEntityRepository
         $this->_em->remove($entity);
         if ($flush) {
             $this->_em->flush();
-        }
+        }}
+        public function countByEvent(){
+        return $this->createQueryBuilder('a')
+            ->join('a.evenement', 'c')
+            ->addSelect('c.nom as titre ,COUNT(a) as evenementNombre')
+            ->groupBy('c')
+            ->getQuery()
+            ->getResult();
+
+    }
+    /**
+     * Returns number of "evenement" per day
+     * @return void
+     */
+    public function countByDate(){
+        $query = $this->createQueryBuilder('a')
+             ->select('SUBSTRING(a.dateDebut, 1, 10) as dateevent, COUNT(a) as count')
+             ->groupBy('dateevent')
+         ;
+         return $query->getQuery()->getResult();
+
     }
 
     // /**
