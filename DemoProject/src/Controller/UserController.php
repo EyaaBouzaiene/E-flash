@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,8 @@ use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
+use Twilio\Rest\Client;
+
 
 class UserController extends AbstractController
 {
@@ -45,50 +48,33 @@ class UserController extends AbstractController
      *@Route("/delete_user/{id}", name="deluser")
      */
 public function deleteclass($id) {
+    $u=new User();
     $repos=$this->getDoctrine()->getRepository(User::class);
     $result=$repos->find($id);
     $manager=$this->getDoctrine()->getManager();
-    
+
     $manager->remove($result);
     $manager->flush();
     $this->addFlash('notice' , 'suppression avec Succes ') ;
+
+    $sid    = "ACb8f1daa9dfb7e7243017bee684516c4a";
+    $token  = "dfd9a82f3514b18c7b994dda0cdd52e9";
+    $twilio = new Client($sid, $token);
+
+    $message = $twilio->messages
+        ->create( "+21652456290", // to
+            array(
+                "messagingServiceSid" => "MGa1ab57b74712afa6bdd2148d0792c018",
+                "body" => "votre compte a ete supprime "
+            )
+        );
+
+    print($message->sid);
+
+
     return $this->redirectToRoute('afficher_user');
     
     }  
-
-      /**
-     * @Route("/adduser", name="adduser")
-     */
-    public function create(Request $request)
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid() ) {
-         /*   $uploadedFile = $form['image']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'/public/images';
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
-            $uploadedFile->move(
-                $destination,
-                $newFilename
-            );
-            $user->setImage($newFilename);*/
-            //$user->setPassword($passwordEncoder->encodePassword($utilisateur, $utilisateur->getPassword()));
-            $role = ['ROLE_USER'];
-            $user->setRole($role);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-              
-            
-        }
-
-
-        return $this->render('user/adduser.html.twig', ['form' => $form->createView()]);
-    }
 
 
     /**

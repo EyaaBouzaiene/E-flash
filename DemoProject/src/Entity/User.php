@@ -68,7 +68,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Length (min="8",max="8", minMessage="Votre mot de passe doit faire 8 caractéres")
+     * @Assert\Length (min="8", minMessage="Votre mot de passe doit faire 8 caractéres")
      */
     private $telf;
 

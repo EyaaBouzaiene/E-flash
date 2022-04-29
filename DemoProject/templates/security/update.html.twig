@@ -9,7 +9,11 @@
     <br>
 
 
-
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     {{ form_start(form) }}
     <br>
 
@@ -19,6 +23,9 @@
         <h1 style="left: 250px">Update</h1>
         <br>
         <br>
+
+
+
     <div class="col-12" style="left: 200px">
 
 
@@ -43,17 +50,18 @@
 
 
 
-        {{ form_label(form.telf, 'Prenom') }}
+        {{ form_label(form.telf, 'Telephone') }}
         {{ form_widget(form.telf, {'attr':{class: 'form-control'}}) }}
     </div>
         <br>
         <br>
-        <button type="submit" class="btn btn-secondary " style="left: 260px" >Update</button>
+        <button type="submit" class="btn btn-secondary "  >Update</button>
         <br>
     </div>
 
 
 
     {{form_end(form) }}
-
+<br>
+    <br>
 {% endblock %}

@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
         $user = $this->getUser();
        // var_dump($user->getId());
 
-       //$user=$this->getDoctrine()->getRepository(User::class)->findAll();
+       //$user1=$this->getDoctrine()->getRepository(User::class)->findAll();
         $form = $this->createForm(UserType::class, $user);
       //  $form->add('update',SubmitType::class);
         $form->handleRequest($request);
@@ -73,7 +73,8 @@ class SecurityController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute('app_login');
+            $this->addFlash('success' , 'modification avec Succes ') ;
+            return $this->redirectToRoute('app_update');
         }
 
         return $this->render("security/update.html.twig",array('form'=>$form->createView()));
