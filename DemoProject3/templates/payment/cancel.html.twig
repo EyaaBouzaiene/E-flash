@@ -1,0 +1,14 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Hello PaymentController!{% endblock %}
+ 
+{% block content2 %}
+{{ parent() }}
+ h1>Échec du paiement!</h1>
+    <p>
+        Nous apprécions de faire affaire avec vous,
+        Mais votre paiement a échoué
+    </p>
+    <a class="btn btn-primary" href="{{ path("afficheP") }}">Afficher mes produit</a>
+
+ {% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h2 class="mb-4">Modifier Stock</h2>
+                            {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            {{form_start(form) }} 
+                                <div class="mb-3">
+                                    <label  class="form-label">Nom du Stock</label>
+                                    {{form_widget(form.noms ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label  class="form-label">Réference du Stock</label>
+                                    {{form_widget(form.refs ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Catégorie du Stock</label>
+                                {{form_widget(form.categories ,{'attr':{class: 'form-control'}})}}
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Quantité du Stock</label>
+                                    {{form_widget(form.qtes ,{'attr':{class: 'form-control'}})}}
+                                </div>
+
+                               
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Qualité du Stock</label>
+                                    {{form_widget(form.qualites ,{'attr':{class: 'form-control'}})}}
+                                    
+                                </div>
+
+                                
+
+                                <br>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
+                            {{form_end(form) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+{% endblock %}
+
+

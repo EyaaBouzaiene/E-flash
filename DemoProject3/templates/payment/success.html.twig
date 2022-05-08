@@ -1,0 +1,13 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Hello PaymentController!{% endblock %}
+ 
+{% block content2 %}
+{{ parent() }}
+ <h1>Paiement réussi !</h1>
+    <p>
+        Nous apprécions de faire affaire avec vous!
+    </p>
+    <a class="btn btn-primary" href="{{ path("listC") }}">Afficher mes produit</a>
+
+ {% endblock %}

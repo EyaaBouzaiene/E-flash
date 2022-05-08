@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div id="chart_div"> </div>
+
+
+
+<div class="main-panel">
+						<div class="content-wrapper">
+							<div class="row">
+								<div class="col-md-12 grid-margin">
+									<div class="row">
+										<div class="col-12 col-xl-8 mb-4 mb-xl-0">
+											<h3 class="font-weight-bold">Welcome Aamir</h3>
+											<h6 class="font-weight-normal mb-0">All systems are running smoothly! You have
+												<span class="text-primary">3 unread alerts!</span>
+											</h6>
+										</div>
+										<div class="col-12 col-xl-4">
+											<div class="justify-content-end d-flex">
+												<div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+													<button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+														<i class="mdi mdi-calendar"></i>
+														Today (10 Jan 2021)
+													</button>
+													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+														<a class="dropdown-item" href="#">January - March</a>
+														<a class="dropdown-item" href="#">March - June</a>
+														<a class="dropdown-item" href="#">June - August</a>
+														<a class="dropdown-item" href="#">August - November</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 grid-margin stretch-card">
+									<div class="card tale-bg">
+										<div class="card-people mt-auto">
+											<img src="{{ asset ('back/images/dashboard/people.svg')}}" alt="people">
+											<div class="weather-info">
+												<div class="d-flex">
+													<div>
+														<h2 class="mb-0 font-weight-normal">
+															<i class="icon-sun mr-2"></i>31<sup>C</sup>
+														</h2>
+													</div>
+													<div class="ml-2">
+														<h4 class="location font-weight-normal">Bangalore</h4>
+														<h6 class="font-weight-normal">India</h6>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 grid-margin transparent">
+									<div class="row">
+										<div class="col-md-6 mb-4 stretch-card transparent">
+											<div class="card card-tale">
+												<div class="card-body">
+													<p class="mb-4">Today’s Bookings</p>
+													<p class="fs-30 mb-2">4006</p>
+													<p>10.00% (30 days)</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-4 stretch-card transparent">
+											<div class="card card-dark-blue">
+												<div class="card-body">
+													<p class="mb-4">Total Bookings</p>
+													<p class="fs-30 mb-2">61344</p>
+													<p>22.00% (30 days)</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+											<div class="card card-light-blue">
+												<div class="card-body">
+													<p class="mb-4">Number of Meetings</p>
+													<p class="fs-30 mb-2">34040</p>
+													<p>2.00% (30 days)</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 stretch-card transparent">
+											<div class="card card-light-danger">
+												<div class="card-body">
+													<p class="mb-4">Number of Clients</p>
+													<p class="fs-30 mb-2">47033</p>
+													<p>0.22% (30 days)</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 grid-margin stretch-card">
+									<div class="card">
+										<div class="card-body">
+										<p class="card-title">Order Details</p>
+											<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+        <H1>NOS Produits</1>
+               
+ <div class="example-wrapper">          
+            <canvas id="chart"   width="900" height="900" ></canvas>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script>
+
+  const image = new Image();
+image.src = 'https://www.chartjs.org/img/chartjs-logo.svg';
+
+const plugin = {
+  id: 'custom_canvas_background_image',
+  beforeDraw: (chart) => {
+    if (image.complete) {
+      const ctx = chart.ctx;
+      const {top, left, width, height} = chart.chartArea;
+      const x = left + width / 2 - image.width / 2;
+      const y = top + height / 2 - image.height / 2;
+      ctx.drawImage(image, x, y);
+    } else {
+      image.onload = () => chart.draw();
+    }
+  }
+};
+    let user = document.querySelector("#chart")
+    let annGraph = new Chart(user, {
+        type: "doughnut",
+        plugins: [plugin],
+        data: {
+            labels: {{ nom|raw }},
+            datasets: [{
+                label: "Produit",
+                 backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+             borderWidth: 1,
+
+                    borderColor : 'rgb(30,144,255)',
+                     fill: false,
+ tension: 0.1,
+                data: {{ rate|raw }}
+            }]
+        },
+        options: {
+			
+             animations: {
+      tension: {
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+      }
+    },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                    
+                }]
+            }
+        }
+    })
+</script>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 grid-margin stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex justify-content-between">
+												<p class="card-title">Sales Report</p>
+												<a href="#" class="text-info">View all</a>
+											</div>
+											<p class="font-weight-500"></p>
+											<div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+											
+											  <div id= 'geochart'>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+            
+                {{ gc_draw(geochart, 'geochart') }}
+            </script> </div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 grid-margin stretch-card">
+									<div class="card position-relative">
+										<div class="card-body">
+											<div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
+												<div class="carousel-inner">
+													<div class="carousel-item active">
+														<div class="row"></div>
+													</div>
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7 grid-margin stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<p class="card-title mb-0">Top Products</p>
+   <div id="regions_div"></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-5 grid-margin stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">To Do Lists</h4>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 stretch-card grid-margin">
+									<div class="card">
+										<div class="card-body">
+											<p class="card-title mb-0">Projects</p>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 stretch-card grid-margin">
+									<div class="row">
+										<div class="col-md-12 grid-margin stretch-card">
+											<div class="card">
+												<div class="card-body">
+													<p class="card-title">Charts</p>
+
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
+											<div class="card data-icon-card-primary">
+												<div class="card-body">
+													<p class="card-title text-white">Number of Meetings</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+						<!-- content-wrapper ends -->
+
+						<!-- partial -->
+					</div>
+
+{% endblock %}

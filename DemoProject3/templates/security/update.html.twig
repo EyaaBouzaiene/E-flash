@@ -1,0 +1,63 @@
+
+{% extends 'basefront.html.twig' %}
+
+
+{% block content1 %}
+<br>
+    <br>
+    <br>
+    <br>
+
+
+
+    {{ form_start(form) }}
+    <br>
+
+    <br>
+
+    <div class="row" style="width: 500px;left: 200px">
+        <h1 style="left: 250px">Update</h1>
+        <br>
+        <br>
+
+
+
+    <div class="col-12" style="left: 200px">
+
+
+        {{ form_label(form.nom, 'Nom d\'utilisateur') }}
+        {{form_widget(form.nom ,{'attr':{class: 'form-control'}})}}
+    </div>
+    <div class="col-12" style="width: 500px;left: 200px"><br>
+
+
+
+        {{ form_label(form.prenom, 'Prenom') }}
+        {{ form_widget(form.prenom, {'attr':{class: 'form-control'}}) }}
+    </div>
+    <div class="col-12" style="width: 500px;left: 200px"><br>
+
+
+
+        {{ form_label(form.email, 'email') }}
+        {{ form_widget(form.email, {'attr':{class: 'form-control'}}) }}
+    </div>
+    <div class="col-12" style="width: 500px;left: 200px"><br>
+
+
+
+        {{ form_label(form.telf, 'Prenom') }}
+        {{ form_widget(form.telf, {'attr':{class: 'form-control'}}) }}
+    </div>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-secondary "  >Update</button>
+        <br>
+    </div>
+
+
+
+    {{form_end(form) }}
+<br>
+    <br>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block content1 %}
+    <!doctype html>
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href=" https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href=" https://code.jquery.com/jquery-3.5.1.js" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+</head>
+
+<section>
+    <br>
+        <div class="container">
+            <div class="title"><strong>List of users</strong></div>
+
+            </br>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </div>
+                    <script src="{{ asset('back/js/jquery.min.js') }}"></script>
+                    <input type="text" id="search" class="form-control" placeholder="Look for a user">
+                </div>
+
+            </div>
+            </br>
+
+            <div class="col-lg-11">
+
+                        <div class="card-header">
+                            <strong class="card-title">Table de utilisateurs</strong>
+                        </div>
+                        {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+
+
+                <div class="table-responsive">
+
+                    <button class="card-body">
+
+
+
+
+
+                <table id="tableac" class="table  table-hover table-bordered">
+                
+                    <thead class="badge-info">
+                        <tr>
+                             <th>Id</th>
+                            <th>Image</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Telf</th>
+                                <th>Date</th>
+                            <th >Action</th>
+                           
+                        
+                        </tr>
+                    </thead>
+
+
+                    
+                    {% for compteur in list %}
+
+                    <tbody id="tableau">
+<tr>
+    <td> {{compteur.id}} </td>
+    <td> <img src="{{ asset('uploads/' ~ compteur.image) }} "> </td>
+
+    <td> {{compteur.nom}} </td>
+    <td> {{compteur.prenom}} </td>
+    <td> {{compteur.email }} </td>
+     <td> {{compteur.password}} </td>
+     {# <td> <img src="{{ asset('uploads/' ~ compteur.IMAGE) }} "> </td> #}
+       <td>{{ compteur.roles ? compteur.roles| json_encode : '' }}</td>
+        <td> {{compteur.telf}} </td>
+   <td> {{compteur.date | date('d-m-Y')}} </td>
+    <td><a   href="{{path('deluser',{'id':compteur.id })}}"><button type="button" class="btn btn-outline-info  w-100 p-2 " class="btn badge-info"><i class="fa fa-trash-o" aria-hidden="true"></i> </button> </a> </td>
+   
+    </tr>
+
+<script>
+    $(document).ready(function(){
+        $('#search').keyup(function(){
+            search_table($(this).val());
+        });
+        function search_table(value){
+            $('#tableac tbody tr').each(function(){
+                var found = 'false';
+                $(this).each(function(){
+                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                    {
+                        found = 'true';
+                    }
+                });
+                if(found == 'true')
+                {
+                    $(this).show();
+
+                }
+                else
+                {
+                    $(this).hide();
+
+                }
+            });
+        }
+    });
+</script>
+
+
+                    </tbody>
+
+{% endfor %}
+
+                </table>
+                        <br>
+                        <a href="{{ path('export') }}" class="btn btn-info">export excel</a>
+                        <a href="{{ path('stat') }}" class="btn btn-info">Statistiques</a>
+                        <a href="{{ path('listU') }}" class="btn btn-info">pdf</a>
+
+
+
+
+                </div>
+                      </div>
+            </div>
+        </div>
+
+</section>
+</html>
+
+{% endblock %}

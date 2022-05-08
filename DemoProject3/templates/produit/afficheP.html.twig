@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+ 
+
+	<section>
+		<div class="container">
+			<div class="title">
+				<strong>List of Product</strong>
+			</div>
+
+		</br>
+		<script src="{{ asset('back/js/jquery.min.js') }}"></script>
+		<input type="text" class="form-control" placeholder="Search…" aria-label="Search" id="ach">
+	
+
+	<div class="col-lg-50">
+		<div class="card">
+			<div class="card-header">
+				<strong class="card-title">Table de Produit</strong>
+			</div>
+			{% for message in app.flashes('notice') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+			<div class="card-body">
+
+				<div class="table-responsive">
+
+				<a href="{{path('contact')}}">	
+ <button type="button" class="btn btn-inverse-success btn-fw" >
+                          verif
+                                                                                                  
+                        </button>
+</a>
+<a href="{{path('downloadpdfProduits')}}">				
+<button type="button" class="btn btn-outline-info btn-icon-text" onclick="downloadpdf">
+                          Print
+                          <i class="ti-printer btn-icon-append"></i>                                                                              
+                        </button>
+						</a>
+				<a href="{{path('sms')}}">	 
+				<button type="button" class="btn btn-outline-warning btn-icon-text">
+                                                                          
+                          SMS
+                        </button>
+						</a>
+						<a href="{{path('export3')}}">  
+ <button type="button" class="btn btn-outline-info btn-icon-text" onclick="updatepartenaires">
+
+ <i class="fas fa-file-excel fa-5x " aria-hidden="true"></i>
+                                                                                                    
+                        </button>
+                        </a>
+
+
+					<table class="table  table-hover table-bordered" id="tableau" >
+
+						<thead class="badge-info">
+							<tr>
+								<th>REFERENCE</th>
+								<th>NOM</th>
+								<th>TYPE</th>
+								<th>DATE Ajout</th>
+								<th>PRIX</th>
+								<th>IMAGE</th>
+								<th>Description</th>
+								<th>CATEGORIE</th>
+								<th>Quantite</th>
+								<th>QuantiteR</th>
+								<th>Modifier</th>
+								<th>Supprimer</th>
+
+							</tr>
+						</thead>
+
+
+					
+
+							<tbody id="tableau">
+								{% for compteur in list %}
+								<tr>
+									<td>
+										{{compteur.reference}}
+									</td>
+									<td>
+										{{compteur.nom}}
+									</td>
+									<td>
+										{{compteur.type}}
+									</td>
+									<td>
+										{{compteur.datep | date('d-m-Y') }}
+									</td>
+									<td>
+										{{compteur.prix}}
+									</td>
+									<td>
+										<img src="{{ asset('uploads/' ~ compteur.image2) }} ">
+									</td>
+									<td>
+										{{compteur.DESCP}}</td>
+									<td>
+										{{compteur.Categorie.nomcat}}
+									</td>
+									<td>
+										{{compteur.quantite}}
+									</td>
+									<td>
+										{{compteur.quantiter}}
+									</td>
+									<td>
+										<a href="{{path('updateclass',{'id':compteur.reference })}}">
+											<button type="button" class="btn btn-outline-info  w-100 p-2 " class="btn badge-info">
+												<i class="fa fa-pencil" aria-hidden="true"></i>
+											</button>
+										</a>
+									</td>
+									<td>
+										<a href="{{path('dellprod',{'id':compteur.reference })}}">
+											<button type="button" class="btn btn-outline-danger  w-100 p-2" class="btn badge-info">
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</button>
+										</a>
+									</td>
+
+
+								</tr>
+								<script>
+        $(document).ready(function(){
+            $('#ach').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableau tbody tr ').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+	{% endfor %}
+							</tbody>
+						
+					</table>
+
+			
+
+				<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+
+			{% endblock %}

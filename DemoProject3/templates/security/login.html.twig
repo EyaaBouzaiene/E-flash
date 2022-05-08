@@ -1,0 +1,132 @@
+{% extends 'basefront.html.twig' %}
+
+
+{% block content1 %}
+<br>
+
+<br>
+<br>
+<section class="vh-100">
+  <div class="container-fluid">
+    <div class="row">
+
+
+
+
+      <div class="col-sm-5  text-black" style="left: 50px">
+
+        
+
+        <div class="align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+<form method="post">
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+          <form class="block-centre" style="width: 23rem;">
+
+            <h1 class="fw-normal mb-3 pb-3 " style="letter-spacing: 1px; left: 190px">Log in</h1>
+              <br>
+
+            <div class="form-outline mb-4">
+              <input type="email"  value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-control-lg" autocomplete="email" required autofocus />
+              <label class="form-label" for="inputEmail">Email</label>
+            </div>
+
+        <div class="form-outline mb-4">
+              <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" autocomplete="current-password" required />
+              <label class="form-label" for="inputPassword">Password</label>
+        </div>
+
+           <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+
+
+         <div class="pt-1 mb-4">
+              <button class="btn btn-warning btn-lg btn-block" type="submit">Login</button>
+         </div>
+
+         <h3>  <p class="small mb-5 pb-lg-2"><a class="text-muted" href="{{ path('app_forgotten_password') }}">Forgot password?</a></p> </h3>
+              <h3> <p>Don't have an account? <a href="{{ path('app_register') }}" class="link-info">Register here</a></p> </h3>
+
+<br>
+
+              {% if app.user %}
+                  <div class="mb-3">
+                   <button type="submit" class="btn btn-info btn-lg "  >   <a href="{{ path('app_update') }}">Modifier mon compte</a> </button>
+                  </div>
+              {% endif %}
+
+<br>
+          </form>
+    <script src="front/js/easyResponsiveTabs.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+        });
+    </script>
+
+
+
+</form>
+        </div>
+      </div>
+
+        <div class="col-sm-5" style="left: 150px">
+            <br>
+            <br>
+            <br>
+           <h2><span> Connexion  </span>
+            <br>
+            via les reseaux sociaux
+           </h2>
+            <br>
+            <div class="box-body">
+                <p class="sns-list">
+                    <a href="{{ path('github_connect') }}" class="sns-connect facebook-connect btn btn-primary facebook" style="width: 300px">
+                        <i  class="fa fa-facebook ">  </i>
+                        <span> login with facebook </span>
+
+                    </a>
+                </p>
+                <p class="sns-list">
+                    <a href="{{ path('github_connect') }}" class="sns-connect google-connect btn btn-danger google-plus" style="width: 300px">
+                        <i  class="fa fa-google">  </i>
+                        <span> login with google </span>
+                    </a>
+
+                </p>
+                <p class="sns-list">
+                    <a href="{{ path('github_connect') }}" class="sns-connect github-connect btn btn-dark github-plus" style="width: 300px">
+                        <i  class="fa fa-github">  </i>
+                        <span> login with Github </span>
+                    </a>
+
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+  </div>
+
+</section>
+
+{% endblock %}

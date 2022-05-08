@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    {% block CSS %}
+        <!-- Favicon -->
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+      
+    {% endblock %}
+</head>
+
+<body>
+        <!-- Spinner Start -->
+
+
+            <div class="content">
+
+                <!-- Sale & Revenue Start -->
+            
+                           <div class="card">
+			<div class="card-header">
+				<strong class="card-title">Table de Produit</strong>
+			</div>
+            	<div class="card-body">
+                 <img src="{{ ('uploads/fd7af3f0bdd732ba7be98ecbd5a9062d.jpeg') }}" height="50" width="80" />
+                          <table class="table  table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">REFERENCE</th>
+                                       
+ <th scope="col">IMAGE</th>
+                                        <th scope="col">Nom</th>
+                                       
+                                        <th scope="col">TYPE</th>
+                                        
+                                        <th scope="col"> DATE Ajout</th>
+                                        
+                                        <th scope="col"> PRIX</th>
+                                        
+                                        <th scope="col">Description</th>
+                                     
+                                        <th scope="col">CATEGORIE</th>
+                                        
+                                        <th scope="col">Quantite</th>
+                                        
+                                        <th scope="col">QuantiteR</th>
+                                       
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for compteur in list %}
+
+                                    <tr>
+                                    <td>{{compteur.reference}} </td>
+                                   <td> <img   src="{{ ('uploads/' ~ compteur.image2) }}" height="50" width="80"> </td>
+                                    <td> {{compteur.nom}} </td>
+                                    
+                                    <td> {{compteur.type}} </td>
+                                    
+                                    <td> {{compteur.datep | date('d-m-Y') }}</td>
+                                    
+                                    <td> {{compteur.prix}} </td>
+                                    
+                                    <td> {{compteur.DESCP}} </td>
+                                    
+                                    <td> {{compteur.Categorie.nomcat}} </td>
+                                    
+                                    <td>{{compteur.quantite}} </td>
+                                   
+                                    <td>{{compteur.quantiter}} </td>
+                                   
+                                        
+                                    
+                                    </tr>
+                                   
+                                </tbody>
+                                 {% endfor %}
+                            </table>
+                
+                <!-- Footer End -->
+            </div>
+        <!-- Content End -->
+        </div>
+
+
+        <!-- Back to Top -->
+
+
+    <!-- JavaScript Libraries -->
+    
+ 
+    
+</body>
+
+</html>

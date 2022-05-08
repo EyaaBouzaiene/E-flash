@@ -1,0 +1,51 @@
+{{ form_start(form, {attr: {class: 'filter js-filter-form'}}) }}
+
+  <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  {{ form_row(form.q) }}
+
+  
+  <h4>Prix</h4>
+  <div class="row">
+    <div class="col-md-6">
+      {{ form_row(form.min) }}
+    </div>
+    <div class="col-md-6">
+      {{ form_row(form.max) }}
+    </div>
+  </div>
+  {# <div id="price-slider" data-min="{{ min }}" data-max="{{ max }}" style="margin-bottom: 3rem;"></div> #}
+<div id="price-slider" style=" margin-bottom: 3rem "></div>
+<link rel="stylesheet" href="{{asset ('nouislider/dist/nouislider.css')}}"> 
+
+<script>
+
+
+const slider = document.getElementById('price-slider')
+
+if (slider) {
+    const min = document.getElementById('min')
+    const max = document.getElementById('max')
+    const minValue = Math.floor(parseInt(slider.dataset.min, 10) / 10) * 10
+    const maxValue = Math.ceil(parseInt(slider.dataset.max, 10) / 10) * 10
+    const range = noUiSlider.create(slider, {
+        start: [min.value || minValue, max.value || maxValue],
+        connect: true,
+        step: 10,
+        range: {
+            'min': minValue,
+            'max': maxValue
+        }
+    })
+}
+</script>
+<script src="{{ asset ('nouislider/dist/nouislider.js') }}"></script> 
+
+  <h4>Promotions</h4>
+
+
+<button type="submit" class="btn btn-primary w-100">Filtrer</button>
+
+{{ form_end(form) }}

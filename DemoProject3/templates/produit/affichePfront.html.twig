@@ -1,0 +1,161 @@
+{% extends 'basefront.html.twig' %}
+{% block content2 %}
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('listC') }}">
+					<img src="{{asset ('front/images/logo.png')}}" alt=""/>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('listC') }}">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="menu.html">Menu</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="about.html">About</a>
+						</li>
+
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Categories</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								{% for compteur in listP %}
+									<a class="dropdown-item" href="{{path('afficheP',{'id':compteur.code })}}">{{compteur.nomcat}}</a>
+								{% endfor %}
+							</div>
+						</li>
+
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="blog.html">blog</a>
+								<a class="dropdown-item" href="blog-details.html">blog Single</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<br>
+
+	<tr>
+		<div class="menu-box">
+
+			<div class="container">
+
+				<div class="row">
+					<div class="d-flex justify-content-end mb-2">
+
+						{{ knp_pagination_sortable(listProd,'Prix','p.prix') }}
+
+					</div>
+					<div class="col-md-3">
+						{% include 'produit/_filter.html.twig'  with { form : form} only %}
+
+ <form action="" method="POST">
+					</div>
+					<link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}"/>
+					<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+					<link rel="stylesheet" type="text/css" href="{{ asset('front/css/rating.css')}}">
+					<link rel="stylesheet" type="text/css" href="{{ asset('front/css/rating2.css')}}">
+
+					{% for compteur2 in listProd %}
+						<div class="col-md-3">
+
+							<div class="card mb-4 product-wap rounded-0">
+								<div class="card rounded-0">
+									<div class="card-image">
+										<img class="card-img rounded-0 img-fluid" src="{{ asset('uploads/' ~ compteur2.image2) }}">
+									</div>
+									<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+										<ul class="list-unstyled">
+											<li>
+												<a class="btn btn-outline-success text-white" href="{{ path('addf', {'id': compteur2.reference})}}">
+													<i class="far fa-heart"></i>
+												</a>
+											</li>
+											<li>
+												<a class="btn btn-outline-success text-white mt-2" href="{{ path('readmore', {'id': compteur2.reference})}}" id="REFERENCE" name="REFERENCE">
+													<i class="far fa-eye"></i>
+												</a>
+											</li>
+											<li>
+												<a class="btn btn-outline-success text-white mt-2" href="{{ path('add', {'id': compteur2.reference})}}">
+													<i class="fas fa-cart-plus"></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="card-body">
+									<a style="color:red;" href="" class="h3 text-decoration-none">{{compteur2.nom}}</a>
+									<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+										<li>{{compteur2.DESCP}}</li>
+
+									</ul>
+
+									<p class="text-center mb-0">{{compteur2.prix}}dt</p>
+									{{ form_start(form2) }}
+									<ul class="list-unstyled d-flex justify-content-center mb-1">
+										<li>
+											 <span class="rating" data-rating="0">
+    <i class="star" data-checked="false" data-note="1" id= "rate-1">&#9733;</i>
+    <i class="star" data-checked="false" data-note="2" id= "rate-2">&#9733;</i>
+    <i class="star" data-checked="false" data-note="3" id= "rate-3" >&#9733;</i>
+    <i class="star" data-checked="false" data-note="4" id= "rate-4">&#9733;</i>
+    <i class="star" data-checked="false" data-note="5" id= "rate-5">&#9733;</i>
+  </span>
+  
+ 
+  
+{{ form_widget(form2.rating,{'attr':{'hidden': true}}) }}
+
+ <span>
+    <i class="note">Note: 0</i>
+<button type="submit", id="selectrow">Valider</button>
+  </span>
+{{ form_end(form2) }}
+    
+							
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					     
+    </form>
+
+	<script>
+
+
+
+	</script>
+					<div class="mt-4">
+						{{ knp_pagination_render(listProd) }}
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</tr>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="{{ asset('front/js/rating6.js') }}"></script>
+	<script src="{{asset ('back/js/scripts.js')}}"></script>
+
+{% endblock %}

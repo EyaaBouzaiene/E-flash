@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block content %}
+
+
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Ajouter un Partenaire Secours</h6>
+                            {% for message in app.flashes('notice') %}
+                                <div class="alert alert-success" > 
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            {{form_start(form) }} 
+                                <div class="mb-3">
+                                    <label  class="form-label" >Matricule du Stock</label>
+                                    {{form_widget(form.matriculeps ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(form.matriculeps ,{'attr':{class: 'text-danger'}})}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label  class="form-label">Nom de la marque</label>
+                                    {{form_widget(form.nommarqueps ,{'attr':{class: 'form-control'}})}}
+                                     {{form_errors(form.nommarqueps ,{'attr':{class: 'text-danger'}})}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label" >Nom Partenaire Secours</label>
+                                {{form_widget(form.nomps ,{'attr':{class: 'form-control'}})}}
+                                {{form_errors(form.nomps ,{'attr':{class: 'text-danger'}})}}
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Prénom Partenaire Secours</label>
+                                    {{form_widget(form.prenomps ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(form.prenomps ,{'attr':{class: 'text-danger'}})}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Mail Partenaire Secours</label>
+                                    {{form_widget(form.mailps ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(form.mailps ,{'attr':{class: 'text-danger'}})}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Categorie Partenaire Secours</label>
+                                    {{form_widget(form.categorieps ,{'attr':{class: 'form-control'}})}}
+                              
+                                    
+                                </div>
+
+                              
+
+                                 <div class="mb-3">
+                                    <label for="formFile" class="form-label">image</label>
+                                    {{form_widget(form.image ,{'attr':{ type: 'file', class: 'form-control'}})}}
+                                </div>
+
+                                <br>
+
+                                  
+
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            {{form_end(form) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+    {% endblock %}
+
+
