@@ -1,0 +1,68 @@
+
+   
+       
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Ajouter Livraison</h6>
+                           
+                            {{form_start(formL,{'attr':{novalidate: 'form-control'}})}} 
+                                <div class="mb-3">
+                                    <label  class="form-label">Commande</label>
+                                    {{form_widget(formL.idcommande ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(formL.idcommande)}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label  class="form-label">Livreur</label>
+                                    {{form_widget(formL.idl ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(formL.idl)}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label  class="form-label">Ville </label>
+                                {{form_widget(formL.ville ,{'attr':{class: 'form-control'}})}}
+                              {{form_errors(formL.ville)}}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Etat</label>
+                                    {{form_widget(formL.etat ,{'attr':{class: 'form-control'}})}}
+                                </div>
+
+                                
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Prix</label>
+                                    {{form_widget(formL.prix ,{'attr':{class: 'form-control'}})}}
+                                    {{form_errors(formL.prix)}}
+                                </div>
+
+                                
+                              
+
+                                
+
+                                
+
+                                
+                                
+                                <br>
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            {{form_end(formL) }} 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+
+{% endblock %}

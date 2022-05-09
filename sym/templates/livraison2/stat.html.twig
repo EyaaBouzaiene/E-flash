@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/helpers.esm.min.js" integrity="sha512-urWBnIv+F027G24xDNigjxvIuwnWlWy94W2yx77VkISKLzKSohOKOubMDhtEF6LZcEH7gctmNSpxDqIW/zMmUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class="container">
+</br>
+<h1>Statistique</h1>
+       <canvas id="liv" width="400" height="100"></canvas>
+
+</div>
+</br>
+{% endblock %}
+
+{% block j %}
+<script>
+
+ let Pub = document.querySelector("#liv")
+ let PubGraph = new Chart(liv, {
+
+     type: "pie",
+     data: {
+  
+          labels:{{ville |raw}},
+          datasets: [{
+                   label:"Repartion livraison",
+                   data:{{livraisonCount |raw}},
+          backgroundColor: [ 'rgba(255, 99, 132, 100)',
+                'rgba(54, 162, 235, 100)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 100)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)']         
+                   
+                     
+          
+          }]
+     }
+})
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
